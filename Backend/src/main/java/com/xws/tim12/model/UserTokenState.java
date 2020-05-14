@@ -31,4 +31,12 @@ public class UserTokenState {
         return expiresIn;
     }
 
+    @Override
+    public String toString() {
+        return "UserTokenState{" +
+                "jwtAccessToken='" + jwtAccessToken + '\'' +
+                ", expiresIn=" + expiresIn +
+                '}';
+    }
+
 }

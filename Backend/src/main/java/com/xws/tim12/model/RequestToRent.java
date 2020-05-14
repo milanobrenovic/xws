@@ -22,7 +22,7 @@ public class RequestToRent {
     private RequestStatusType requestStatusType;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private User user;
+    private NormalUser normalUser;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Agent agent;
@@ -39,11 +39,11 @@ public class RequestToRent {
 
     }
 
-    public RequestToRent(long id, Vehicle vehicle, RequestStatusType requestStatusType, User user, Date rentDateFrom, Date rentDateTo) {
+    public RequestToRent(long id, Vehicle vehicle, RequestStatusType requestStatusType, NormalUser normalUser, Date rentDateFrom, Date rentDateTo) {
         this.id = id;
         this.vehicle = vehicle;
         this.requestStatusType = requestStatusType;
-        this.user = user;
+        this.normalUser = normalUser;
         this.rentDateFrom = rentDateFrom;
         this.rentDateTo = rentDateTo;
     }
@@ -52,7 +52,7 @@ public class RequestToRent {
         this.id = requestToRent.id;
         this.vehicle = requestToRent.vehicle;
         this.requestStatusType = requestToRent.requestStatusType;
-        this.user = requestToRent.user;
+        this.normalUser = requestToRent.normalUser;
         this.rentDateFrom = requestToRent.rentDateFrom;
         this.rentDateTo = requestToRent.rentDateTo;
     }
@@ -81,12 +81,12 @@ public class RequestToRent {
         this.requestStatusType = requestStatusType;
     }
 
-    public User getUser() {
-        return user;
+    public NormalUser getNormalUser() {
+        return normalUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setNormalUser(NormalUser normalUser) {
+        this.normalUser = normalUser;
     }
 
     public Date getRentDateFrom() {
@@ -111,7 +111,7 @@ public class RequestToRent {
                 "id=" + id +
                 ", vehicle=" + vehicle.toString() +
                 ", requestStatusType=" + requestStatusType +
-                ", user=" + user.toString() +
+                ", user=" + normalUser.toString() +
                 ", rentDateFrom=" + rentDateFrom +
                 ", rentDateTo=" + rentDateTo +
                 '}';

@@ -12,7 +12,7 @@ public class Comment {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private User user;
+    private NormalUser normalUser;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Agent agent;
@@ -27,8 +27,8 @@ public class Comment {
 
     }
 
-    public Comment(User user, Agent agent, Admin admin, String comment) {
-        this.user = user;
+    public Comment(NormalUser normalUser, Agent agent, Admin admin, String comment) {
+        this.normalUser = normalUser;
         this.agent = agent;
         this.admin = admin;
         this.comment = comment;
@@ -42,12 +42,12 @@ public class Comment {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public NormalUser getNormalUser() {
+        return normalUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setNormalUser(NormalUser normalUser) {
+        this.normalUser = normalUser;
     }
 
     public Agent getAgent() {
@@ -78,7 +78,7 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", user=" + user +
+                ", user=" + normalUser +
                 ", agent=" + agent +
                 ", admin=" + admin +
                 ", comment='" + comment + '\'' +

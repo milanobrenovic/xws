@@ -13,8 +13,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-@Entity(name = "NormalUser")
-public class User implements UserDetails {
+@Entity
+public class NormalUser implements UserDetails {
 
     @Id
     @Column
@@ -63,8 +63,8 @@ public class User implements UserDetails {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_authority",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            name = "normal_user_authority",
+            joinColumns = @JoinColumn(name = "normal_user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private Set<Authority> authorities;
 

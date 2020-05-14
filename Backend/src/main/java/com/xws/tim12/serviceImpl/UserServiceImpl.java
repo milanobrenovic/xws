@@ -1,10 +1,9 @@
 package com.xws.tim12.serviceImpl;
 
-import com.xws.tim12.model.Admin;
-import com.xws.tim12.model.Authority;
-import com.xws.tim12.repository.AdminRepository;
-import com.xws.tim12.service.AdminService;
+import com.xws.tim12.model.NormalUser;
+import com.xws.tim12.repository.UserRepository;
 import com.xws.tim12.service.AuthService;
+import com.xws.tim12.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -14,45 +13,43 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
-
 @Service
-public class AdminServiceImpl implements UserDetailsService, AdminService {
+public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private AuthService authService;
 
     @Autowired
-    private AdminRepository adminRepository;
+    private UserRepository userRepository;
 
     @Transactional
     @EventListener(ApplicationReadyEvent.class)
-    public void insertHardcodedAdminAfterStartup() {
-//        Set<Authority> authorities = authService.findByName("ROLE_ADMIN");
-//        Admin admin = new Admin();
-//        admin.setUsername("admin");
-//        admin.setPassword("$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi"); // pwd: 123
-//        admin.setAuthorities(authorities);
+    public void insertHardcodedNormalUserAfterStartup() {
+//        Set<Authority> authorities = authService.findByName("ROLE_NORMAL_USER");
+//        User user = new User();
+//        user.setUsername("user");
+//        user.setPassword("$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi"); // pwd: 123
+//        user.setAuthorities(authorities);
 //
-//        if (findByUsername(admin.getUsername()) != null) {
+//        if (findByUsername(user.getUsername()) != null) {
 //            return;
 //        }
 //
-//        adminRepository.save(admin);
+//        userRepository.save(user);
     }
 
     @Override
-    public Admin findByUsername(String username) {
-        return adminRepository.findByUsername(username);
+    public NormalUser findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Admin admin = findByUsername(username);
-        if (admin == null) {
+        NormalUser normalUser = findByUsername(username);
+        if (normalUser == null) {
             throw new UsernameNotFoundException(String.format("User %s not found", username));
         } else {
-            return admin;
+            return normalUser;
         }
     }
 }

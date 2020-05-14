@@ -1,7 +1,9 @@
 package com.xws.tim12.serviceImpl;
 
+import com.xws.tim12.dto.LoggedInUserDTO;
 import com.xws.tim12.model.Admin;
 import com.xws.tim12.model.Authority;
+import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.model.UserTokenState;
 import com.xws.tim12.repository.AuthRepository;
 import com.xws.tim12.security.TokenUtils;
@@ -45,24 +47,79 @@ public class AuthServiceImpl implements AuthService {
         return authorities;
     }
 
+//    @Override
+//    public UserTokenState login(JwtAuthenticationRequest jwtAuthenticationRequest) {
+//        final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+//            jwtAuthenticationRequest.getUsername(),
+//            jwtAuthenticationRequest.getPassword()
+//        );
+//        final Authentication authentication = authManager.authenticate(token);
+//
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//
+//        Admin admin = (Admin) authentication.getPrincipal();
+//        String jwtAccessToken = tokenUtils.generateToken(admin.getUsername());
+//        int expiresIn = tokenUtils.getExpiredIn();
+//
+//        return new UserTokenState(
+//            jwtAccessToken,
+//            expiresIn
+//        );
+//    }
+
     @Override
-    public UserTokenState login(JwtAuthenticationRequest jwtAuthenticationRequest) {
-        final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-            jwtAuthenticationRequest.getUsername(),
-            jwtAuthenticationRequest.getPassword()
+    public LoggedInUserDTO login(JwtAuthenticationRequest jwtAuthenticationRequest) {
+        final Authentication authentication = authManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                jwtAuthenticationRequest.getUsername(),
+                jwtAuthenticationRequest.getPassword()
+            )
         );
-        final Authentication authentication = authManager.authenticate(token);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        Admin admin = (Admin) authentication.getPrincipal();
-        String jwtAccessToken = tokenUtils.generateToken(admin.getUsername());
+        String username = returnUsername(authentication.getPrincipal());
+        if (username == null) {
+            return null;
+        }
+
+        String jwtToken = tokenUtils.generateToken(username);
         int expiresIn = tokenUtils.getExpiredIn();
 
-        return new UserTokenState(
-            jwtAccessToken,
-            expiresIn
+        return returnLoggedInUser(
+            authentication.getPrincipal(),
+            new UserTokenState(jwtToken, expiresIn)
         );
+    }
+
+    private String returnUsername(Object object) {
+        if (object instanceof Admin) {
+            return ((Admin) object).getUsername();
+        } else if (object instanceof NormalUser) {
+            return ((NormalUser) object).getUsername();
+        }
+        return null;
+    }
+
+    private LoggedInUserDTO returnLoggedInUser(Object object, UserTokenState userTokenState) {
+        if (object instanceof Admin) {
+            Admin admin = (Admin) object;
+            return new LoggedInUserDTO(
+                admin.getId(),
+                admin.getUsername(),
+                "ROLE_ADMIN",
+                userTokenState
+            );
+        } else if (object instanceof NormalUser) {
+            NormalUser normalUser = (NormalUser) object;
+            return new LoggedInUserDTO(
+                normalUser.getId(),
+                normalUser.getUsername(),
+                "ROLE_USER",
+                userTokenState
+            );
+        }
+        return null;
     }
 
 }
