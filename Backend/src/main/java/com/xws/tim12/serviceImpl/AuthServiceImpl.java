@@ -2,6 +2,7 @@ package com.xws.tim12.serviceImpl;
 
 import com.xws.tim12.dto.LoggedInUserDTO;
 import com.xws.tim12.model.Admin;
+import com.xws.tim12.model.Agent;
 import com.xws.tim12.model.Authority;
 import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.model.UserTokenState;
@@ -97,6 +98,8 @@ public class AuthServiceImpl implements AuthService {
             return ((Admin) object).getUsername();
         } else if (object instanceof NormalUser) {
             return ((NormalUser) object).getUsername();
+        } else if (object instanceof Agent) {
+        	return ((Agent) object).getUsername();
         }
         return null;
     }
@@ -116,6 +119,14 @@ public class AuthServiceImpl implements AuthService {
                 normalUser.getId(),
                 normalUser.getUsername(),
                 "ROLE_USER",
+                userTokenState
+            );
+        } else if (object instanceof Agent) {
+            Agent agent = (Agent) object;
+            return new LoggedInUserDTO(
+                agent.getId(),
+                agent.getUsername(),
+                "ROLE_AGENT",
                 userTokenState
             );
         }
