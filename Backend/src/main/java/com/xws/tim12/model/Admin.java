@@ -39,7 +39,7 @@ public class Admin implements UserDetails {
     @Email()
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "admin_authority",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),

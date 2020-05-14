@@ -4,6 +4,9 @@ import com.xws.tim12.security.TokenUtils;
 import com.xws.tim12.security.auth.RestAuthenticationEntryPoint;
 import com.xws.tim12.security.auth.TokenAuthenticationFilter;
 import com.xws.tim12.serviceImpl.AdminServiceImpl;
+import com.xws.tim12.serviceImpl.AgentServiceImpl;
+import com.xws.tim12.serviceImpl.UserServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AdminServiceImpl jwtAdminDetailsService;
 
     @Autowired
+    private UserServiceImpl jwtUserDetailsService;
+
+    @Autowired
+    private AgentServiceImpl jwtAgentDetailsService;
+
+    @Autowired
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
     @Autowired
@@ -48,6 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(jwtAdminDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(jwtAgentDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -68,8 +79,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .cors()
             .and()
             .addFilterBefore(
-                new TokenAuthenticationFilter(tokenUtils, jwtAdminDetailsService),
-                BasicAuthenticationFilter.class
+                    new TokenAuthenticationFilter(tokenUtils, jwtAdminDetailsService),
+                    BasicAuthenticationFilter.class
+            )
+            .addFilterBefore(
+                    new TokenAuthenticationFilter(tokenUtils, jwtUserDetailsService),
+                    BasicAuthenticationFilter.class
+            )
+            .addFilterBefore(
+                    new TokenAuthenticationFilter(tokenUtils, jwtAgentDetailsService),
+                    BasicAuthenticationFilter.class
             );
 
         http.csrf().disable();
@@ -79,7 +98,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(HttpMethod.POST, "/api/auth/**");
         web.ignoring().antMatchers(HttpMethod.PUT, "/api/auth");
-//        web.ignoring().antMatchers(HttpMethod.GET, "/", "/api/ocsp");
     }
 
 }

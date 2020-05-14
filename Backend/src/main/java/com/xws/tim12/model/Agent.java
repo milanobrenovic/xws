@@ -67,7 +67,7 @@ public class Agent implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Ad> ads;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "agent_authority",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),

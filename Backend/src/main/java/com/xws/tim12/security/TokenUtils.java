@@ -15,7 +15,7 @@ import java.util.Date;
 @Component
 public class TokenUtils {
 
-    @Value("Bsep")
+    @Value("Xws")
     private String APP_NAME;
 
     @Value("somesecret")
