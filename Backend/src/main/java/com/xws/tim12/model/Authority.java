@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +17,8 @@ public class Authority implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Name cannot be empty.")
+    @NotNull(message = "Name cannot be null.")
     @Column(unique = true, nullable = false)
     private String name;
 
@@ -58,6 +63,14 @@ public class Authority implements GrantedAuthority {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Authority{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
 }

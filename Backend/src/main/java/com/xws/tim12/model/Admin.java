@@ -4,6 +4,10 @@ import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Set;
 
@@ -15,12 +19,25 @@ public class Admin implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @NotEmpty(message = "Username cannot be empty.")
+    @NotNull(message = "Username cannot be null.")
+    @Column(nullable = false)
     private String username;
 
     @JsonIgnore
-    @Column
+    @NotEmpty(message = "Password cannot be empty.")
+    @NotNull(message = "Password cannot be null.")
+    @Column(nullable = false)
     private String password;
+
+    @Column(columnDefinition = "VARCHAR(30)", nullable = true)
+    private String firstName;
+
+    @Column(columnDefinition = "VARCHAR(30)", nullable = true)
+    private String lastName;
+
+    @Email()
+    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -77,6 +94,51 @@ public class Admin implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", authorities=" + authorities +
+                '}';
     }
 
 }
