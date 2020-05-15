@@ -1,26 +1,34 @@
 package com.xws.tim12.serviceImpl;
 
+import com.xws.tim12.dto.NormalUserDTO;
 import com.xws.tim12.model.NormalUser;
-import com.xws.tim12.repository.UserRepository;
+import com.xws.tim12.repository.NormalUserRepository;
 import com.xws.tim12.service.AuthService;
-import com.xws.tim12.service.UserService;
+import com.xws.tim12.service.NormalUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public class UserServiceImpl implements UserDetailsService, UserService {
+public class NormalUserServiceImpl implements UserDetailsService, NormalUserService {
 
     @Autowired
     private AuthService authService;
 
     @Autowired
-    private UserRepository userRepository;
+    private NormalUserRepository normalUserRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
     @EventListener(ApplicationReadyEvent.class)
@@ -40,7 +48,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public NormalUser findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return normalUserRepository.findByUsername(username);
     }
 
     @Override
@@ -51,6 +59,32 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         } else {
             return normalUser;
         }
+    }
+
+    @Override
+    public NormalUserDTO createNormalUser(NormalUserDTO normalUserDTO) {
+        if (normalUserRepository.findByUsername(normalUserDTO.getUsername()) != null) {
+            return null;
+        }
+
+        String hashedPassword = passwordEncoder.encode(normalUserDTO.getPassword());
+
+        NormalUser newNormalUser = new NormalUser(
+                normalUserDTO.getUsername(),
+                hashedPassword,
+                normalUserDTO.getFirstName(),
+                normalUserDTO.getLastName(),
+                normalUserDTO.getEmail(),
+                normalUserDTO.getCountry(),
+                normalUserDTO.getPhoneNumber(),
+                normalUserDTO.getAddress(),
+                normalUserDTO.getCity(),
+                normalUserDTO.getNumberOfAds(),
+                normalUserDTO.getIsBanned(),
+                normalUserDTO.getAds()
+        );
+
+        return new NormalUserDTO(normalUserRepository.save(newNormalUser));
     }
 
 }

@@ -68,6 +68,25 @@ public class NormalUser implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private Set<Authority> authorities;
 
+    public NormalUser() {
+
+    }
+
+    public NormalUser(@NotEmpty(message = "Username cannot be empty.") @NotNull(message = "Username cannot be null.") String username, @NotNull(message = "Password cannot be null.") String password, String firstName, String lastName, @Email() String email, String country, String phoneNumber, String address, String city, Integer numberOfAds, Boolean isBanned, List<Ad> ads) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.country = country;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.city = city;
+        this.numberOfAds = numberOfAds;
+        this.isBanned = isBanned;
+        this.ads = ads;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;

@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import com.xws.tim12.model.Ad;
 
+import com.xws.tim12.model.NormalUser;
 import net.minidev.json.annotate.JsonIgnore;
 
 public class NormalUserDTO {
@@ -51,7 +52,7 @@ public class NormalUserDTO {
 
     private Boolean isBanned;
     
-    //private List<Ad> ads;
+    private List<Ad> ads;
 
     public NormalUserDTO() {
     	
@@ -72,6 +73,13 @@ public class NormalUserDTO {
 		this.city = city;
 		this.numberOfAds = numberOfAds;
 		this.isBanned = isBanned;
+	}
+
+	public NormalUserDTO(NormalUser normalUser) {
+    	this(normalUser.getId(), normalUser.getUsername(), normalUser.getPassword(),
+				normalUser.getFirstName(), normalUser.getLastName(), normalUser.getEmail(),
+				normalUser.getCountry(), normalUser.getPhoneNumber(), normalUser.getAddress(),
+				normalUser.getCity(), normalUser.getNumberOfAds(), normalUser.getBanned());
 	}
 
 	public Long getId() {
@@ -169,9 +177,32 @@ public class NormalUserDTO {
 	public void setIsBanned(Boolean isBanned) {
 		this.isBanned = isBanned;
 	}
-	
-	
 
-    
-    
+	public List<Ad> getAds() {
+		return ads;
+	}
+
+	public void setAds(List<Ad> ads) {
+		this.ads = ads;
+	}
+
+	@Override
+	public String toString() {
+		return "NormalUserDTO{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", country='" + country + '\'' +
+				", phoneNumber='" + phoneNumber + '\'' +
+				", address='" + address + '\'' +
+				", city='" + city + '\'' +
+				", numberOfAds=" + numberOfAds +
+				", isBanned=" + isBanned +
+				", ads=" + ads +
+				'}';
+	}
+
 }

@@ -5,7 +5,7 @@ import com.xws.tim12.security.auth.RestAuthenticationEntryPoint;
 import com.xws.tim12.security.auth.TokenAuthenticationFilter;
 import com.xws.tim12.serviceImpl.AdminServiceImpl;
 import com.xws.tim12.serviceImpl.AgentServiceImpl;
-import com.xws.tim12.serviceImpl.UserServiceImpl;
+import com.xws.tim12.serviceImpl.NormalUserServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AdminServiceImpl jwtAdminDetailsService;
 
     @Autowired
-    private UserServiceImpl jwtUserDetailsService;
+    private NormalUserServiceImpl jwtUserDetailsService;
 
     @Autowired
     private AgentServiceImpl jwtAgentDetailsService;
