@@ -14,6 +14,7 @@ public class AdDTO {
     
     @NotEmpty(message = "Vehicle is empty.")
     private Vehicle vehicle;
+    
     private List<Comment> comments;
 
     public AdDTO() {
