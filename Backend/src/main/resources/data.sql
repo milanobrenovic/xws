@@ -18,3 +18,5 @@ INSERT INTO agent (username, password, first_name, last_name, email, company_nam
 VALUES ('agent2', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'Agent2', 'Agentic2', 'agent2@gmail.com', 'FBI', '234-56-789', 'New York St. 5', null, 'AGENT', false);
 INSERT INTO agent (username, password, first_name, last_name, email, company_name, business_registration_number, address, pricelist_id, entity_type, is_banned)
 VALUES ('company1', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'Company1', 'Companic1', 'companic1@gmail.com', 'NSA', '345-67-890', 'Washington Blvd. 4', null, 'COMPANY', false);
+
+

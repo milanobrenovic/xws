@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.xws.tim12.model.Ad;
 import com.xws.tim12.model.Comment;
 import com.xws.tim12.model.Vehicle;
 
@@ -34,6 +35,10 @@ public class AdDTO {
     public AdDTO(AdDTO ad) {
         this.vehicle = ad.vehicle;
         this.comments = ad.comments;
+    }
+    
+    public AdDTO(Ad ad) {
+        this(ad.getVehicle(), ad.getComments());
     }
 
     public Long getId() {
