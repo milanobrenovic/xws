@@ -1,7 +1,6 @@
 package com.xws.tim12.controller;
 
 import com.xws.tim12.dto.NormalUserDTO;
-import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.service.NormalUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +21,7 @@ public class NormalUserController {
             if (normalUserDTO == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(normalUserDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

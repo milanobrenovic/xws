@@ -7,6 +7,8 @@ import com.xws.tim12.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -41,6 +43,20 @@ public class AdminServiceImpl implements UserDetailsService, AdminService {
     @Override
     public Admin findByUsername(String username) {
         return adminRepository.findByUsername(username);
+    }
+
+    @Override
+    public Admin getAdminLogin() {
+        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        try {
+            Admin admin = adminRepository.findByUsername(currentUser.getName());
+            if (admin != null) {
+                return admin;
+            }
+        } catch (UsernameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

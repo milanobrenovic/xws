@@ -2,7 +2,6 @@ package com.xws.tim12.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xws.tim12.dto.CartDTO;
 import com.xws.tim12.model.Ad;
-import com.xws.tim12.model.Cart;
-import com.xws.tim12.repository.CartRepository;
 import com.xws.tim12.service.AdService;
 import com.xws.tim12.service.CartService;
 
 
 @RestController
-@RequestMapping(value = "/api/auth/cart")
+@RequestMapping(value = "/api/auth/cart", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CartController {
 	
 	@Autowired

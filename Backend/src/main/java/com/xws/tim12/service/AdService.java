@@ -1,10 +1,17 @@
 package com.xws.tim12.service;
 
 import com.xws.tim12.dto.AdDTO;
-import com.xws.tim12.model.Ad;
+
+import java.time.LocalTime;
+import java.util.List;
 
 public interface AdService {
-	Ad findById(Long id);
 
-	Ad create(AdDTO ad);
+    AdDTO create(AdDTO adDTO);
+
+    List<AdDTO> findAll();
+
+    List<AdDTO> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
+            String pickupLocation, LocalTime pickupFrom, LocalTime pickupTo);
+
 }

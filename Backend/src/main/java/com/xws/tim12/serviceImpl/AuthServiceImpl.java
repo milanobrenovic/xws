@@ -48,26 +48,6 @@ public class AuthServiceImpl implements AuthService {
         return authorities;
     }
 
-//    @Override
-//    public UserTokenState login(JwtAuthenticationRequest jwtAuthenticationRequest) {
-//        final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-//            jwtAuthenticationRequest.getUsername(),
-//            jwtAuthenticationRequest.getPassword()
-//        );
-//        final Authentication authentication = authManager.authenticate(token);
-//
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//        Admin admin = (Admin) authentication.getPrincipal();
-//        String jwtAccessToken = tokenUtils.generateToken(admin.getUsername());
-//        int expiresIn = tokenUtils.getExpiredIn();
-//
-//        return new UserTokenState(
-//            jwtAccessToken,
-//            expiresIn
-//        );
-//    }
-
     @Override
     public LoggedInUserDTO login(JwtAuthenticationRequest jwtAuthenticationRequest) {
         final Authentication authentication = authManager.authenticate(
@@ -118,7 +98,7 @@ public class AuthServiceImpl implements AuthService {
             return new LoggedInUserDTO(
                 normalUser.getId(),
                 normalUser.getUsername(),
-                "ROLE_USER",
+                "ROLE_NORMAL_USER",
                 userTokenState
             );
         } else if (object instanceof Agent) {
