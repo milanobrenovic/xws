@@ -13,7 +13,7 @@ public class RequestToRent {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Vehicle vehicle;
@@ -39,7 +39,7 @@ public class RequestToRent {
 
     }
 
-    public RequestToRent(long id, Vehicle vehicle, RequestStatusType requestStatusType, NormalUser normalUser, Date rentDateFrom, Date rentDateTo) {
+    public RequestToRent(Long id, Vehicle vehicle, RequestStatusType requestStatusType, NormalUser normalUser, Date rentDateFrom, Date rentDateTo) {
         this.id = id;
         this.vehicle = vehicle;
         this.requestStatusType = requestStatusType;
@@ -57,11 +57,11 @@ public class RequestToRent {
         this.rentDateTo = requestToRent.rentDateTo;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

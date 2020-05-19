@@ -19,11 +19,12 @@ import com.xws.tim12.model.Vehicle;
 
 public class RequestToRentDTO {
 	
-    private long id;
+    private Long id;
 
 
     private RequestStatusType requestStatusType;
-
+    private NormalUserDTO normalUser;
+    private VehicleDTO vehicle;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Agent agent;
@@ -38,17 +39,21 @@ public class RequestToRentDTO {
     	
 	}
     
-	public RequestToRentDTO(long id, RequestStatusType requestStatusType,
+	public RequestToRentDTO(Long id, RequestStatusType requestStatusType,
 			@NotEmpty(message = "Rent date from is empty.") Date rentDateFrom,
-			@NotEmpty(message = "Rent date to is empty.") Date rentDateTo) {
+			@NotEmpty(message = "Rent date to is empty.") Date rentDateTo,
+			NormalUserDTO normalUser,
+			VehicleDTO vehicle) {
 		super();
 		this.id = id;
 		this.requestStatusType = requestStatusType;
 		this.rentDateFrom = rentDateFrom;
 		this.rentDateTo = rentDateTo;
+		this.normalUser = normalUser;
+		this.vehicle = vehicle;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -78,6 +83,26 @@ public class RequestToRentDTO {
 
 	public void setRentDateTo(Date rentDateTo) {
 		this.rentDateTo = rentDateTo;
+	}
+
+	public NormalUserDTO getNormalUser() {
+		return normalUser;
+	}
+
+	public void setNormalUser(NormalUserDTO normalUser) {
+		this.normalUser = normalUser;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public VehicleDTO getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(VehicleDTO vehicle) {
+		this.vehicle = vehicle;
 	}
     
     

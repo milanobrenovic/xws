@@ -83,7 +83,7 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
                 normalUserDTO.getIsBanned(),
                 normalUserDTO.getAds()
         );
-
+        newNormalUser.setAuthorities(authService.findById(2L));
         return new NormalUserDTO(normalUserRepository.save(newNormalUser));
     }
 

@@ -19,4 +19,5 @@ VALUES ('agent2', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi'
 INSERT INTO agent (username, password, first_name, last_name, email, company_name, business_registration_number, address, pricelist_id, entity_type, is_banned)
 VALUES ('company1', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'Company1', 'Companic1', 'companic1@gmail.com', 'NSA', '345-67-890', 'Washington Blvd. 4', null, 'COMPANY', false);
 
-
+INSERT INTO normal_user_authority (normal_user_id, authority_id) VALUES (1, 2);
+INSERT INTO admin_authority (admin_id, authority_id) VALUES (1, 1);
