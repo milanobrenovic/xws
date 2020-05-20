@@ -23,48 +23,48 @@ public class VehicleDTO {
 
     private Long id;
 
-    @NotEmpty(message = "Brand cannot be empty.")
+
     private String brand;
 
-    @NotEmpty(message = "Model cannot be empty.")
+
     private String model;
 
-    @NotEmpty(message = "Fuel type cannot be empty.")
+
     private FuelType fuelType;
 
-    @NotEmpty(message = "Transmission type cannot be empty.")
+
     private TransmissionType transmissionType;
 
-    @NotEmpty(message = "Vehicle type cannot be empty.")
+
     private VehicleType vehicleType;
 
-    @NotEmpty(message = "Price cannot be empty.")
+
     private Double price;
 
-    @NotEmpty(message = "Travelled mileage cannot be empty.")
+
     private Double travelledMileage;
 
-    @NotEmpty(message = "Planned mileage to travel cannot be empty.")
+
     private Double plannedMileageToTravel;
 
-    @NotEmpty(message = "Unlimited mileage cannot be empty.")
+
     private Boolean isMileageUnlimited;
 
 
     private Boolean hasCollisionDamageWaiver;
 
-    @NotEmpty(message = "Number of seats cannot be empty.")
+
     private Integer numberOfSeats;
 
-    @NotEmpty(message = "Grade cannot be empty.")
+
     private Integer grade;
 
     private Boolean available;
 
-    @NotEmpty(message = "Vehicle Discount cannot be empty.")
+
     private Double vehicleDiscount;
 
-    @NotEmpty(message = "Insurance price cannot be empty.")
+
     private Double insurancePrice;
     
     
@@ -73,20 +73,22 @@ public class VehicleDTO {
 	}
     
     
-	public VehicleDTO(Long id, @NotEmpty(message = "Brand cannot be empty.") String brand,
-			@NotEmpty(message = "Model cannot be empty.") String model,
-			@NotEmpty(message = "Fuel type cannot be empty.") FuelType fuelType,
-			@NotEmpty(message = "Transmission type cannot be empty.") TransmissionType transmissionType,
-			@NotEmpty(message = "Vehicle type cannot be empty.") VehicleType vehicleType,
-			@NotEmpty(message = "Price cannot be empty.") Double price,
-			@NotEmpty(message = "Travelled mileage cannot be empty.") Double travelledMileage,
-			@NotEmpty(message = "Planned mileage to travel cannot be empty.") Double plannedMileageToTravel,
-			@NotEmpty(message = "Unlimited mileage cannot be empty.") Boolean isMileageUnlimited,
+	public VehicleDTO(Long id, 
+			String brand,
+			String model,
+			FuelType fuelType,
+			TransmissionType transmissionType,
+			VehicleType vehicleType,
+			Double price,
+			Double travelledMileage,
+			Double plannedMileageToTravel,
+			Boolean isMileageUnlimited,
 			Boolean hasCollisionDamageWaiver,
-			@NotEmpty(message = "Number of seats cannot be empty.") Integer numberOfSeats,
-			@NotEmpty(message = "Grade cannot be empty.") Integer grade, Boolean available,
-			@NotEmpty(message = "Vehicle Discount cannot be empty.") Double vehicleDiscount,
-			@NotEmpty(message = "Insurance price cannot be empty.") Double insurancePrice) {
+			Integer numberOfSeats,
+			Integer grade, 
+			Boolean available,
+			Double vehicleDiscount,
+			Double insurancePrice) {
 		super();
 		this.id = id;
 		this.brand = brand;
@@ -232,6 +234,17 @@ public class VehicleDTO {
 
 	public void setInsurancePrice(Double insurancePrice) {
 		this.insurancePrice = insurancePrice;
+	}
+
+
+	@Override
+	public String toString() {
+		return "VehicleDTO [id=" + id + ", brand=" + brand + ", model=" + model + ", fuelType=" + fuelType
+				+ ", transmissionType=" + transmissionType + ", vehicleType=" + vehicleType + ", price=" + price
+				+ ", travelledMileage=" + travelledMileage + ", plannedMileageToTravel=" + plannedMileageToTravel
+				+ ", isMileageUnlimited=" + isMileageUnlimited + ", hasCollisionDamageWaiver="
+				+ hasCollisionDamageWaiver + ", numberOfSeats=" + numberOfSeats + ", grade=" + grade + ", available="
+				+ available + ", vehicleDiscount=" + vehicleDiscount + ", insurancePrice=" + insurancePrice + "]";
 	}
 
     

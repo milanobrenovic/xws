@@ -29,10 +29,8 @@ public class RequestToRentDTO {
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Agent agent;
     
-    @NotEmpty(message = "Rent date from is empty.")
     private Date rentDateFrom;
     
-    @NotEmpty(message = "Rent date to is empty.")
     private Date rentDateTo;
     
     public RequestToRentDTO() {
@@ -40,8 +38,8 @@ public class RequestToRentDTO {
 	}
     
 	public RequestToRentDTO(Long id, RequestStatusType requestStatusType,
-			@NotEmpty(message = "Rent date from is empty.") Date rentDateFrom,
-			@NotEmpty(message = "Rent date to is empty.") Date rentDateTo,
+		    Date rentDateFrom,
+			Date rentDateTo,
 			NormalUserDTO normalUser,
 			VehicleDTO vehicle) {
 		super();
@@ -103,6 +101,11 @@ public class RequestToRentDTO {
 
 	public void setVehicle(VehicleDTO vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	@Override
+	public String toString() {
+		return "RequestToRentDTO [id=" + id + ", normalUser=" + normalUser + ", vehicle=" + vehicle + "]";
 	}
     
     

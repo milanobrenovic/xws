@@ -45,7 +45,10 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
 //
 //        userRepository.save(user);
     }
-
+    @Override
+    public NormalUser findById(Long id){
+    	return normalUserRepository.findOneById(id);
+    }
     @Override
     public NormalUser findByUsername(String username) {
         return normalUserRepository.findByUsername(username);

@@ -17,50 +17,50 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Brand cannot be empty.")
+   // @NotEmpty(message = "Brand cannot be empty.")
     @Column(nullable = false)
     private String brand;
 
-    @NotEmpty(message = "Model cannot be empty.")
+   // @NotEmpty(message = "Model cannot be empty.")
     @Column(nullable = false)
     private String model;
 
-    @NotEmpty(message = "Fuel type cannot be empty.")
+   // @NotEmpty(message = "Fuel type cannot be empty.")
     @Enumerated(EnumType.STRING)
     private FuelType fuelType;
 
-    @NotEmpty(message = "Transmission type cannot be empty.")
+   // @NotEmpty(message = "Transmission type cannot be empty.")
     @Enumerated(EnumType.STRING)
     private TransmissionType transmissionType;
 
-    @NotEmpty(message = "Vehicle type cannot be empty.")
+   // @NotEmpty(message = "Vehicle type cannot be empty.")
     @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
 
-    @NotEmpty(message = "Price cannot be empty.")
+   // @NotEmpty(message = "Price cannot be empty.")
     @Column(nullable = false)
     private Double price;
 
-    @NotEmpty(message = "Travelled mileage cannot be empty.")
+   // @NotEmpty(message = "Travelled mileage cannot be empty.")
     @Column(nullable = false)
     private Double travelledMileage;
 
-    @NotEmpty(message = "Planned mileage to travel cannot be empty.")
-    @Column(nullable = false)
+   // @NotEmpty(message = "Planned mileage to travel cannot be empty.")
+   @Column(nullable = false)
     private Double plannedMileageToTravel;
 
-    @NotEmpty(message = "Unlimited mileage cannot be empty.")
+  //  @NotEmpty(message = "Unlimited mileage cannot be empty.")
     @Column(nullable = false)
     private Boolean isMileageUnlimited;
 
     @Column()
     private Boolean hasCollisionDamageWaiver;
 
-    @NotEmpty(message = "Number of seats cannot be empty.")
+   // @NotEmpty(message = "Number of seats cannot be empty.")
     @Column(nullable = false)
     private Integer numberOfSeats;
 
-    @NotEmpty(message = "Grade cannot be empty.")
+   // @NotEmpty(message = "Grade cannot be empty.")
     @Column(nullable = false)
     private Integer grade;
 
@@ -70,7 +70,7 @@ public class Vehicle {
     @Column()
     private Double vehicleDiscount;
 
-    @NotEmpty(message = "Insurance price cannot be empty.")
+   // @NotEmpty(message = "Insurance price cannot be empty.")
     @Column(nullable = false)
     private Double insurancePrice;
 
@@ -82,21 +82,21 @@ public class Vehicle {
     }
 
     public Vehicle(
-            @NotEmpty(message = "Brand cannot be empty.") String brand,
-            @NotEmpty(message = "Model cannot be empty.") String model,
-            @NotEmpty(message = "Fuel type cannot be empty.") FuelType fuelType,
-            @NotEmpty(message = "Transmission type cannot be empty.") TransmissionType transmissionType,
-            @NotEmpty(message = "Vehicle type cannot be empty.") VehicleType vehicleType,
-            @NotEmpty(message = "Price cannot be empty.") Double price,
-            @NotEmpty(message = "Travelled mileage cannot be empty.") Double travelledMileage,
-            @NotEmpty(message = "Planned mileage to travel cannot be empty.") Double plannedMileageToTravel,
-            @NotEmpty(message = "Unlimited mileage cannot be empty.") Boolean isMileageUnlimited,
+           String brand,
+          String model,
+          FuelType fuelType,
+          TransmissionType transmissionType,
+          VehicleType vehicleType,
+          Double price,
+         Double travelledMileage,
+          Double plannedMileageToTravel,
+          Boolean isMileageUnlimited,
             Boolean hasCollisionDamageWaiver,
-            @NotEmpty(message = "Number of seats cannot be empty.") Integer numberOfSeats,
-            @NotEmpty(message = "Grade cannot be empty.") Integer grade,
+          Integer numberOfSeats,
+          Integer grade,
             Boolean available,
             Double vehicleDiscount,
-            @NotEmpty(message = "Insurance price cannot be empty.") Double insurancePrice,
+            Double insurancePrice,
             List<VehicleImagePaths> images) {
         this.brand = brand;
         this.model = model;
@@ -271,7 +271,7 @@ public class Vehicle {
                 ", available=" + available +
                 ", vehicleDiscount=" + vehicleDiscount +
                 ", insurancePrice=" + insurancePrice +
-                ", images=" + images.toString() +
+             //   ", images=" + images.toString() +
                 '}';
     }
 

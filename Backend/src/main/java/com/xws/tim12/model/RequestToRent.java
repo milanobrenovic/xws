@@ -27,11 +27,11 @@ public class RequestToRent {
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Agent agent;
 
-    @NotEmpty(message = "Rent date from cannot be empty.")
+   // @NotEmpty(message = "Rent date from cannot be empty.")
     @Column(nullable = false)
     private Date rentDateFrom;
 
-    @NotEmpty(message = "Rent date to cannot be empty.")
+    //@NotEmpty(message = "Rent date to cannot be empty.")
     @Column(nullable = false)
     private Date rentDateTo;
 

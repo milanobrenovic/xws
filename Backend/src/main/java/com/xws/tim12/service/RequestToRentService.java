@@ -1,13 +1,13 @@
 package com.xws.tim12.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import com.xws.tim12.model.RequestToRent;
 import com.xws.tim12.repository.RequestToRentRepository;
 
 
-
+@Service
 public class RequestToRentService {
 	@Autowired
 	private RequestToRentRepository requestToRentRepository;
