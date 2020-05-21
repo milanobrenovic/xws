@@ -50,7 +50,8 @@ public class Vehicle {
     private Double plannedMileageToTravel;
 
   //  @NotEmpty(message = "Unlimited mileage cannot be empty.")
-    @Column(nullable = false)
+//    @Column(nullable = false)
+    @Column()
     private Boolean isMileageUnlimited;
 
     @Column()

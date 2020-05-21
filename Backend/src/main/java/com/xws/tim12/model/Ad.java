@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -23,28 +24,28 @@ public class Ad {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    @NotEmpty(message = "Pickup location cannot be empty.")
+//    @NotEmpty(message = "Pickup location cannot be empty.")
     @NotNull(message = "Pickup location cannot be null.")
     @Column(nullable = false)
     private String pickupLocation;
 
-    @NotEmpty(message = "Pickup from cannot be empty.")
+//    @NotEmpty(message = "Pickup from cannot be empty.")
     @NotNull(message = "Pickup from cannot be null.")
-    @JsonFormat(pattern = "hh:mm dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(nullable = false)
-    private LocalTime pickupFrom;
+    private LocalDateTime pickupFrom;
 
-    @NotEmpty(message = "Pickup to cannot be empty.")
+//    @NotEmpty(message = "Pickup to cannot be empty.")
     @NotNull(message = "Pickup to cannot be null.")
-    @JsonFormat(pattern = "hh:mm dd-MM-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(nullable = false)
-    private LocalTime pickupTo;
+    private LocalDateTime pickupTo;
 
     public Ad() {
 
     }
 
-    public Ad(Vehicle vehicle, List<Comment> comments, @NotEmpty(message = "Pickup location cannot be empty.") @NotNull(message = "Pickup location cannot be null.") String pickupLocation, @NotEmpty(message = "Pickup from cannot be empty.") @NotNull(message = "Pickup from cannot be null.") LocalTime pickupFrom, @NotEmpty(message = "Pickup to cannot be empty.") @NotNull(message = "Pickup to cannot be null.") LocalTime pickupTo) {
+    public Ad(Vehicle vehicle, List<Comment> comments, @NotEmpty(message = "Pickup location cannot be empty.") @NotNull(message = "Pickup location cannot be null.") String pickupLocation, @NotEmpty(message = "Pickup from cannot be empty.") @NotNull(message = "Pickup from cannot be null.") LocalDateTime pickupFrom, @NotEmpty(message = "Pickup to cannot be empty.") @NotNull(message = "Pickup to cannot be null.") LocalDateTime pickupTo) {
         this.vehicle = vehicle;
         this.comments = comments;
         this.pickupLocation = pickupLocation;
@@ -84,19 +85,19 @@ public class Ad {
         this.pickupLocation = pickupLocation;
     }
 
-    public LocalTime getPickupFrom() {
+    public LocalDateTime getPickupFrom() {
         return pickupFrom;
     }
 
-    public void setPickupFrom(LocalTime pickupFrom) {
+    public void setPickupFrom(LocalDateTime pickupFrom) {
         this.pickupFrom = pickupFrom;
     }
 
-    public LocalTime getPickupTo() {
+    public LocalDateTime getPickupTo() {
         return pickupTo;
     }
 
-    public void setPickupTo(LocalTime pickupTo) {
+    public void setPickupTo(LocalDateTime pickupTo) {
         this.pickupTo = pickupTo;
     }
 

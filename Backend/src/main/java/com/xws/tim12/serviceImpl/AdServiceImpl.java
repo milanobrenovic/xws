@@ -1,5 +1,7 @@
 package com.xws.tim12.serviceImpl;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public List<AdDTO> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
-            String pickupLocation, LocalTime pickupFrom, LocalTime pickupTo) {
+            String pickupLocation, LocalDateTime pickupFrom, LocalDateTime pickupTo) {
         return convertToDTO(adRepository.findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(pickupLocation, pickupFrom, pickupTo));
     }
 
