@@ -79,11 +79,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .cors()
             .and()
             .addFilterBefore(
-                    new TokenAuthenticationFilter(tokenUtils, jwtAdminDetailsService),
-                    BasicAuthenticationFilter.class
-            )
+            		new TokenAuthenticationFilter(tokenUtils, jwtUserDetailsService),
+            		BasicAuthenticationFilter.class
+            		)
+            
             .addFilterBefore(
-                    new TokenAuthenticationFilter(tokenUtils, jwtUserDetailsService),
+                    new TokenAuthenticationFilter(tokenUtils, jwtAdminDetailsService),
                     BasicAuthenticationFilter.class
             )
             .addFilterBefore(

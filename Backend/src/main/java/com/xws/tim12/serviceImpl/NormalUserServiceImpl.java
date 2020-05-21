@@ -1,6 +1,7 @@
 package com.xws.tim12.serviceImpl;
 
 import com.xws.tim12.dto.NormalUserDTO;
+import com.xws.tim12.model.Admin;
 import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.repository.NormalUserRepository;
 import com.xws.tim12.service.AuthService;
@@ -8,6 +9,8 @@ import com.xws.tim12.service.NormalUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -52,6 +55,20 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
     @Override
     public NormalUser findByUsername(String username) {
         return normalUserRepository.findByUsername(username);
+    }
+    
+    @Override
+    public NormalUser getUserLogin() {
+        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        try {
+            NormalUser normalUser = normalUserRepository.findByUsername(currentUser.getName());
+            if (normalUser != null) {
+                return normalUser;
+            }
+        } catch (UsernameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
