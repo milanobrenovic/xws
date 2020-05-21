@@ -1,22 +1,8 @@
 package com.xws.tim12.dto;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotEmpty;
-
 import com.xws.tim12.enumeration.FuelType;
 import com.xws.tim12.enumeration.TransmissionType;
 import com.xws.tim12.enumeration.VehicleType;
-import com.xws.tim12.model.VehicleImagePaths;
 
 public class VehicleDTO {
 	
