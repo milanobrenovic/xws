@@ -30,15 +30,14 @@ public class RequestToRentCotroller {
 	
 	
 	@PostMapping(value = "/createRequest", consumes = MediaType.APPLICATION_JSON_VALUE)
-
 	public ResponseEntity<RequestToRentDTO> addRequest(@RequestBody RequestToRentDTO requestToRentDTO){
 		if(requestToRentDTO.getClass() == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 		
-		System.out.println("Znaci ulazis ovde jel daaa ?????");
+		//System.out.println("Znaci ulazis ovde jel daaa ?????");
 		NormalUser normalUser = normalUserService.findById(requestToRentDTO.getNormalUser().getId());
-		System.out.println("DTO:"+requestToRentDTO);
+		//System.out.println("DTO:"+requestToRentDTO);
 		Vehicle vehicle = vehicleService.findOne(requestToRentDTO.getVehicle().getId());
 		RequestToRent r = new RequestToRent();
 		r.setId(111L);

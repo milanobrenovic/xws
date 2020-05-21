@@ -25,13 +25,12 @@ public class VehicleController {
 	
 	
 	@PostMapping(value = "/createVehicle", consumes = MediaType.APPLICATION_JSON_VALUE)
-
 	public ResponseEntity<VehicleDTO> addVehicle(@RequestBody VehicleDTO vehicleDTO){
 		if(vehicleDTO.getClass() == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 		
-		System.out.println("Znaci ulazis ovde jel daaa VEHICLE ?????");
+		//System.out.println("Znaci ulazis ovde jel daaa VEHICLE ?????");
 		Vehicle v = new Vehicle();
 		v.setAvailable(true);
 		v.setBrand(vehicleDTO.getBrand());
@@ -52,7 +51,7 @@ public class VehicleController {
 		v.setNumberOfSeats(vehicleDTO.getNumberOfSeats());
 	
 		
-		System.out.println("NULL ?"+v);
+		//System.out.println("NULL ?"+v);
 		vehicleService.save(v);
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.CREATED);
 		

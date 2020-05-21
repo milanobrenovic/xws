@@ -47,6 +47,7 @@ public class AdminServiceImpl implements UserDetailsService, AdminService {
 
     @Override
     public Admin getAdminLogin() {
+    	System.out.println("UlAZIS OVDE KADA???");
         Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
         try {
             Admin admin = adminRepository.findByUsername(currentUser.getName());

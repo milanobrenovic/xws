@@ -3,13 +3,13 @@ INSERT INTO authority (name) VALUES ('ROLE_ADMIN');
 INSERT INTO authority (name) VALUES ('ROLE_NORMAL_USER');
 INSERT INTO authority (name) VALUES ('ROLE_AGENT');
 
+-- NORMAL USERS
+INSERT INTO normal_user (username, password, first_name, last_name, email, country, phone_number, address, city, number_of_ads, is_banned)
+VALUES ('user1', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'User1', 'Useric1', 'user1@gmail.com', 'Serbia', '+38112345678', 'Neka Adresa St. 1', 'Novi Sad', 2, false);
 -- ADMINS
 INSERT INTO admin (username, password, first_name, last_name, email)
 VALUES ('admin1', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'Admin1', 'Adminic1', 'admin1@gmail.com');
 
--- NORMAL USERS
-INSERT INTO normal_user (username, password, first_name, last_name, email, country, phone_number, address, city, number_of_ads, is_banned)
-VALUES ('user1', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'User1', 'Useric1', 'user1@gmail.com', 'Serbia', '+38112345678', 'Neka Adresa St. 1', 'Novi Sad', 2, false);
 
 -- AGENTS
 INSERT INTO agent (username, password, first_name, last_name, email, company_name, business_registration_number, address, pricelist_id, entity_type, is_banned)

@@ -27,6 +27,7 @@ public class NormalUser implements UserDetails {
     private String username;
 
     @JsonIgnore
+    @NotEmpty(message = "Password cannot be empty.")
     @NotNull(message = "Password cannot be null.")
     @Column(nullable = false)
     private String password;
