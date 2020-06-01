@@ -11,7 +11,7 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
 
     List<Ad> findAll();
 
-    List<Ad> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
+    List<Ad> findByPickupLocationAndPickupFromIsGreaterThanEqualAndPickupToIsGreaterThanEqual(
             String pickupLocation, LocalDateTime pickupFrom, LocalDateTime pickupTo);
 
 }

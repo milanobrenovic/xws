@@ -41,7 +41,7 @@ public class AdServiceImpl implements AdService {
     @Override
     public List<AdDTO> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
             String pickupLocation, LocalDateTime pickupFrom, LocalDateTime pickupTo) {
-        return convertToDTO(adRepository.findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(pickupLocation, pickupFrom, pickupTo));
+        return convertToDTO(adRepository.findByPickupLocationAndPickupFromIsGreaterThanEqualAndPickupToIsGreaterThanEqual(pickupLocation, pickupFrom, pickupTo));
     }
 
     private List<AdDTO> convertToDTO(List<Ad> ads) {

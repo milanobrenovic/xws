@@ -12,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/ad", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdController {
@@ -37,6 +39,24 @@ public class AdController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             return new ResponseEntity<>(newAdDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(value = "/search")
+    public ResponseEntity<List<AdDTO>> searchAd(@RequestBody AdDTO adDTO) {
+        try {
+            List<AdDTO> searchedAdDTO = adService.findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
+                    adDTO.getPickupLocation(),
+                    adDTO.getPickupFrom(),
+                    adDTO.getPickupTo()
+            );
+            if (searchedAdDTO == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(searchedAdDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
