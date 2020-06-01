@@ -53,15 +53,24 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
     	return normalUserRepository.findOneById(id);
     }
     @Override
-    public NormalUser findByUsername(String username) {
+    public NormalUser findOneByUsername(String username) {
         return normalUserRepository.findByUsername(username);
     }
     
     @Override
     public NormalUser getUserLogin() {
-        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+       // Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+    	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	String username;
+    	if (principal instanceof UserDetails) {
+    	   username = ((UserDetails)principal).getUsername();
+    	} else {
+    	   username = principal.toString();
+    	}
+    
+      //  System.out.println(currentUser.getName());
         try {
-            NormalUser normalUser = normalUserRepository.findByUsername(currentUser.getName());
+            NormalUser normalUser = normalUserRepository.findByUsername(username);
             if (normalUser != null) {
                 return normalUser;
             }
@@ -73,7 +82,7 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        NormalUser normalUser = findByUsername(username);
+        NormalUser normalUser = findOneByUsername(username);
         if (normalUser == null) {
             throw new UsernameNotFoundException(String.format("User %s not found", username));
         } else {

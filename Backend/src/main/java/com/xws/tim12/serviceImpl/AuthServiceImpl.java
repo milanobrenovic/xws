@@ -56,7 +56,7 @@ public class AuthServiceImpl implements AuthService {
                 jwtAuthenticationRequest.getPassword()
             )
         );
-
+      
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String username = returnUsername(authentication.getPrincipal());
@@ -66,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
 
         String jwtToken = tokenUtils.generateToken(username);
         int expiresIn = tokenUtils.getExpiredIn();
-
+      
         return returnLoggedInUser(
             authentication.getPrincipal(),
             new UserTokenState(jwtToken, expiresIn)
