@@ -47,10 +47,13 @@ public class AdController {
     //	NormalUser currentLogged = normalUserService.getUserLogin();
     	String token = tokenUtils.getToken(request);
     	String user = tokenUtils.getUsernameFromToken(token);
-    	System.out.println("user??"+user);
+    	//System.out.println("user??"+user);
     	NormalUser normalUser = normalUserService.findOneByUsername(user);
     	if(normalUser == null){
     		 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    	}
+    	if(normalUser.getNumberOfAds() > 2){
+    		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     	}
     	System.out.println("User :"+ normalUser.getUsername());
     	try {
