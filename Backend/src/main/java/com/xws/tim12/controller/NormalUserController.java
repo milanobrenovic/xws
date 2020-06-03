@@ -43,4 +43,18 @@ public class NormalUserController {
         }
     }
 
+    @PutMapping(value = "/unblock/{username}")
+    public ResponseEntity<NormalUserDTO> unblockNormalUser(@PathVariable("username") String username) {
+        try {
+            NormalUserDTO normalUserDTO = normalUserService.unblockNormalUser(username);
+            if (normalUserDTO == null) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(normalUserDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

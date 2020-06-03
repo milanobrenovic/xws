@@ -120,11 +120,21 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
 
     @Override
     public NormalUserDTO blockNormalUser(String username) {
+        return block(username, true);
+    }
+
+    @Override
+    public NormalUserDTO unblockNormalUser(String username) {
+        return block(username, false);
+    }
+
+    private NormalUserDTO block(String username, boolean block) {
         if (normalUserRepository.findByUsername(username) == null) {
             return null;
         }
+
         NormalUser normalUser = findOneByUsername(username);
-        normalUser.setBanned(true);
+        normalUser.setBanned(block);
         normalUserRepository.save(normalUser);
 
         return new NormalUserDTO(normalUser);

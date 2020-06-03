@@ -10,5 +10,6 @@ public interface NormalUserService {
     NormalUser getUserLogin();
     NormalUserDTO createNormalUser(NormalUserDTO normalUser);
     NormalUserDTO blockNormalUser(String username);
+    NormalUserDTO unblockNormalUser(String username);
 
 }
