@@ -128,6 +128,18 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
         return block(username, false);
     }
 
+    @Override
+    public NormalUserDTO deleteNormalUser(String username) {
+        if (normalUserRepository.findByUsername(username) == null) {
+            return null;
+        }
+
+        NormalUser normalUser = findOneByUsername(username);
+        normalUserRepository.delete(normalUser);
+
+        return new NormalUserDTO(normalUser);
+    }
+
     private NormalUserDTO block(String username, boolean block) {
         if (normalUserRepository.findByUsername(username) == null) {
             return null;

@@ -57,4 +57,18 @@ public class NormalUserController {
         }
     }
 
+    @DeleteMapping(value = "/delete/{username}")
+    public ResponseEntity<NormalUserDTO> deleteNormalUser(@PathVariable("username") String username) {
+        try {
+            NormalUserDTO normalUserDTO = normalUserService.deleteNormalUser(username);
+            if (normalUserDTO == null) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(normalUserDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

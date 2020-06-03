@@ -11,5 +11,6 @@ public interface NormalUserService {
     NormalUserDTO createNormalUser(NormalUserDTO normalUser);
     NormalUserDTO blockNormalUser(String username);
     NormalUserDTO unblockNormalUser(String username);
+    NormalUserDTO deleteNormalUser(String username);
 
 }

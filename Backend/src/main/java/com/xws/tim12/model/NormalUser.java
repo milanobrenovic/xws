@@ -62,7 +62,7 @@ public class NormalUser implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Ad> ads;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinTable(
             name = "normal_user_authority",
             joinColumns = @JoinColumn(name = "normal_user_id", referencedColumnName = "id"),
