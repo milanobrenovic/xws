@@ -1,6 +1,8 @@
 package com.xws.tim12.serviceImpl;
 
+import com.xws.tim12.dto.AdDTO;
 import com.xws.tim12.dto.NormalUserDTO;
+import com.xws.tim12.model.Ad;
 import com.xws.tim12.model.Admin;
 import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.repository.NormalUserRepository;
@@ -114,6 +116,18 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
         );
         newNormalUser.setAuthorities(authService.findById(2L));
         return new NormalUserDTO(normalUserRepository.save(newNormalUser));
+    }
+
+    @Override
+    public NormalUserDTO blockNormalUser(String username) {
+        if (normalUserRepository.findByUsername(username) == null) {
+            return null;
+        }
+        NormalUser normalUser = findOneByUsername(username);
+        normalUser.setBanned(true);
+        normalUserRepository.save(normalUser);
+
+        return new NormalUserDTO(normalUser);
     }
 
 }
