@@ -1,0 +1,52 @@
+version: '3'
+services:
+
+  servers:
+    build: .
+    container_name: servers
+    restart: on-failure
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: root
+      DATABASE_DOMAIN: postgres
+      DATABASE_SCHEMA: Xws
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: Xws
+
+  eureka-serviceregistry:
+    build: ./Eureka
+    ports:
+     - "8761:8761"
+    tty: true
+
+  ad-search-service:
+    build: ./Microservices/Ad-Search-Service
+    ports:
+    - "8080:8081"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+
+  zuul:
+    build: ./Zuul
+    ports:
+    - "8087:8087"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+      - ad-search-service

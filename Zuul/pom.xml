@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.xws.tim12</groupId>
 	<artifactId>Zuul</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Zuul</name>
 	<description>Zuul API Gateway</description>
 

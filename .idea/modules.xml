@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Authentication-Service/Authentication-Service.iml" filepath="$PROJECT_DIR$/Authentication-Service/Authentication-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cart-Service/Cart-Service.iml" filepath="$PROJECT_DIR$/Cart-Service/Cart-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Eureka/Eureka.iml" filepath="$PROJECT_DIR$/Eureka/Eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vehicle-Service/Vehicle-Service.iml" filepath="$PROJECT_DIR$/Vehicle-Service/Vehicle-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zuul/Zuul.iml" filepath="$PROJECT_DIR$/Zuul/Zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Backend/demo.iml" filepath="$PROJECT_DIR$/Backend/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ad-Service/demo (1).iml" filepath="$PROJECT_DIR$/Ad-Service/demo (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ad-Search-Service/demo (2).iml" filepath="$PROJECT_DIR$/Ad-Search-Service/demo (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/requestService/requestService.iml" filepath="$PROJECT_DIR$/requestService/requestService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/xws.iml" filepath="$PROJECT_DIR$/.idea/xws.iml" />
+    </modules>
+  </component>
+</project>
