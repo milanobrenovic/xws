@@ -43,16 +43,18 @@ public class AdController {
     @PostMapping(value = "/create")
     //@PreAuthorize("hasRole('ROLE_NORMAL_USER')")
     public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO,HttpServletRequest request) {
-    	System.out.println("Ulazak u kreiranje oglasa");
+//    	System.out.println("Ulazak u kreiranje oglasa");
     //	NormalUser currentLogged = normalUserService.getUserLogin();
     	String token = tokenUtils.getToken(request);
     	String user = tokenUtils.getUsernameFromToken(token);
     	//System.out.println("user??"+user);
     	NormalUser normalUser = normalUserService.findOneByUsername(user);
-    	if(normalUser == null){
-    		 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    	}
-    	if(normalUser.getNumberOfAds() > 2){
+        System.out.println(normalUser.toString());
+        System.out.println(token);
+//    	if(normalUser == null){
+//    		 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//    	}
+    	if(normalUser.getNumberOfAds() != null && normalUser.getNumberOfAds() > 2){
     		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     	}
     	System.out.println("User :"+ normalUser.getUsername());
