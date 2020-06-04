@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.xws.tim12.CarRentService.dto.RequestToRentDTO;
+import com.xws.tim12.CarRentService.enumeration.RequestStatusType;
 import com.xws.tim12.CarRentService.model.Cart;
 import com.xws.tim12.CarRentService.model.RequestToRent;
 import com.xws.tim12.CarRentService.model.Vehicle;
@@ -66,6 +67,7 @@ public class RequestToRentServiceImpl implements RequestToRentService {
 		
 		RequestToRent newRequest = new RequestToRent();
 		newRequest.getVehicles().add(requestVehicle);
+		newRequest.setStatus(RequestStatusType.PENDING);
 		
 		if(newRequest == null) {
 			return null;
@@ -85,6 +87,7 @@ public class RequestToRentServiceImpl implements RequestToRentService {
 		
 		RequestToRent newRequest = new RequestToRent();
 		newRequest.setVehicles(vehicles);
+		newRequest.setStatus(RequestStatusType.PENDING);
 		
 		if(newRequest == null) {
 			return null;
