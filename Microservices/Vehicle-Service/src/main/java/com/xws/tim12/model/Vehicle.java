@@ -5,17 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.xws.tim12.enumeration.FuelType;
-import com.xws.tim12.enumeration.TransmissionType;
-import com.xws.tim12.enumeration.VehicleType;
 
 @Entity
 public class Vehicle {
@@ -30,16 +25,16 @@ public class Vehicle {
     @Column(nullable = false)
     private String model;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private FuelType fuelType;
 
-    // NotEmpty ne moze za Integer tip, samo za stringove i kolekcije radi
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private TransmissionType transmissionType;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private VehicleType vehicleType;
 
+ // NotEmpty ne moze za Integer i double tip, samo za stringove i kolekcije radi
     @Column(nullable = false)
     private Double price;
 

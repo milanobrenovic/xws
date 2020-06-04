@@ -1,8 +1,5 @@
 package com.xws.tim12.dto;
 
-import com.xws.tim12.enumeration.FuelType;
-import com.xws.tim12.enumeration.TransmissionType;
-import com.xws.tim12.enumeration.VehicleType;
 import com.xws.tim12.model.Vehicle;
 
 public class VehicleDTO {
@@ -11,11 +8,11 @@ public class VehicleDTO {
 
     private String model;
 
-    private FuelType fuelType;
+    private Long fuelType;
 
-    private TransmissionType transmissionType;
+    private Long transmissionType;
 
-    private VehicleType vehicleType;
+    private Long vehicleType;
 
     private Double price;
 
@@ -45,10 +42,10 @@ public class VehicleDTO {
     
 	public VehicleDTO(Long id,  String brand,
 			 String model,
-			 FuelType fuelType,
-			 TransmissionType transmissionType,
-			 VehicleType vehicleType,
 			 Double price,
+			 Long fuelType,
+			 Long transmissionType,
+			 Long vehicleType,
 			 Double travelledMileage,
 			 Double plannedMileageToTravel,
 			 Boolean isMileageUnlimited,
@@ -79,9 +76,9 @@ public class VehicleDTO {
 		super();
 		this.brand = vehicle.getBrand();
 		this.model = vehicle.getModel();
-		this.fuelType = vehicle.getFuelType();
-		this.transmissionType = vehicle.getTransmissionType();
-		this.vehicleType = vehicle.getVehicleType();
+		this.fuelType = vehicle.getFuelType().getId();
+		this.transmissionType = vehicle.getTransmissionType().getId();
+		this.vehicleType = vehicle.getVehicleType().getId();
 		this.price = vehicle.getPrice();
 		this.travelledMileage = vehicle.getTravelledMileage();
 		this.plannedMileageToTravel = vehicle.getPlannedMileageToTravel();
@@ -110,27 +107,27 @@ public class VehicleDTO {
 		this.model = model;
 	}
 
-	public FuelType getFuelType() {
+	public Long getFuelType() {
 		return fuelType;
 	}
 
-	public void setFuelType(FuelType fuelType) {
+	public void setFuelType(Long fuelType) {
 		this.fuelType = fuelType;
 	}
 
-	public TransmissionType getTransmissionType() {
+	public Long getTransmissionType() {
 		return transmissionType;
 	}
 
-	public void setTransmissionType(TransmissionType transmissionType) {
+	public void setTransmissionType(Long transmissionType) {
 		this.transmissionType = transmissionType;
 	}
 
-	public VehicleType getVehicleType() {
+	public Long getVehicleType() {
 		return vehicleType;
 	}
 
-	public void setVehicleType(VehicleType vehicleType) {
+	public void setVehicleType(Long vehicleType) {
 		this.vehicleType = vehicleType;
 	}
 

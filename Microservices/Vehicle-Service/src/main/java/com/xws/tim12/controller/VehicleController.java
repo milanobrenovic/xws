@@ -32,7 +32,7 @@ public class VehicleController {
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
 	}
 	
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/createvehicle", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO){
 		if(vehicleDTO.getClass() == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
