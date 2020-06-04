@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.xws.tim12.CarRentService.dto.RequestToRentDTO;
 import com.xws.tim12.CarRentService.enumeration.RequestStatusType;
 
 @Entity
@@ -23,7 +24,7 @@ public class RequestToRent {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@JsonIgnore
+	
 	@ManyToMany(mappedBy = "requestsToRent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 	
@@ -43,16 +44,42 @@ public class RequestToRent {
 	public RequestToRent() {
 		super();
 	}
+	
+	/*public RequestToRent() {
+		super();
+		this.vehicles = new HashSet<>();
+		this.vehicleUser = null;
+		this.vehicleRenter = null;
+		this.status = status;
+	}*/
 
-	public RequestToRent(Long id, Set<Vehicle> vehicles, VehicleUser vehicleUser, VehicleRenter vehicleRenter,
+	public RequestToRent(Set<Vehicle> vehicles, VehicleUser vehicleUser, VehicleRenter vehicleRenter,
 			RequestStatusType status) {
 		super();
-		this.id = id;
 		this.vehicles = vehicles;
 		this.vehicleUser = vehicleUser;
 		this.vehicleRenter = vehicleRenter;
 		this.status = status;
 	}
+	
+	public RequestToRent(RequestToRentDTO request) {
+		super();
+		this.id = request.getId();
+		this.vehicles = new HashSet<>();
+		this.vehicleUser = null;
+		this.vehicleRenter = null;
+		this.status = request.getStatus();
+	}
+	
+	
+	public RequestToRent(Vehicle vehicle) {
+		super();
+		this.vehicles.add(vehicle);
+		this.vehicleUser = null;
+		this.vehicleRenter = null;
+		this.status = RequestStatusType.PENDING;
+	}
+
 
 	
 	public Long getId() {

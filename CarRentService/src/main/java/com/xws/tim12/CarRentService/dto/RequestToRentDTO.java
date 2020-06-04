@@ -1,6 +1,7 @@
 package com.xws.tim12.CarRentService.dto;
 
 import com.xws.tim12.CarRentService.enumeration.RequestStatusType;
+import com.xws.tim12.CarRentService.model.RequestToRent;
 
 public class RequestToRentDTO {
 	
@@ -17,6 +18,12 @@ public class RequestToRentDTO {
 		super();
 		this.id = id;
 		this.status = status;
+	}
+	
+	public RequestToRentDTO(RequestToRent request) {
+		super();
+		this.id = request.getId();
+		this.status = request.getStatus();
 	}
 
 	public Long getId() {
