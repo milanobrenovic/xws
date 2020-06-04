@@ -43,14 +43,14 @@ public class VehicleRenter {
 		super();
 	}
 	
-	public VehicleRenter(Long id, Long idUserRenter, List<Vehicle> vehicles, List<RequestToRent> requests,
-			List<ServiceReview> serviceReviews) {
+	public VehicleRenter(Long id, Long idUserRenter, Set<Vehicle> vehicles, Set<RequestToRent> requests,
+			Set<ServiceReview> serviceReviews) {
 		super();
 		this.id = id;
 		this.idUserRenter = idUserRenter;
-/*		this.vehicles = vehicles;
+		this.vehicles = vehicles;
 		this.requests = requests;
-		this.serviceReviews = serviceReviews;*/
+		this.serviceReviews = serviceReviews;
 	}
 	
 	
@@ -58,9 +58,9 @@ public class VehicleRenter {
 		super();
 		this.id = id;
 		this.idUserRenter = idUserRenter;
-/*		this.vehicles = vehicles;
+		this.vehicles = vehicles;
 		this.requests = new HashSet<>();
-		this.serviceReviews = new HashSet<>();*/
+		this.serviceReviews = new HashSet<>();
 	}
 	
 
@@ -72,13 +72,13 @@ public class VehicleRenter {
 		this.id = id;
 	}
 	
-	/*public Set<RequestToRent> getRequests() {
+	public Set<RequestToRent> getRequests() {
 		return requests;
 	}
 
 	public void setRequests(Set<RequestToRent> requests) {
 		this.requests = requests;
-	}*/
+	}
 
 	public Long getIdUserRenter() {
 		return idUserRenter;
@@ -88,7 +88,7 @@ public class VehicleRenter {
 		this.idUserRenter = idUserRenter;
 	}
 
-	/*public Set<Vehicle> getVehicles() {
+	public Set<Vehicle> getVehicles() {
 		return vehicles;
 	}
 
@@ -109,7 +109,7 @@ public class VehicleRenter {
 	public String toString() {
 		return "VehicleRenter [id=" + id + ", idUserRenter=" + idUserRenter + ", vehicles=" + vehicles + ", requests="
 				+ requests + ", serviceReviews=" + serviceReviews + "]";
-	}*/
+	}
 	
 	
 	

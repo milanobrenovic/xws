@@ -77,10 +77,10 @@ public class Cart {
 	}
 
 	
-	/*@Override
+	@Override
 	public String toString() {
 		return "Cart [id=" + id + ", userId=" + userId + ", vehicles=" + vehicles + "]";
 	}
-	*/
+	
 
 }

@@ -34,8 +34,8 @@ public class ServiceReview {
 	public ServiceReview(Long id, VehicleUser vehicleUser, VehicleRenter vehicleRenter, int stars, String description) {
 		super();
 		this.id = id;
-/*		this.vehicleUser = vehicleUser;
-		this.vehicleRenter = vehicleRenter;*/
+		this.vehicleUser = vehicleUser;
+		this.vehicleRenter = vehicleRenter;
 		this.stars = stars;
 		this.description = description;
 	}
@@ -43,8 +43,8 @@ public class ServiceReview {
 	public ServiceReview(Long id, VehicleUser vehicleUser, VehicleRenter vehicleRenter, int stars) {
 		super();
 		this.id = id;
-/*		this.vehicleUser = vehicleUser;
-		this.vehicleRenter = vehicleRenter;*/
+		this.vehicleUser = vehicleUser;
+		this.vehicleRenter = vehicleRenter;
 		this.stars = stars;
 		this.description = "";
 	}
@@ -59,7 +59,7 @@ public class ServiceReview {
 		this.id = id;
 	}
 
-	/*public VehicleUser getVehicleUser() {
+	public VehicleUser getVehicleUser() {
 		return vehicleUser;
 	}
 
@@ -73,7 +73,7 @@ public class ServiceReview {
 
 	public void setVehicleRenter(VehicleRenter vehicleRenter) {
 		this.vehicleRenter = vehicleRenter;
-	}*/
+	}
 
 	public int getStars() {
 		return stars;
@@ -92,11 +92,11 @@ public class ServiceReview {
 	}
 
 	
-	/*@Override
+	@Override
 	public String toString() {
 		return "ServiceReview [id=" + id + ", vehicleUser=" + vehicleUser + ", vehicleRenter=" + vehicleRenter
 				+ ", stars=" + stars + ", description=" + description + "]";
-	}*/
+	}
 	
 	
 }

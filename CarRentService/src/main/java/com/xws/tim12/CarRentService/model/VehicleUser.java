@@ -56,8 +56,8 @@ public class VehicleUser {
 		this.surname = surname;
 		this.address = address;
 		this.phone = phone;
-/*		this.requsets = requsets;
-		this.serviceReviews = serviceReviews;*/
+		this.requsets = requsets;
+		this.serviceReviews = serviceReviews;
 	}
 	
 	public VehicleUser(Long id, Long idUser, String name, String surname, String address, String phone) {
@@ -68,8 +68,8 @@ public class VehicleUser {
 		this.surname = surname;
 		this.address = address;
 		this.phone = phone;
-/*		this.requsets = new ArrayList<>();
-		this.serviceReviews = new ArrayList<>();*/
+		this.requsets = new HashSet<>();
+		this.serviceReviews = new HashSet<>();
 	}
 
 	public Long getId() {
@@ -112,13 +112,13 @@ public class VehicleUser {
 		this.phone = phone;
 	}
 	
-	/*public List<ServiceReview> getServiceReviews() {
+	public Set<ServiceReview> getServiceReviews() {
 		return serviceReviews;
 	}
 
-	public void setServiceReviews(List<ServiceReview> serviceReviews) {
+	public void setServiceReviews(Set<ServiceReview> serviceReviews) {
 		this.serviceReviews = serviceReviews;
-	}*/
+	}
 	
 	
 	public String getAddress() {
@@ -130,7 +130,7 @@ public class VehicleUser {
 	}
 
 
-	/*public Set<RequestToRent> getRequsets() {
+	public Set<RequestToRent> getRequsets() {
 		return requsets;
 	}
 
@@ -144,7 +144,7 @@ public class VehicleUser {
 	public String toString() {
 		return "VehicleUser [id=" + id + ", idUser=" + idUser + ", name=" + name + ", surname=" + surname + ", address="
 				+ address + ", phone=" + phone + ", requsets=" + requsets + ", serviceReviews=" + serviceReviews + "]";
-	}*/
+	}
 
 	
 	

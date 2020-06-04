@@ -138,7 +138,7 @@ public class Vehicle {
 		this.vehicleDiscount = vehicleDiscount;
 		this.insurancePrice = insurancePrice;
 		this.images = images;
-		/*this.requestsToRent = requestsToRent;*/
+		this.requestsToRent = requestsToRent;
 		this.carts = carts;
 	}
     
@@ -165,7 +165,7 @@ public class Vehicle {
 		this.vehicleDiscount = vehicleDiscount;
 		this.insurancePrice = insurancePrice;
 		this.images = images;
-		/*this.requestsToRent = new HashSet<>();*/
+		this.requestsToRent = new HashSet<>();
 		this.carts = new HashSet<>();
 	}
 

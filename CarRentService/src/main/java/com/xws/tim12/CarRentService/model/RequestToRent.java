@@ -48,9 +48,9 @@ public class RequestToRent {
 			RequestStatusType status) {
 		super();
 		this.id = id;
-/*		this.vehicles = vehicles;
+		this.vehicles = vehicles;
 		this.vehicleUser = vehicleUser;
-		this.vehicleRenter = vehicleRenter;*/
+		this.vehicleRenter = vehicleRenter;
 		this.status = status;
 	}
 
@@ -71,7 +71,7 @@ public class RequestToRent {
 		this.status = status;
 	}
 	
-	/*public Set<Vehicle> getVehicles() {
+	public Set<Vehicle> getVehicles() {
 		return vehicles;
 	}
 
@@ -93,13 +93,13 @@ public class RequestToRent {
 
 	public void setVehicleRenter(VehicleRenter vehicleRenter) {
 		this.vehicleRenter = vehicleRenter;
-	}*/
+	}
 
-	/*@Override
+	@Override
 	public String toString() {
 		return "RequestToRent [id=" + id + ", vehicles=" + vehicles + ", vehicleUser=" + vehicleUser
 				+ ", vehicleRenter=" + vehicleRenter + ", status=" + status + "]";
 	}
-*/
+
 	
 }
