@@ -16,14 +16,14 @@ public class RequestToRent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Vehicle vehicle;
+   // @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Long vehicleId;
 
     @Enumerated(EnumType.STRING)
     private RequestStatusType requestStatusType;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private NormalUser normalUser;
+    private Long normalUserId;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Agent agent;
@@ -40,20 +40,20 @@ public class RequestToRent {
 
     }
 
-    public RequestToRent(Long id, Vehicle vehicle, RequestStatusType requestStatusType, NormalUser normalUser, Date rentDateFrom, Date rentDateTo) {
+    public RequestToRent(Long id, Long vehicle, RequestStatusType requestStatusType, Long normalUser, Date rentDateFrom, Date rentDateTo) {
         this.id = id;
-        this.vehicle = vehicle;
+        this.vehicleId = vehicle;
         this.requestStatusType = requestStatusType;
-        this.normalUser = normalUser;
+        this.normalUserId = normalUser;
         this.rentDateFrom = rentDateFrom;
         this.rentDateTo = rentDateTo;
     }
 
     public RequestToRent(RequestToRent requestToRent) {
         this.id = requestToRent.id;
-        this.vehicle = requestToRent.vehicle;
+        this.vehicleId = requestToRent.vehicleId;
         this.requestStatusType = requestToRent.requestStatusType;
-        this.normalUser = requestToRent.normalUser;
+        this.normalUserId = requestToRent.normalUserId;
         this.rentDateFrom = requestToRent.rentDateFrom;
         this.rentDateTo = requestToRent.rentDateTo;
     }
@@ -66,12 +66,12 @@ public class RequestToRent {
         this.id = id;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public Long getVehicleId() {
+        return vehicleId;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicle(Long vehicle) {
+        this.vehicleId = vehicle;
     }
 
     public RequestStatusType getRequestStatusType() {
@@ -82,12 +82,12 @@ public class RequestToRent {
         this.requestStatusType = requestStatusType;
     }
 
-    public NormalUser getNormalUser() {
-        return normalUser;
+    public Long getNormalUser() {
+        return normalUserId;
     }
 
-    public void setNormalUser(NormalUser normalUser) {
-        this.normalUser = normalUser;
+    public void setNormalUser(Long normalUser) {
+        this.normalUserId = normalUser;
     }
 
     public Date getRentDateFrom() {
@@ -110,9 +110,9 @@ public class RequestToRent {
     public String toString() {
         return "RequestToRent{" +
                 "id=" + id +
-                ", vehicle=" + vehicle.toString() +
+                ", vehicle=" + vehicleId.toString() +
                 ", requestStatusType=" + requestStatusType +
-                ", user=" + normalUser.toString() +
+                ", user=" + normalUserId.toString() +
                 ", rentDateFrom=" + rentDateFrom +
                 ", rentDateTo=" + rentDateTo +
                 '}';

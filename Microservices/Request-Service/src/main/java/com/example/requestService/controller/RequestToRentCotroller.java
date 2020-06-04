@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.requestService.dto.RequestToRentDTO;
 import com.example.requestService.enumeration.RequestStatusType;
-import com.example.requestService.model.NormalUser;
 import com.example.requestService.model.RequestToRent;
-import com.example.requestService.model.Vehicle;
-import com.example.requestService.service.NormalUserService;
 import com.example.requestService.service.RequestToRentService;
-import com.example.requestService.service.VehicleService;
+import com.example.requestService.client.AuthenticationClient;
 
 
 @RestController
@@ -28,9 +25,8 @@ public class RequestToRentCotroller {
 	@Autowired
 	private RequestToRentService requestToRentService;
 	@Autowired
-	private NormalUserService normalUserService;
-	@Autowired
-	private VehicleService vehicleService;
+	private AuthenticationClient authenticationClient;
+
 	
 	
 	@PostMapping(value = "/createRequest", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -40,17 +36,17 @@ public class RequestToRentCotroller {
 		
 		
 		//System.out.println("Znaci ulazis ovde jel daaa ?????");
-		NormalUser normalUser = normalUserService.findById(requestToRentDTO.getNormalUser().getId());
+		//NormalUser normalUser = normalUserService.findById(requestToRentDTO.getNormalUser().getId());
 		//System.out.println("DTO:"+requestToRentDTO);
-		Vehicle vehicle = vehicleService.findOne(requestToRentDTO.getVehicle().getId());
+		//Vehicle vehicle = vehicleService.findOne(requestToRentDTO.getVehicle().getId());
 		RequestToRent r = new RequestToRent();
 		r.setId(111L);
-		r.setNormalUser(normalUser);
+		r.setNormalUser(requestToRentDTO.getNormalUserId());
 		r.setRentDateFrom(requestToRentDTO.getRentDateFrom());
 		r.setRentDateTo(requestToRentDTO.getRentDateTo());
 		r.setRequestStatusType(RequestStatusType.PENDING);
-		r.setVehicle(vehicle);
-	
+		r.setVehicle(requestToRentDTO.getVehicle());
+		//this.authenticationClient.incrementAds(requestToRentDTO.getNormalUserId());
 		
 		
 		requestToRentService.save(r);
@@ -69,16 +65,16 @@ public class RequestToRentCotroller {
 		
 		
 		//System.out.println("Znaci ulazis ovde jel daaa ?????");
-		NormalUser normalUser = normalUserService.findById(requestToRentDTO.getNormalUser().getId());
+		//NormalUser normalUser = normalUserService.findById(requestToRentDTO.getNormalUser().getId());
 		//System.out.println("DTO:"+requestToRentDTO);
-		Vehicle vehicle = vehicleService.findOne(requestToRentDTO.getVehicle().getId());
+	//	Vehicle vehicle = vehicleService.findOne(requestToRentDTO.getVehicle().getId());
 		RequestToRent r = new RequestToRent();
 		r.setId(111L);
-		r.setNormalUser(normalUser);
+		r.setNormalUser(requestToRentDTO.getNormalUserId());
 		r.setRentDateFrom(requestToRentDTO.getRentDateFrom());
 		r.setRentDateTo(requestToRentDTO.getRentDateTo());
 		r.setRequestStatusType(RequestStatusType.RESERVED);
-		r.setVehicle(vehicle);
+		r.setVehicle(requestToRentDTO.getVehicle());
 	
 		
 		

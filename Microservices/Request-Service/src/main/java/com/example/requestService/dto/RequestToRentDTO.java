@@ -14,8 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
 import com.example.requestService.enumeration.RequestStatusType;
-import com.example.requestService.model.NormalUser;
-import com.example.requestService.model.Vehicle;
+
 
 public class RequestToRentDTO {
 	
@@ -23,8 +22,8 @@ public class RequestToRentDTO {
 
 
     private RequestStatusType requestStatusType;
-    private NormalUserDTO normalUser;
-    private VehicleDTO vehicle;
+    private Long normalUserId;
+    private Long vehicleId;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Agent agent;
@@ -40,15 +39,15 @@ public class RequestToRentDTO {
 	public RequestToRentDTO(Long id, RequestStatusType requestStatusType,
 		    Date rentDateFrom,
 			Date rentDateTo,
-			NormalUserDTO normalUser,
-			VehicleDTO vehicle) {
+			Long normalUserId,
+			Long vehicleId) {
 		super();
 		this.id = id;
 		this.requestStatusType = requestStatusType;
 		this.rentDateFrom = rentDateFrom;
 		this.rentDateTo = rentDateTo;
-		this.normalUser = normalUser;
-		this.vehicle = vehicle;
+		this.normalUserId = normalUserId;
+		this.vehicleId = vehicleId;
 	}
 
 	public Long getId() {
@@ -83,29 +82,29 @@ public class RequestToRentDTO {
 		this.rentDateTo = rentDateTo;
 	}
 
-	public NormalUserDTO getNormalUser() {
-		return normalUser;
+	public Long getNormalUserId() {
+		return normalUserId;
 	}
 
-	public void setNormalUser(NormalUserDTO normalUser) {
-		this.normalUser = normalUser;
+	public void setNormalUserId(Long normalUserId) {
+		this.normalUserId = normalUserId;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public VehicleDTO getVehicle() {
-		return vehicle;
+	public Long getVehicle() {
+		return vehicleId;
 	}
 
-	public void setVehicle(VehicleDTO vehicle) {
-		this.vehicle = vehicle;
+	public void setVehicle(Long vehicle) {
+		this.vehicleId = vehicle;
 	}
 
 	@Override
 	public String toString() {
-		return "RequestToRentDTO [id=" + id + ", normalUser=" + normalUser + ", vehicle=" + vehicle + "]";
+		return "RequestToRentDTO [id=" + id + ", normalUser=" + normalUserId + ", vehicle=" + vehicleId + "]";
 	}
     
     
