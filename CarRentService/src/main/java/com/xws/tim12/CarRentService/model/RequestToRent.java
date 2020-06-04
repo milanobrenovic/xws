@@ -29,10 +29,12 @@ public class RequestToRent {
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 	
 	//User koji koristi vozilo
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private VehicleUser vehicleUser;
 	
 	//Renter kao User/Agent koji iznajmljuje vozilo
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private VehicleRenter vehicleRenter;
 

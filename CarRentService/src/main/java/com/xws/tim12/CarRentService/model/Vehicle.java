@@ -90,10 +90,12 @@ public class Vehicle {
    // @NotEmpty(message = "Insurance price cannot be empty.")
     @Column(nullable = false)
     private Double insurancePrice;
-
+    
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<VehicleImagePaths> images;
     
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private VehicleRenter vehicleRenter;
     
@@ -317,8 +319,49 @@ public class Vehicle {
     public void setImages(Set<VehicleImagePaths> images) {
         this.images = images;
     }
+    
+    
+    public Boolean getIsMileageUnlimited() {
+		return isMileageUnlimited;
+	}
 
-    @Override
+
+	public void setIsMileageUnlimited(Boolean isMileageUnlimited) {
+		this.isMileageUnlimited = isMileageUnlimited;
+	}
+
+
+	public VehicleRenter getVehicleRenter() {
+		return vehicleRenter;
+	}
+
+
+	public void setVehicleRenter(VehicleRenter vehicleRenter) {
+		this.vehicleRenter = vehicleRenter;
+	}
+
+	/*
+	public Set<RequestToRent> getRequestsToRent() {
+		return requestsToRent;
+	}
+
+
+	public void setRequestsToRent(Set<RequestToRent> requestsToRent) {
+		this.requestsToRent = requestsToRent;
+	}
+
+
+	public Set<Cart> getCarts() {
+		return carts;
+	}
+
+
+	public void setCarts(Set<Cart> carts) {
+		this.carts = carts;
+	}*/
+
+
+	@Override
     public String toString() {
         return "Vehicle{" +
                 "id=" + id +

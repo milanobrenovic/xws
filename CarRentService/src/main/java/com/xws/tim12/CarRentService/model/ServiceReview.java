@@ -8,16 +8,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ServiceReview {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private VehicleUser vehicleUser;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private VehicleRenter vehicleRenter;
 	

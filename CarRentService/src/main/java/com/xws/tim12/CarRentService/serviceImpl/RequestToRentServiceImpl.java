@@ -68,6 +68,10 @@ public class RequestToRentServiceImpl implements RequestToRentService {
 		RequestToRent newRequest = new RequestToRent();
 		newRequest.getVehicles().add(requestVehicle);
 		newRequest.setStatus(RequestStatusType.PENDING);
+		newRequest.setVehicleRenter(requestVehicle.getVehicleRenter());
+		
+		VehicleUser vehicleUser = vehicleUserRepository.findOneById(cart.getUserId());
+		newRequest.setVehicleUser(vehicleUser);
 		
 		if(newRequest == null) {
 			return null;

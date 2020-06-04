@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class VehicleUser {
 	
@@ -30,10 +32,11 @@ public class VehicleUser {
 
 	private String phone;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="vehicleUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<RequestToRent> requsets = new HashSet<RequestToRent>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="vehicleUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<ServiceReview> serviceReviews = new HashSet<ServiceReview>();
 
