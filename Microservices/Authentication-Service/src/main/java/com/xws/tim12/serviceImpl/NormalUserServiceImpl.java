@@ -53,7 +53,7 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
     	return normalUserRepository.findOneById(id);
     }
     @Override
-    public NormalUser findByUsername(String username) {
+    public NormalUser findOneByUsername(String username) {
         return normalUserRepository.findByUsername(username);
     }
     
@@ -73,7 +73,7 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        NormalUser normalUser = findByUsername(username);
+        NormalUser normalUser = findOneByUsername(username);
         if (normalUser == null) {
             throw new UsernameNotFoundException(String.format("User %s not found", username));
         } else {
@@ -104,6 +104,40 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
         );
         newNormalUser.setAuthorities(authService.findById(2L));
         return new NormalUserDTO(normalUserRepository.save(newNormalUser));
+    }
+
+    @Override
+    public NormalUserDTO blockNormalUser(String username) {
+        return block(username, true);
+    }
+
+    @Override
+    public NormalUserDTO unblockNormalUser(String username) {
+        return block(username, false);
+    }
+
+    @Override
+    public NormalUserDTO deleteNormalUser(String username) {
+        if (normalUserRepository.findByUsername(username) == null) {
+            return null;
+        }
+
+        NormalUser normalUser = findOneByUsername(username);
+        normalUserRepository.delete(normalUser);
+
+        return new NormalUserDTO(normalUser);
+    }
+
+    private NormalUserDTO block(String username, boolean block) {
+        if (normalUserRepository.findByUsername(username) == null) {
+            return null;
+        }
+
+        NormalUser normalUser = findOneByUsername(username);
+        normalUser.setBanned(block);
+        normalUserRepository.save(normalUser);
+
+        return new NormalUserDTO(normalUser);
     }
 
 }

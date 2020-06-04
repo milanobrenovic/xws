@@ -15,8 +15,10 @@ public class NormalUserController {
 
     @Autowired
     private NormalUserService normalUserService;
+
     @Autowired
     private NormalUserRepository normalUserRepository;
+
     @PostMapping(value = "/register")
     public ResponseEntity<NormalUserDTO> register(@RequestBody NormalUserDTO normalUser) {
         try {
@@ -31,15 +33,46 @@ public class NormalUserController {
         }
     }
 
-    @PostMapping(value = "/incrementNumberOfAdds/{id}")
-    public ResponseEntity<?> incrementAds(@PathVariable("id") Long id) {
-        NormalUser user = normalUserService.findById(id);
-        if(user == null){
-        	return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    @PutMapping(value = "/block/{username}")
+    public ResponseEntity<NormalUserDTO> blockNormalUser(@PathVariable("username") String username) {
+        try {
+            NormalUserDTO normalUserDTO = normalUserService.blockNormalUser(username);
+            if (normalUserDTO == null) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(normalUserDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        user.setNumberOfAds(user.getNumberOfAds()+1);
-        normalUserRepository.save(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/unblock/{username}")
+    public ResponseEntity<NormalUserDTO> unblockNormalUser(@PathVariable("username") String username) {
+        try {
+            NormalUserDTO normalUserDTO = normalUserService.unblockNormalUser(username);
+            if (normalUserDTO == null) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(normalUserDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping(value = "/delete/{username}")
+    public ResponseEntity<NormalUserDTO> deleteNormalUser(@PathVariable("username") String username) {
+        try {
+            NormalUserDTO normalUserDTO = normalUserService.deleteNormalUser(username);
+            if (normalUserDTO == null) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(normalUserDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping(value = "/incrementNumberOfAdds/{id}")

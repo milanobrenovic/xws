@@ -4,9 +4,13 @@ import com.xws.tim12.dto.NormalUserDTO;
 import com.xws.tim12.model.NormalUser;
 
 public interface NormalUserService {
+
 	NormalUser findById(Long id);
-    NormalUser findByUsername(String username);
+    NormalUser findOneByUsername(String username);
     NormalUser getUserLogin();
     NormalUserDTO createNormalUser(NormalUserDTO normalUser);
+    NormalUserDTO blockNormalUser(String username);
+    NormalUserDTO unblockNormalUser(String username);
+    NormalUserDTO deleteNormalUser(String username);
 
 }
