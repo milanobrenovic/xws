@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.xws.tim.12</groupId>
 	<artifactId>Cart-Service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Cart-Service</name>
-	<description>Demo project for Spring Boot</description>
+	<version>1.0.0</version>
+	<name>XWS</name>
+	<description>Cart microservice</description>
 
 	<properties>
 		<java.version>1.8</java.version>

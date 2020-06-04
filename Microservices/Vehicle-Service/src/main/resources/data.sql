@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 -- FUEL TYPES
 insert into vehicle.fuel_type (type) values ('Gasoline');
 insert into vehicle.fuel_type (type) values ('Diesel');
@@ -10,3 +11,7 @@ insert into vehicle.vehicle_type (type) values ('Caravan');
 -- VEHICLES
 insert into vehicle.vehicle (brand, model, fuel_type_id, transmission_type_id, vehicle_type_id, price, travelled_mileage, planned_mileage_to_travel, is_mileage_unlimited, has_collision_damage_waiver, number_of_seats, grade, available, vehicle_discount, insurance_price)
 values ('Mercedes', 'C klasa', 1, 1, 1, '15000', '2323', '232', 'false', 'false', '5', '5', 'true', '10', '300');
+=======
+insert into vehicle (brand, model, fuel_type, transmission_type, vehicle_type, price, travelled_mileage, planned_mileage_to_travel, is_mileage_unlimited, has_collision_damage_waiver, number_of_seats, grade, available, vehicle_discount, insurance_price)
+values ('Mercedes', 'C klasa', 'GASOLINE', 'MANUAL', 'SEDAN', '15000', '2323', '232', 'false', 'false', '5', '5', 'true', '10', '300');
+>>>>>>> Stashed changes

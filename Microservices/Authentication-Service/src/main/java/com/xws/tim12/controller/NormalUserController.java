@@ -42,4 +42,15 @@ public class NormalUserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping(value = "/incrementNumberOfAdds/{id}")
+    public ResponseEntity<?> incrementAds(@PathVariable("id") Long id) {
+        NormalUser user = normalUserService.findById(id);
+        if(user == null){
+        	return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        user.setNumberOfAds(user.getNumberOfAds()+1);
+        normalUserRepository.save(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

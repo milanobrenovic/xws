@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com.xws.tim12</groupId>
 	<artifactId>Vehicle-Service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Vehicle-Service</name>
+	<version>1.0.0</version>
+	<name>XWS</name>
 	<description>Microservice for operations with vehicles</description>
 
 	<properties>

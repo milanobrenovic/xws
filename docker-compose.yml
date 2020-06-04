@@ -33,7 +33,57 @@ services:
   ad-search-service:
     build: ./Microservices/Ad-Search-Service
     ports:
-    - "8080:8081"
+    - "8081:8081"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+
+  ad-service:
+    build: ./Microservices/Ad-Service
+    ports:
+      - "8082:8082"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+
+  authentication-service:
+    build: ./Microservices/Authentication-Service
+    ports:
+      - "8083:8083"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+
+  cart-service:
+    build: ./Microservices/Cart-Service
+    ports:
+      - "8084:8084"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+
+  request-service:
+    build: ./Microservices/Request-Service
+    ports:
+      - "8085:8085"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+
+  vehicle-service:
+    build: ./Microservices/Vehicle-Service
+    ports:
+      - "8086:8086"
     environment:
       - REGISTRY_HOST=eureka-serviceregistry
     tty: true
@@ -50,3 +100,8 @@ services:
     depends_on:
       - eureka-serviceregistry
       - ad-search-service
+      - ad-service
+      - authentication-service
+      - cart-service
+      - request-service
+      - vehicle-service
