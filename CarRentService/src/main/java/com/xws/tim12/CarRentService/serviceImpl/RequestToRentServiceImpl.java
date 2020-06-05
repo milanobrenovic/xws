@@ -1,5 +1,6 @@
 package com.xws.tim12.CarRentService.serviceImpl;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,9 +78,10 @@ public class RequestToRentServiceImpl implements RequestToRentService {
 			return null;
 		}
 		
+		requestToRentRepository.save(newRequest);
+		
 		return newRequest;
-		
-		
+	
 		
 	}
 	
@@ -87,15 +89,24 @@ public class RequestToRentServiceImpl implements RequestToRentService {
 //		VehicleUser vehicleUser = vehicleUserRepository.findOneById(id2);
 		Cart cart = cartRepository.findOneById(id);
 		Set<Vehicle> vehicles = cart.getVehicles();
-
+		
+		
+//		Long idOfFirst = vehicles.
+		
+		
 		
 		RequestToRent newRequest = new RequestToRent();
+		
+		
+		
 		newRequest.setVehicles(vehicles);
 		newRequest.setStatus(RequestStatusType.PENDING);
 		
 		if(newRequest == null) {
 			return null;
 		}
+		
+		requestToRentRepository.save(newRequest);
 		
 		return newRequest;
 	
