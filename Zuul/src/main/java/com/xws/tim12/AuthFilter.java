@@ -9,6 +9,7 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import com.xws.tim12.security.JwtAuthenticationRequest;
+import com.xws.tim12.security.TokenUtils;
 
 import feign.FeignException;
 
@@ -17,6 +18,9 @@ public class AuthFilter extends ZuulFilter{
 
 	@Autowired
 	private AuthClient authClient;
+	
+	@Autowired
+	private TokenUtils tokenUtils;
 	
 	@Override
 	public String filterType() {
@@ -41,18 +45,31 @@ public class AuthFilter extends ZuulFilter{
 		
 		if(request.getHeader("Authorization") == null) {
 			return null;
-		}
-		
-		//String username = request.getHeader("username");
-		//String password = request.getHeader("password");
+		} 
 		
 		String authRequest = request.getHeader("Authorization");
-		System.out.println("**************************" + authRequest);
+		System.out.println(authRequest);
+		
+		if(authRequest.contains("Bearer")) {
+			System.out.println("IMA TOKEN");
+			String token = tokenUtils.getToken(request);
+			System.out.println(token);
+			String username = tokenUtils.getUsernameFromToken(token);
+			System.out.println(username);
+			
+		} else {
+			System.out.println("IMA USERNAME I PASSWORD");
+		}
+		
+		
 		try {
-			//authClient.login(authRequest);
-			ctx.addZuulRequestHeader("Authorization", authRequest);
+			//System.out.println(jwt.getUsername());
+			//System.out.println(jwt.getPassword());
+			//authClient.login(jwt);
+			//ctx.addZuulRequestHeader("Authorization", authRequest);
+			//ctx.addZuulRequestHeader("username", username);
 			//ctx.addZuulRequestHeader("password", password);
-			//ctx.addZuulRequestHeader("role", "NORMAL_USER");
+			//ctx.addZuulRequestHeader("Authorization", "jwt");
 		} catch (FeignException.NotFound e) {
 			setFailedRequest("User does not exist", 403);
 		}
