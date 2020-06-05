@@ -106,7 +106,7 @@ public class RequestToRentServiceImpl implements RequestToRentService {
 			return null;
 		}
 		
-		requestToRentRepository.save(newRequest);
+		/*requestToRentRepository.save(newRequest);*/
 		
 		return newRequest;
 	
