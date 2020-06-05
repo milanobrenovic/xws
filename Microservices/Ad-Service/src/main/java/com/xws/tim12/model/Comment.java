@@ -10,13 +10,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Long normalUser;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Long agent;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Long admin;
 
     @Column(columnDefinition = "VARCHAR(500)", nullable = false)

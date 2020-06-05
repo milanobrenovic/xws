@@ -16,7 +16,6 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Long vehicle;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

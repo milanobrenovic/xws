@@ -1,5 +1,6 @@
 package com.xws.tim12.controller;
 
+import com.xws.tim12.client.AuthenticationClient;
 import com.xws.tim12.dto.AdDTO;
 
 import com.xws.tim12.service.AdService;
@@ -21,7 +22,8 @@ public class AdController {
 
     @Autowired
     private AdService adService;
-
+    @Autowired
+    private AuthenticationClient authenticationClient;
     @PostMapping(value = "/create")
     //@PreAuthorize("hasRole('ROLE_NORMAL_USER')")
     public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO,HttpServletRequest request) {
@@ -46,6 +48,7 @@ public class AdController {
             }
         //    normalUser.setNumberOfAds(normalUser.getNumberOfAds() + 1);
         //    normalUserRepository.save(normalUser);
+            authenticationClient.incrementAds("eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJYd3MiLCJzdWIiOiJ1c2VyMSIsImF1ZCI6IndlYiIsImlhdCI6MTU5MTM5MjI1NywiZXhwIjoxNTkxNDc4NjU3fQ.rG-2GXEG05Pbe-ZkpjrnxxXPT8jF5vfGevaM7u4yp-lTP2HVH_CJfXtAV_w9kr8FVfoWGt1-Lg645Nw2hQhidw",1L);
             return new ResponseEntity<>(newAdDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
