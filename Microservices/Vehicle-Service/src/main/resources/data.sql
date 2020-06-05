@@ -1,17 +1,15 @@
-<<<<<<< Updated upstream
 -- FUEL TYPES
-insert into vehicle.fuel_type (type) values ('Gasoline');
-insert into vehicle.fuel_type (type) values ('Diesel');
+insert into fuel_type (type) values ('Gasoline');
+insert into fuel_type (type) values ('Diesel');
+
 -- TRANSMISSION TYPES
-insert into vehicle.transmission_type (type) values ('Manual');
-insert into vehicle.transmission_type (type) values ('Automatic');
+insert into transmission_type (type) values ('Manual');
+insert into transmission_type (type) values ('Automatic');
+
 -- VEHICLE TYPES
-insert into vehicle.vehicle_type (type) values ('SUV');
-insert into vehicle.vehicle_type (type) values ('Caravan');
+insert into vehicle_type (type) values ('SUV');
+insert into vehicle_type (type) values ('Caravan');
+
 -- VEHICLES
-insert into vehicle.vehicle (brand, model, fuel_type_id, transmission_type_id, vehicle_type_id, price, travelled_mileage, planned_mileage_to_travel, is_mileage_unlimited, has_collision_damage_waiver, number_of_seats, grade, available, vehicle_discount, insurance_price)
+insert into vehicle (brand, model, fuel_type_id, transmission_type_id, vehicle_type_id, price, travelled_mileage, planned_mileage_to_travel, is_mileage_unlimited, has_collision_damage_waiver, number_of_seats, grade, available, vehicle_discount, insurance_price)
 values ('Mercedes', 'C klasa', 1, 1, 1, '15000', '2323', '232', 'false', 'false', '5', '5', 'true', '10', '300');
-=======
-insert into vehicle (brand, model, fuel_type, transmission_type, vehicle_type, price, travelled_mileage, planned_mileage_to_travel, is_mileage_unlimited, has_collision_damage_waiver, number_of_seats, grade, available, vehicle_discount, insurance_price)
-values ('Mercedes', 'C klasa', 'GASOLINE', 'MANUAL', 'SEDAN', '15000', '2323', '232', 'false', 'false', '5', '5', 'true', '10', '300');
->>>>>>> Stashed changes
