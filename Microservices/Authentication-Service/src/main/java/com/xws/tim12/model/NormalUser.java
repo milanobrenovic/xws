@@ -59,7 +59,7 @@ public class NormalUser implements UserDetails {
     @Column()
     private Boolean isBanned;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinTable(
             name = "normal_user_authority",
             joinColumns = @JoinColumn(name = "normal_user_id", referencedColumnName = "id"),
