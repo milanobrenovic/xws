@@ -3,7 +3,7 @@ package com.xws.tim12.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xws.tim12.model.Ad;
 import com.xws.tim12.model.Comment;
-import com.xws.tim12.model.Vehicle;
+
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +16,7 @@ public class AdDTO {
     private Long id;
     
     @NotEmpty(message = "Vehicle is empty.")
-    private Vehicle vehicle;
+    private Long vehicle;
     
     private List<Comment> comments;
 
@@ -51,7 +51,7 @@ public class AdDTO {
         );
     }
 
-    public AdDTO(@NotEmpty(message = "Vehicle is empty.") Vehicle vehicle, List<Comment> comments, @NotEmpty(message = "Pickup location cannot be empty.") @NotNull(message = "Pickup location cannot be null.") String pickupLocation, @NotEmpty(message = "Pickup from cannot be empty.") @NotNull(message = "Pickup from cannot be null.") LocalDateTime pickupFrom, @NotEmpty(message = "Pickup to cannot be empty.") @NotNull(message = "Pickup to cannot be null.") LocalDateTime pickupTo) {
+    public AdDTO(@NotEmpty(message = "Vehicle is empty.") Long vehicle, List<Comment> comments, @NotEmpty(message = "Pickup location cannot be empty.") @NotNull(message = "Pickup location cannot be null.") String pickupLocation, @NotEmpty(message = "Pickup from cannot be empty.") @NotNull(message = "Pickup from cannot be null.") LocalDateTime pickupFrom, @NotEmpty(message = "Pickup to cannot be empty.") @NotNull(message = "Pickup to cannot be null.") LocalDateTime pickupTo) {
         this.vehicle = vehicle;
         this.comments = comments;
         this.pickupLocation = pickupLocation;
@@ -67,11 +67,11 @@ public class AdDTO {
         this.id = id;
     }
 
-    public Vehicle getVehicle() {
+    public Long getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
+    public void setVehicle(Long vehicle) {
         this.vehicle = vehicle;
     }
 

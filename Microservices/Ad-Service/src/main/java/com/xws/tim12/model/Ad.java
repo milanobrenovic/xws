@@ -17,7 +17,7 @@ public class Ad {
     private Long id;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Vehicle vehicle;
+    private Long vehicle;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
@@ -43,7 +43,7 @@ public class Ad {
 
     }
 
-    public Ad(Vehicle vehicle, List<Comment> comments, @NotEmpty(message = "Pickup location cannot be empty.") @NotNull(message = "Pickup location cannot be null.") String pickupLocation, @NotEmpty(message = "Pickup from cannot be empty.") @NotNull(message = "Pickup from cannot be null.") LocalDateTime pickupFrom, @NotEmpty(message = "Pickup to cannot be empty.") @NotNull(message = "Pickup to cannot be null.") LocalDateTime pickupTo) {
+    public Ad(Long vehicle, List<Comment> comments, @NotEmpty(message = "Pickup location cannot be empty.") @NotNull(message = "Pickup location cannot be null.") String pickupLocation, @NotEmpty(message = "Pickup from cannot be empty.") @NotNull(message = "Pickup from cannot be null.") LocalDateTime pickupFrom, @NotEmpty(message = "Pickup to cannot be empty.") @NotNull(message = "Pickup to cannot be null.") LocalDateTime pickupTo) {
         this.vehicle = vehicle;
         this.comments = comments;
         this.pickupLocation = pickupLocation;
@@ -59,11 +59,11 @@ public class Ad {
         this.id = id;
     }
 
-    public Vehicle getVehicle() {
+    public Long getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
+    public void setVehicle(Long vehicle) {
         this.vehicle = vehicle;
     }
 
