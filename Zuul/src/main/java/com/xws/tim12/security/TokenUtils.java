@@ -97,6 +97,20 @@ public class TokenUtils {
         return username;
     }
 
+    /**
+     * Funkcija koja vraca rolu iz tokena
+     * @author Nikola*/
+    public String getRoleFromToken(String token) {
+        String role;
+        try {
+            final Claims claims = this.getAllClaimsFromToken(token);
+            role = (String)claims.get("role");
+        } catch (Exception e) {
+            role = null;
+        }
+        return role;
+    }
+    
     public Date getIssuedAtDateFromToken(String token) {
         Date issueAt;
         try {

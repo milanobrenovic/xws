@@ -37,7 +37,7 @@ public class TokenUtils {
 
     private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
 
-    public String generateToken(String email) {
+    public String generateToken(String email, String role) {
         return Jwts
                 .builder()
                 .setIssuer(APP_NAME)
@@ -45,7 +45,7 @@ public class TokenUtils {
                 .setAudience(generateAudience())
                 .setIssuedAt(timeProvider.now())
                 .setExpiration(generateExpirationDate())
-                // .claim("role", role) //postavljanje proizvoljnih podataka u telo JWT tokena
+                .claim("role", role) //postavljanje proizvoljnih podataka u telo JWT tokena
                 .signWith(SIGNATURE_ALGORITHM, SECRET).compact();
     }
 
@@ -97,6 +97,20 @@ public class TokenUtils {
         return username;
     }
 
+    /**
+     * Funkcija koja vraca rolu iz tokena
+     * @author Nikola*/
+    public String getRoleFromToken(String token) {
+        String role;
+        try {
+            final Claims claims = this.getAllClaimsFromToken(token);
+            role = (String)claims.get("role");
+        } catch (Exception e) {
+            role = null;
+        }
+        return role;
+    }
+    
     public Date getIssuedAtDateFromToken(String token) {
         Date issueAt;
         try {

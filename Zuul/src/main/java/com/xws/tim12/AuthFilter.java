@@ -44,6 +44,7 @@ public class AuthFilter extends ZuulFilter{
 		HttpServletRequest request = ctx.getRequest();
 		
 		if(request.getHeader("Authorization") == null) {
+			setFailedRequest("User does not exist", 403);
 			return null;
 		} 
 		
@@ -54,19 +55,22 @@ public class AuthFilter extends ZuulFilter{
 			System.out.println("IMA TOKEN");
 			String token = tokenUtils.getToken(request);
 			System.out.println(token);
+			
 			String username = tokenUtils.getUsernameFromToken(token);
 			System.out.println(username);
 			
+			String role = tokenUtils.getRoleFromToken(token);
+			System.out.println(role);
+			
+			ctx.addZuulRequestHeader("role", role);
 		} else {
 			System.out.println("IMA USERNAME I PASSWORD");
 		}
-		
 		
 		try {
 			//System.out.println(jwt.getUsername());
 			//System.out.println(jwt.getPassword());
 			//authClient.login(jwt);
-			//ctx.addZuulRequestHeader("Authorization", authRequest);
 			//ctx.addZuulRequestHeader("username", username);
 			//ctx.addZuulRequestHeader("password", password);
 			//ctx.addZuulRequestHeader("Authorization", "jwt");

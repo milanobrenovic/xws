@@ -64,7 +64,12 @@ public class AuthServiceImpl implements AuthService {
             return null;
         }
 
-        String jwtToken = tokenUtils.generateToken(username);
+        String role = returnRole(authentication.getPrincipal());
+        if(role == null) 
+        	return null;
+        
+        
+        String jwtToken = tokenUtils.generateToken(username, role);
         int expiresIn = tokenUtils.getExpiredIn();
 
         return returnLoggedInUser(
@@ -80,6 +85,19 @@ public class AuthServiceImpl implements AuthService {
             return ((NormalUser) object).getUsername();
         } else if (object instanceof Agent) {
         	return ((Agent) object).getUsername();
+        }
+        return null;
+    }
+    
+    /**Metoda izvlaci rolu iz objekta, potrebna radi dobavljanja role u Zuul API Gateway
+     * @author Petar i Nikola*/
+    private String returnRole(Object object) {
+        if (object instanceof Admin) {
+            return "ROLE_ADMIN";
+        } else if (object instanceof NormalUser) {
+            return "ROLE_NORMAL_USER";
+        } else if (object instanceof Agent) {
+        	return "ROLE_AGENT";
         }
         return null;
     }
