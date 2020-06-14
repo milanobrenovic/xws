@@ -48,7 +48,7 @@ public class AdController {
             }
         //    normalUser.setNumberOfAds(normalUser.getNumberOfAds() + 1);
         //    normalUserRepository.save(normalUser);
-            authenticationClient.incrementAds("eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJYd3MiLCJzdWIiOiJ1c2VyMSIsImF1ZCI6IndlYiIsImlhdCI6MTU5MTM5MjI1NywiZXhwIjoxNTkxNDc4NjU3fQ.rG-2GXEG05Pbe-ZkpjrnxxXPT8jF5vfGevaM7u4yp-lTP2HVH_CJfXtAV_w9kr8FVfoWGt1-Lg645Nw2hQhidw",1L);
+            authenticationClient.incrementAds(1L);
             return new ResponseEntity<>(newAdDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

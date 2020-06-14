@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(name = "authentication")
+@FeignClient(url = "localhost:8083",name = "authentication")
 public interface AuthenticationClient {
 	 	@PostMapping(value = "/incrementNumberOfAdds/{id}")
-	    public ResponseEntity<?> incrementAds(@RequestHeader("Authorization") String token,
-	    		@PathVariable("id") Long id);
+	    public ResponseEntity<?> incrementAds(@PathVariable("id") Long id);
 }
