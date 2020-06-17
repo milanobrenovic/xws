@@ -26,6 +26,7 @@ public class AdServiceImpl implements AdService {
             adDTO.getPickupFrom(),
             adDTO.getPickupTo()
         );
+        System.out.println("dtoAD:"+newAd);
         return new AdDTO(adRepository.save(newAd));
     }
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+
 @FeignClient(name = "authentication")
 public interface AuthenticationClient {
 	 	@PostMapping(value = "/incrementNumberOfAdds/{id}")
@@ -17,4 +18,6 @@ public interface AuthenticationClient {
 	 	
 	 	@GetMapping(value = "/role/{role}")
 	     public Boolean hasRole(@PathVariable("role") String role,HttpServletRequest request);
+	 	
+	 
 }

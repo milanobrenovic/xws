@@ -32,6 +32,10 @@ public class NormalUserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    @PostMapping(value = "/getId/{id}")
+    public ResponseEntity<NormalUser> getIdd(@PathVariable Long id) {
+    	return new ResponseEntity<>(normalUserService.findById(id),HttpStatus.OK);
+    }
 
     @PutMapping(value = "/block/{username}")
     public ResponseEntity<NormalUserDTO> blockNormalUser(@PathVariable("username") String username) {
@@ -79,7 +83,11 @@ public class NormalUserController {
     public ResponseEntity<?> incrementAds(@PathVariable("id") Long id) {
         NormalUser user = normalUserService.findById(id);
         if(user == null){
+        	System.out.println("udjes u null pa unauthorised???");
         	return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        if(user.getNumberOfAds() >= 2){
+        	return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         user.setNumberOfAds(user.getNumberOfAds()+1);
         normalUserRepository.save(user);
