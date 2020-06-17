@@ -8,6 +8,7 @@ import { ErrorPageNotFoundComponent } from './main/errors/error-page-not-found/e
 import { ErrorUnauthorizedComponent } from './main/errors/error-unauthorized/error-unauthorized.component';
 import { ErrorUnauthenticatedComponent } from './main/errors/error-unauthenticated/error-unauthenticated.component';
 import { RegisterComponent } from './main/register/register.component';
+import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.component';
 
 const appRoutes: Routes = [
 
@@ -42,6 +43,11 @@ const appRoutes: Routes = [
     {
         path        : 'pages/register',
         component   : RegisterComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/create-new-ad',
+        component   : CreateNewAdComponent,
         // canActivate : [AdminGuard],
     },
 

@@ -14,11 +14,11 @@ export const navigation: FuseNavigation[] = [
 				url			: '/pages/home',
 			},
 			{
-				id			: 'login',
-				title		: 'Login',
+				id			: 'create-new-ad',
+				title		: 'Create New Ad',
 				type		: 'item',
-				icon		: 'lock',
-				url			: '/pages/login',
+				icon		: 'add_circle_outline',
+				url			: '/pages/create-new-ad',
 			},
 			{
 				id			: 'register',

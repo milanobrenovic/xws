@@ -68,10 +68,12 @@ import { ErrorUnauthorizedComponent } from './main/errors/error-unauthorized/err
 import { ErrorPageNotFoundComponent } from './main/errors/error-page-not-found/error-page-not-found.component';
 import { ErrorInternalServerComponent } from './main/errors/error-internal-server/error-internal-server.component';
 import { ErrorComponent } from './main/errors/error/error.component';
+import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		HomeComponent,
 		LoginComponent,
 		RegisterComponent,
 		ErrorUnauthenticatedComponent,
@@ -79,6 +81,7 @@ import { ErrorComponent } from './main/errors/error/error.component';
 		ErrorPageNotFoundComponent,
 		ErrorInternalServerComponent,
 		ErrorComponent,
+		CreateNewAdComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -2,17 +2,16 @@
 
 	<mat-card>
 		<mat-card-title>
-			Welcome back, @{{ loggedInUsername }}.
+			Create a new ad
 		</mat-card-title>
 		<mat-card-content>
 			<p>
-				Your role is: <strong>{{ loggedInUserRole }}</strong>.
-				<br>
-				Click the button below to create a new ad.
+				Please fill out the form in order to create a new ad for the
+				desired vehicle.
 			</p>
 			<mat-divider></mat-divider>
 			<br>
-			<button mat-button mat-raised-button color="primary" routerLink="/pages/todo">
+			<button mat-button mat-raised-button color="primary" routerLink="/pages/create-new-ad">
 				Create New Ad
 			</button>
 		</mat-card-content>
