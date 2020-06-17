@@ -111,6 +111,17 @@ public class TokenUtils {
         return role;
     }
     
+    public String getIdFromToken(String token) {
+    	String id;
+    	try {
+    		final Claims claims = this.getAllClaimsFromToken(token);
+    		id = (String) claims.get("id");
+    	} catch (Exception e) {
+    		id = null;
+    	}
+    	return id;
+    }
+    
     public Date getIssuedAtDateFromToken(String token) {
         Date issueAt;
         try {

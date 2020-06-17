@@ -68,8 +68,12 @@ public class AuthServiceImpl implements AuthService {
         if(role == null) 
         	return null;
         
+        Long id = returnId(authentication.getPrincipal());
+        if(id == null)
+        	return null;
         
-        String jwtToken = tokenUtils.generateToken(username, role);
+        
+        String jwtToken = tokenUtils.generateToken(username, role, id);
         int expiresIn = tokenUtils.getExpiredIn();
 
         return returnLoggedInUser(
@@ -98,6 +102,17 @@ public class AuthServiceImpl implements AuthService {
             return "ROLE_NORMAL_USER";
         } else if (object instanceof Agent) {
         	return "ROLE_AGENT";
+        }
+        return null;
+    }
+    
+    private Long returnId(Object object) {
+        if (object instanceof Admin) {
+            return ((Admin) object).getId();
+        } else if (object instanceof NormalUser) {
+            return ((NormalUser) object).getId();
+        } else if (object instanceof Agent) {
+        	return ((Agent) object).getId();
         }
         return null;
     }

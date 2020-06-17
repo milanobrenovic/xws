@@ -3,6 +3,8 @@ package com.xws.tim12.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,7 +39,13 @@ public class VehicleTypeController {
 	}
 	
 	@GetMapping("vehicletype/all")
-	public ResponseEntity<List<VehicleTypeDTO>> getAllVehicleTypes(){
+	public ResponseEntity<List<VehicleTypeDTO>> getAllVehicleTypes(HttpServletRequest httpRequest){
+		
+		String role = httpRequest.getHeader("role");
+
+		if(!role.equals("ROLE_ADMIN")){
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 		
 		List<VehicleType> vehicleTypes = new ArrayList<>();
 		
@@ -58,7 +66,14 @@ public class VehicleTypeController {
 	}
 	
 	@PostMapping(path = "/createvehicletype", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<VehicleTypeDTO> createVehicleType(@RequestBody VehicleTypeDTO vehicleTypeDTO){
+	public ResponseEntity<VehicleTypeDTO> createVehicleType(@RequestBody VehicleTypeDTO vehicleTypeDTO, HttpServletRequest httpRequest){
+		
+		String role = httpRequest.getHeader("role");
+
+		if(!role.equals("ROLE_ADMIN")){
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
 		if(vehicleTypeDTO.getClass() == null) 
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			
