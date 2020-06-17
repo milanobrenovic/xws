@@ -1,11 +1,17 @@
 export class UserTokenState {
 
-  jwtAccessToken: string;
-  expiresIn: number;
+  public id: number;
+  public role: string;
+  public jwtAccessToken: string;
+  public expiresIn: number;
+  public username: string;
 
-  constructor(jwtAccessToken: string, expiresIn: number) {
-    this.jwtAccessToken = jwtAccessToken;
-    this.expiresIn = expiresIn;
-  }
+	constructor($id: number, $role: string, $jwtAccessToken: string, $expiresIn: number, $username: string) {
+		this.id = $id;
+		this.role = $role;
+		this.jwtAccessToken = $jwtAccessToken;
+		this.expiresIn = $expiresIn;
+		this.username = $username;
+	}
 
 }

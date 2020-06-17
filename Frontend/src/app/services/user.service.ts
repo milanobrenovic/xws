@@ -55,7 +55,7 @@ export class UserService {
     this.router.navigate(['/pages/login']);
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return localStorage.getItem('LoggedInUser') !== null;
   }
 
