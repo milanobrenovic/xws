@@ -62,7 +62,11 @@ public class AuthFilter extends ZuulFilter{
 			String role = tokenUtils.getRoleFromToken(token);
 			System.out.println(role);
 			
+			String id = tokenUtils.getIdFromToken(token);
+			System.out.println(id);
+
 			ctx.addZuulRequestHeader("role", role);
+			ctx.addZuulRequestHeader("id", id);
 		} else {
 			System.out.println("IMA USERNAME I PASSWORD");
 		}

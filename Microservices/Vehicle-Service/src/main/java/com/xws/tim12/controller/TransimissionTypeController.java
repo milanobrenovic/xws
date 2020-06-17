@@ -3,6 +3,8 @@ package com.xws.tim12.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,8 +39,14 @@ public class TransimissionTypeController {
 	}
 	
 	@GetMapping("transmissiontype/all")
-	public ResponseEntity<List<TransmissionTypeDTO>> getAllTransmissionTypes(){
+	public ResponseEntity<List<TransmissionTypeDTO>> getAllTransmissionTypes(HttpServletRequest httpRequest){
 		
+		String role = httpRequest.getHeader("role");
+
+		if(!role.equals("ROLE_ADMIN")){
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+
 		List<TransmissionType> transmissionTypes = new ArrayList<>();
 		
 		transmissionTypes = transmissionTypeService.findAll();
@@ -58,7 +66,14 @@ public class TransimissionTypeController {
 	}
 	
 	@PostMapping(path = "/createtransmissiontype", consumes = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<TransmissionTypeDTO> createTransmissionType(@RequestBody TransmissionTypeDTO transmissionTypeDTO){
+	public ResponseEntity<TransmissionTypeDTO> createTransmissionType(@RequestBody TransmissionTypeDTO transmissionTypeDTO, HttpServletRequest httpRequest){
+		
+		String role = httpRequest.getHeader("role");
+
+		if(!role.equals("ROLE_ADMIN")){
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
 		if(transmissionTypeDTO.getClass() == null) 
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			
