@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { UserTokenState } from 'app/models/userTokenState';
@@ -39,6 +39,10 @@ export class UserService {
       localStorage.setItem('LoggedInUser', JSON.stringify(res));
       this.loggedInUserSubject.next(res);
     }));
+  }
+
+  register(user: UserLoginRequest) {
+    return this.httpClient.post(this._register, user);
   }
 
   getToken() {

@@ -8,7 +8,7 @@ export const environment = {
     itemsPerPage    : 5,
     baseUrl         : "http://localhost:8087",
     login           : "/authentication/api/auth/login",
-    register        : "/auth/user/register",
+    register        : "/authentication/register",
 };
 
 /*

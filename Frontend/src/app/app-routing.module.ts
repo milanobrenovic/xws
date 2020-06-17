@@ -7,6 +7,7 @@ import { ErrorInternalServerComponent } from './main/errors/error-internal-serve
 import { ErrorPageNotFoundComponent } from './main/errors/error-page-not-found/error-page-not-found.component';
 import { ErrorUnauthorizedComponent } from './main/errors/error-unauthorized/error-unauthorized.component';
 import { ErrorUnauthenticatedComponent } from './main/errors/error-unauthenticated/error-unauthenticated.component';
+import { RegisterComponent } from './main/register/register.component';
 
 const appRoutes: Routes = [
 
@@ -36,6 +37,11 @@ const appRoutes: Routes = [
     {
         path        : 'pages/home',
         component   : HomeComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/register',
+        component   : RegisterComponent,
         // canActivate : [AdminGuard],
     },
 
