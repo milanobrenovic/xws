@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Authentication-Service/Authentication-Service.iml" filepath="$PROJECT_DIR$/Authentication-Service/Authentication-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Cart-Service/Cart-Service.iml" filepath="$PROJECT_DIR$/Cart-Service/Cart-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Eureka/Eureka.iml" filepath="$PROJECT_DIR$/Eureka/Eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/Vehicle-Service/Vehicle-Service.iml" filepath="$PROJECT_DIR$/Vehicle-Service/Vehicle-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Zuul/Zuul.iml" filepath="$PROJECT_DIR$/Zuul/Zuul.iml" />
       <module fileurl="file://$PROJECT_DIR$/Backend/demo.iml" filepath="$PROJECT_DIR$/Backend/demo.iml" />
