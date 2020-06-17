@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping(value = "/api/auth/user")
+@RequestMapping(value = "/api/auth/user")
 public class NormalUserController {
 
     @Autowired
