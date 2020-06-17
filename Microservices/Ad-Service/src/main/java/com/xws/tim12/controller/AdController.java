@@ -17,16 +17,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/ad", produces = MediaType.APPLICATION_JSON_VALUE)
+//@RequestMapping(value = "/api/ad", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdController {
-
+	
     @Autowired
     private AdService adService;
     @Autowired
     private AuthenticationClient authenticationClient;
     @PostMapping(value = "/create")
     //@PreAuthorize("hasRole('ROLE_NORMAL_USER')")
-    public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO,HttpServletRequest request) {
+    public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO) {
+    /*	if(!authenticationClient.hasRole("ROLE_USER", request)){
+    		System.out.println("Ulazis u unnn");
+    		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    	}*/
 //    	System.out.println("Ulazak u kreiranje oglasa");
     //	NormalUser currentLogged = normalUserService.getUserLogin();
     //	String token = tokenUtils.getToken(request);
