@@ -9,6 +9,7 @@ import { ErrorUnauthorizedComponent } from './main/errors/error-unauthorized/err
 import { ErrorUnauthenticatedComponent } from './main/errors/error-unauthenticated/error-unauthenticated.component';
 import { RegisterComponent } from './main/register/register.component';
 import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.component';
+import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-vehicle.component';
 
 const appRoutes: Routes = [
 
@@ -43,6 +44,11 @@ const appRoutes: Routes = [
     {
         path        : 'pages/register',
         component   : RegisterComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/create-new-vehicle',
+        component   : CreateNewVehicleComponent,
         // canActivate : [AdminGuard],
     },
     {
