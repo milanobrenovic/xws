@@ -41,6 +41,7 @@ public class VehicleService {
 		return vehicleRepository.save(vehicle);
 	}
 	
+	
 	public Vehicle convertFromDTO(VehicleDTO vehicleDTO) {
 		
 		FuelType fuelType = fuelTypeService.findOne(vehicleDTO.getFuelType());

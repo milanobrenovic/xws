@@ -61,6 +61,7 @@ public class AdController {
         //    normalUser.setNumberOfAds(normalUser.getNumberOfAds() + 1);
         //    normalUserRepository.save(normalUser);
             authenticationClient.incrementAds(Long.parseLong(httpRequest.getHeader("id")));
+            
             return new ResponseEntity<>(newAdDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

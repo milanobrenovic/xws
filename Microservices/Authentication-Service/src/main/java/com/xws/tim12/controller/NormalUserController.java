@@ -86,7 +86,7 @@ public class NormalUserController {
         	System.out.println("udjes u null pa unauthorised???");
         	return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        if(user.getNumberOfAds() >= 2){
+        if(user.getNumberOfAds() > 2){
         	return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         user.setNumberOfAds(user.getNumberOfAds()+1);

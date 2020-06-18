@@ -16,8 +16,11 @@ public class CommentDTO {
     
     @NotEmpty(message = "Comment is empty.")
     private String comment;
-    
+    private Long vehicleId;
 
+    public CommentDTO (){}
+    
+    
 	public CommentDTO(Long id, Long normalUser, String comment) {
 		super();
 		this.id = id;
@@ -44,6 +47,25 @@ public class CommentDTO {
 		this.admin = admin;
 		this.comment = comment;
 	}*/
+
+	public Long getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(Long vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+
+	public CommentDTO(Long id, Long normalUser, Long agent, Long admin,
+			@NotEmpty(message = "Comment is empty.") String comment, Long vehicleId) {
+		super();
+		this.id = id;
+		this.normalUser = normalUser;
+		this.agent = agent;
+		this.admin = admin;
+		this.comment = comment;
+		this.vehicleId = vehicleId;
+	}
 
 	public Long getId() {
 		return id;

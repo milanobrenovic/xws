@@ -16,10 +16,13 @@ public class AdServiceImpl implements AdService {
 
     @Autowired
     private AdRepository adRepository;
+   /* @Autowired 
+    AdService adServise;*/
 
     @Override
     public AdDTO create(AdDTO adDTO) {
         Ad newAd = new Ad(
+        	(Long)2222L,
             adDTO.getVehicle(),
             adDTO.getComments(),
             adDTO.getPickupLocation(),
@@ -54,4 +57,12 @@ public class AdServiceImpl implements AdService {
         return adDTOList;
     }
 
-}
+	@Override
+	public Ad findById(Long id) {
+	
+	    return adRepository.findOneById(id);
+	}
+ }
+    
+
+

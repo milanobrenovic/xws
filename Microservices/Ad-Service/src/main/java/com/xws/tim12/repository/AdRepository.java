@@ -9,6 +9,7 @@ import java.util.List;
 public interface AdRepository extends JpaRepository<Ad, Long> {
 
     List<Ad> findAll();
+    Ad findOneById(Long id);
 
     List<Ad> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
             String pickupLocation, LocalDateTime pickupFrom, LocalDateTime pickupTo);

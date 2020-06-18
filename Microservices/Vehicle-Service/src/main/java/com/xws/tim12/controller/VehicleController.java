@@ -1,5 +1,7 @@
 package com.xws.tim12.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +33,16 @@ public class VehicleController {
 		VehicleDTO vehicleDTO = new VehicleDTO(vehicle);
 		
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
+	}
+	@GetMapping("/vehicle/all")
+	public ResponseEntity<List<Vehicle>> getVehicleAll(){
+		List<Vehicle>vehicles = vehicleService.findAll();
+		
+
+	
+		
+		
+		return new ResponseEntity<>(vehicles, HttpStatus.OK);
 	}
 	
 	@PostMapping(path = "/createVehicle")

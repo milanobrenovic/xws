@@ -18,19 +18,41 @@ public class Comment {
 
     @Column(columnDefinition = "VARCHAR(500)", nullable = false)
     private String comment;
+    
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Ad ad;
+    
 
     public Comment() {
 
     }
-
+    
     public Comment(Long normalUser, Long agent, Long admin, String comment) {
         this.normalUser = normalUser;
         this.agent = agent;
         this.admin = admin;
         this.comment = comment;
     }
+    
+    public Comment(Long id, Long normalUser, Long agent, Long admin, String comment, Ad ad) {
+		super();
+		this.id = id;
+		this.normalUser = normalUser;
+		this.agent = agent;
+		this.admin = admin;
+		this.comment = comment;
+		this.ad = ad;
+	}
 
-    public Long getId() {
+	public Ad getAd() {
+		return ad;
+	}
+
+	public void setAd(Ad ad) {
+		this.ad = ad;
+	}
+
+	public Long getId() {
         return id;
     }
 

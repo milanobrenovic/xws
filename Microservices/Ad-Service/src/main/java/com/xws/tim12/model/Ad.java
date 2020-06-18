@@ -49,8 +49,22 @@ public class Ad {
         this.pickupFrom = pickupFrom;
         this.pickupTo = pickupTo;
     }
+    
 
-    public Long getId() {
+    public Ad(Long id, Long vehicle, List<Comment> comments,
+			@NotNull(message = "Pickup location cannot be null.") String pickupLocation,
+			@NotNull(message = "Pickup from cannot be null.") LocalDateTime pickupFrom,
+			@NotNull(message = "Pickup to cannot be null.") LocalDateTime pickupTo) {
+		super();
+		this.id = id;
+		this.vehicle = vehicle;
+		this.comments = comments;
+		this.pickupLocation = pickupLocation;
+		this.pickupFrom = pickupFrom;
+		this.pickupTo = pickupTo;
+	}
+
+	public Long getId() {
         return id;
     }
 
