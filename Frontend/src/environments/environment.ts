@@ -3,12 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production      : false,
-    hmr             : false,
-    itemsPerPage    : 5,
-    baseUrl         : "http://localhost:8087",
-    login           : "/authentication/api/auth/login",
-    register        : "/authentication/register",
+    production          : false,
+    hmr                 : false,
+    itemsPerPage        : 5,
+    baseUrl             : "http://localhost:8087",
+    login               : "/authentication/api/auth/login",
+    register            : "/authentication/register",
+    createNewVehicle    : "/vehicle/createVehicle",
 };
 
 /*

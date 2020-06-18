@@ -69,6 +69,7 @@ import { ErrorPageNotFoundComponent } from './main/errors/error-page-not-found/e
 import { ErrorInternalServerComponent } from './main/errors/error-internal-server/error-internal-server.component';
 import { ErrorComponent } from './main/errors/error/error.component';
 import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.component';
+import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-vehicle.component';
 
 @NgModule({
 	declarations: [
@@ -82,6 +83,7 @@ import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.compone
 		ErrorInternalServerComponent,
 		ErrorComponent,
 		CreateNewAdComponent,
+		CreateNewVehicleComponent,
 	],
 	imports: [
 		BrowserModule,

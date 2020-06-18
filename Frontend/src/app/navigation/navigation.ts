@@ -14,6 +14,13 @@ export const navigation: FuseNavigation[] = [
 				url			: '/pages/home',
 			},
 			{
+				id			: 'create-new-vehicle',
+				title		: 'Create New Vehicle',
+				type		: 'item',
+				icon		: 'add_box',
+				url			: '/pages/create-new-vehicle',
+			},
+			{
 				id			: 'create-new-ad',
 				title		: 'Create New Ad',
 				type		: 'item',
