@@ -1,6 +1,7 @@
 package com.xws.tim12.controller;
 
 import com.xws.tim12.client.AuthenticationClient;
+import com.xws.tim12.client.VehicleClient;
 import com.xws.tim12.dto.AdDTO;
 import com.xws.tim12.repository.AdRepository;
 import com.xws.tim12.service.AdService;
@@ -25,6 +26,8 @@ public class AdController {
     @Autowired
     private AuthenticationClient authenticationClient;
     @Autowired
+    private VehicleClient vehicleClient;
+    @Autowired
     private AdRepository adRepository;
     @PostMapping(value = "/create")
     //@PreAuthorize("hasRole('ROLE_NORMAL_USER')")
@@ -37,6 +40,8 @@ public class AdController {
     	if(!httpRequest.getHeader("role").equals("ROLE_NORMAL_USER") && !httpRequest.getHeader("role").equals("ROLE_ADMIN")){
     		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     	}
+    	
+    	
 //    	System.out.println("Ulazak u kreiranje oglasa");
     //	NormalUser currentLogged = normalUserService.getUserLogin();
     	//NormalUser currentLogged = authenticationClient.getIdd(httpRequest.getHeader("id")));
@@ -52,15 +57,27 @@ public class AdController {
     		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     	}
     	System.out.println("User :"+ normalUser.getUsername());*/
+    	if(vehicleClient.getVehicle(adDTO.getVehicle())==null){
+    		return new ResponseEntity<>(HttpStatus.CONFLICT);
+    	}
+    	Long idd = (Long.parseLong(httpRequest.getHeader("id")));
+    	System.out.println("FunkRet: "+authenticationClient.getNumberOfAds(idd));
+    	if(authenticationClient.getNumberOfAds(idd) >= 3){
+    		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    	}
+    		
     	try {
             AdDTO newAdDTO = adService.create(adDTO);
             
             if (newAdDTO == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+            else{
+            	authenticationClient.incrementAds(Long.parseLong(httpRequest.getHeader("id")));
+            }
         //    normalUser.setNumberOfAds(normalUser.getNumberOfAds() + 1);
         //    normalUserRepository.save(normalUser);
-            authenticationClient.incrementAds(Long.parseLong(httpRequest.getHeader("id")));
+            
             
             return new ResponseEntity<>(newAdDTO, HttpStatus.OK);
         } catch (Exception e) {

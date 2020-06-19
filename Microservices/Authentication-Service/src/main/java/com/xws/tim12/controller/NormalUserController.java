@@ -36,6 +36,10 @@ public class NormalUserController {
     public ResponseEntity<NormalUser> getIdd(@PathVariable Long id) {
     	return new ResponseEntity<>(normalUserService.findById(id),HttpStatus.OK);
     }
+    @GetMapping(value = "/getNumberOfAds/{id}")
+    public Integer getNumberOfAds(@PathVariable Long id){
+    	return normalUserService.findById(id).getNumberOfAds();
+    }
 
     @PutMapping(value = "/block/{username}")
     public ResponseEntity<NormalUserDTO> blockNormalUser(@PathVariable("username") String username) {

@@ -24,15 +24,15 @@ public class VehicleController {
 	private VehicleService vehicleService;
 	
 	@GetMapping("/vehicle/{id}")
-	public ResponseEntity<VehicleDTO> getVehicle(@PathVariable Long id){
+	public ResponseEntity<?> getVehicle(@PathVariable Long id){
 		Vehicle vehicle = vehicleService.findOne(id);
-		
-		if(vehicle == null)
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	
+		System.out.println("IDVEHICLE: "+id );
+		if(vehicle == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		VehicleDTO vehicleDTO = new VehicleDTO(vehicle);
 		
-		return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	@GetMapping("/vehicle/all")
 	public ResponseEntity<List<Vehicle>> getVehicleAll(){

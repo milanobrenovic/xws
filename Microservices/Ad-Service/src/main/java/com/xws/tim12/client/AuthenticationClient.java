@@ -18,6 +18,7 @@ public interface AuthenticationClient {
 	 	
 	 	@GetMapping(value = "/role/{role}")
 	     public Boolean hasRole(@PathVariable("role") String role,HttpServletRequest request);
-	 	
+	 	 @GetMapping(value = "/getNumberOfAds/{id}")
+	     public Integer getNumberOfAds(@PathVariable("id") Long id);
 	 
 }
