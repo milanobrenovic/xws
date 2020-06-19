@@ -39,13 +39,7 @@ public class VehicleTypeController {
 	}
 	
 	@GetMapping("vehicletype/all")
-	public ResponseEntity<List<VehicleTypeDTO>> getAllVehicleTypes(HttpServletRequest httpRequest){
-		
-		String role = httpRequest.getHeader("role");
-
-		if(!role.equals("ROLE_ADMIN")){
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
+	public ResponseEntity<List<VehicleTypeDTO>> getAllVehicleTypes(){
 		
 		List<VehicleType> vehicleTypes = new ArrayList<>();
 		

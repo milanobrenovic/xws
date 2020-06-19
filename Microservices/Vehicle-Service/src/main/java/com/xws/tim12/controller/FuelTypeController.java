@@ -39,13 +39,7 @@ public class FuelTypeController {
 	
 	
 	@GetMapping("fueltype/all")
-	public ResponseEntity<List<FuelTypeDTO>> getAllFuelTypes(HttpServletRequest httpRequest){
-		
-		String role = httpRequest.getHeader("role");
-
-		if(!role.equals("ROLE_ADMIN")){
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
+	public ResponseEntity<List<FuelTypeDTO>> getAllFuelTypes(){
 
 		List<FuelType> fuelTypes = new ArrayList<>();
 		

@@ -66,7 +66,7 @@ public class Vehicle {
     private Double insurancePrice;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<VehicleImagePath> images;
+    private List<VehicleImage> images;
 
     public Vehicle() {
 
@@ -88,7 +88,7 @@ public class Vehicle {
             Boolean available,
             Double vehicleDiscount,
              Double insurancePrice,
-            List<VehicleImagePath> images) {
+            List<VehicleImage> images) {
         this.brand = brand;
         this.model = model;
         this.fuelType = fuelType;
@@ -104,7 +104,7 @@ public class Vehicle {
         this.available = available;
         this.vehicleDiscount = vehicleDiscount;
         this.insurancePrice = insurancePrice;
-        this.images = images;
+        //this.images = images;
     }
 
     public Long getId() {
@@ -235,11 +235,11 @@ public class Vehicle {
         this.insurancePrice = insurancePrice;
     }
 
-    public List<VehicleImagePath> getImages() {
+    public List<VehicleImage> getImages() {
         return images;
     }
 
-    public void setImages(List<VehicleImagePath> images) {
+    public void setImages(List<VehicleImage> images) {
         this.images = images;
     }
 
@@ -262,7 +262,7 @@ public class Vehicle {
                 ", available=" + available +
                 ", vehicleDiscount=" + vehicleDiscount +
                 ", insurancePrice=" + insurancePrice +
-                ", images=" + images.toString() +
+               // ", images=" + images.toString() +
                 '}';
     }
 
