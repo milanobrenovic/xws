@@ -39,13 +39,7 @@ public class TransimissionTypeController {
 	}
 	
 	@GetMapping("transmissiontype/all")
-	public ResponseEntity<List<TransmissionTypeDTO>> getAllTransmissionTypes(HttpServletRequest httpRequest){
-		
-		String role = httpRequest.getHeader("role");
-
-		if(!role.equals("ROLE_ADMIN")){
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
+	public ResponseEntity<List<TransmissionTypeDTO>> getAllTransmissionTypes(){
 
 		List<TransmissionType> transmissionTypes = new ArrayList<>();
 		
