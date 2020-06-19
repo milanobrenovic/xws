@@ -32,24 +32,19 @@ public class AdController {
     @PostMapping(value = "/create")
 
     //@PreAuthorize("hasRole('ROLE_NORMAL_USER')"
-    public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO, @RequestHeader HttpHeaders httpHeaders) {
+    public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO, @RequestHeader(value = "Role") String role, @RequestHeader(value = "Id") String id) {
     /*	if(!authenticationClient.hasRole("ROLE_USER", request)){
     		System.out.println("Ulazis u unnn");
     		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     	}*/
-        Map<String,String> headerMap=httpHeaders.toSingleValueMap();
-        System.out.println(">>> " + headerMap.get("id"));
-        System.out.println(">>> " + headerMap.get("role"));
-        System.out.println(">>> " + headerMap.get("token"));
 
-        String id = headerMap.get("id");
-        String role = headerMap.get("role");
 //        String token = headerMap.get("token");
 
+    	System.out.println(role);
         if (!role.equals("ROLE_NORMAL_USER")){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
+        System.out.println(id);
 /*    	if(!httpRequest.getHeaders().get("role").equals("ROLE_NORMAL_USER") && !httpRequest.getHeader("role").equals("ROLE_ADMIN")){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     	}*/

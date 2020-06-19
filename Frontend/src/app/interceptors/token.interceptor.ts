@@ -11,27 +11,22 @@ import { UserService } from '../services/user.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  
-  userTokenState: UserTokenState;
-
-  constructor(
-    public userService: UserService,
-  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.userTokenState = JSON.parse(localStorage.getItem("LoggedInUser"));
-
-    if (this.userTokenState) {
-      if (this.userTokenState.jwtAccessToken) {
+    const userTokenState = localStorage.getItem('LoggedInUser');
+	console.log(localStorage.getItem("role"));
+ 
+    
+		console.log("STIGAO DOVDE++++++++++++++++++++++++++++++");
         request = request.clone(
           {
             setHeaders: {
-              Authorization: `Bearer ${this.userTokenState.jwtAccessToken}`
+              Role: JSON.parse(localStorage.getItem("role")),
+              Id: localStorage.getItem("id")
             }
           }
         );
-      }
-    }
+    
 
     return next.handle(request);
   }

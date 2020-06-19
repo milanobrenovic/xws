@@ -37,6 +37,8 @@ export class UserService {
     return this.httpClient.post(this._login, user).pipe(map((res: UserTokenState) => {
       this.jwt_access_token = res.jwtAccessToken;
       localStorage.setItem('LoggedInUser', JSON.stringify(res));
+      localStorage.setItem('role', JSON.stringify(res.role));
+      localStorage.setItem('id', JSON.stringify(res.id));
       this.loggedInUserSubject.next(res);
     }));
   }
@@ -44,7 +46,7 @@ export class UserService {
   register(user: UserLoginRequest) {
     return this.httpClient.post(this._register, user);
   }
-
+  
   getToken() {
     return this.jwt_access_token;
   }
