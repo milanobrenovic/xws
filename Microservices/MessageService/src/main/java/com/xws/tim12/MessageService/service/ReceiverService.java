@@ -10,7 +10,11 @@ public interface ReceiverService {
 
 	Receiver findById(Long id);
 	
+	Receiver findByReceiverId(Long id);
+	
 	ReceiverDTO createReceiver(ReceiverDTO receiver);
 	
 	Set<Message> getAllMessages(Long id);
+	
+	Receiver saveReceiver(Receiver receiver);
 }

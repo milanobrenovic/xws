@@ -53,6 +53,14 @@ public class Message {
 		this.content = content;
 	}
 	
+	public Message(Long id, String subject, String content, Date date) {
+		super();
+		this.id = id;
+		this.subject = subject;
+		this.content = content;
+		this.date = date;
+	}
+	
 	public Message(String subject, String content, Date date) {
 		super();
 		this.subject = subject;
@@ -68,9 +76,10 @@ public class Message {
 		this.sender = sender;
 		this.receiver = receiver;
 	}
+
 	
 	public Message(MessageDTO m) {
-		this(m.getSubject(), m.getContent(), m.getDate());
+		this(m.getId(), m.getSubject(), m.getContent(), m.getDate());
 	}
 
 	

@@ -44,4 +44,18 @@ public class ReceiverServiceImpl implements ReceiverService {
 		return messages;
 	}
 
+	@Override
+	public Receiver findByReceiverId(Long id) {
+		if(receiverRepository.findOneById(id) == null){
+			return null;
+		}
+		
+		return receiverRepository.findOneById(id);
+	}
+
+	@Override
+	public Receiver saveReceiver(Receiver receiver) {
+		return receiverRepository.save(receiver);
+	}
+
 }

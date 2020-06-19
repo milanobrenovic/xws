@@ -10,7 +10,11 @@ public interface SenderService {
 	
 	Sender findById(Long id);
 	
+	Sender findBySenderId(Long id);
+	
 	SenderDTO createSender(SenderDTO sender);
 	
 	Set<Message> getAllMessages(Long id);
+	
+	Sender saveSender(Sender sender);
 }

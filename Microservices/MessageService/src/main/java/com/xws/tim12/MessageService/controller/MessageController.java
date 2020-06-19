@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xws.tim12.MessageService.dto.MessageDTO;
 import com.xws.tim12.MessageService.model.Message;
+import com.xws.tim12.MessageService.model.Receiver;
+import com.xws.tim12.MessageService.model.Sender;
 import com.xws.tim12.MessageService.service.MessageService;
 import com.xws.tim12.MessageService.service.ReceiverService;
 import com.xws.tim12.MessageService.service.SenderService;
@@ -102,5 +104,41 @@ public class MessageController {
 		return new ResponseEntity<Set<Message>>(messages, HttpStatus.OK);
 	}
 	
+	
+	@PostMapping(value = "/send/from/{id1}/to/{id2}")
+    public ResponseEntity<Message> sendMessage(@RequestBody MessageDTO msgDTO, 
+    												@PathVariable("id1") Long id1, 
+    												@PathVariable("id2") Long id2) {
+		MessageDTO createdMessage = messageService.createMessage(msgDTO);
+        if (createdMessage == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        Message msg = new Message(createdMessage);
+        
+        Sender sender =  senderService.findBySenderId(id1);
+        if(sender == null) {
+        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        Receiver receiver = receiverService.findByReceiverId(id2);
+        if(receiver == null) {
+        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        
+        msg.setSender(sender);
+        msg.setReceiver(receiver);
+        
+        /*sender.getMessages().add(msg);
+        
+        receiver.getMessages().add(msg);*/
+        
+        messageService.saveMessage(msg);
+        /*senderService.saveSender(sender);
+        receiverService.saveReceiver(receiver);*/
+        
+        return new ResponseEntity<Message>(msg, HttpStatus.CREATED);
+    }
 	
 }

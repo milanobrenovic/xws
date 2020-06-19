@@ -42,4 +42,18 @@ public class SenderServiceImpl implements SenderService {
 		return messages;
 	}
 
+	@Override
+	public Sender findBySenderId(Long id) {
+		if(senderRepository.findOneById(id) == null) {
+			return null;
+		}
+		
+		return senderRepository.findOneById(id);
+	}
+
+	@Override
+	public Sender saveSender(Sender sender) {
+		return senderRepository.save(sender);
+	}
+
 }
