@@ -2,6 +2,7 @@ package com.xws.tim12.serviceImpl;
 
 import com.xws.tim12.dto.AdDTO;
 import com.xws.tim12.model.Ad;
+import com.xws.tim12.model.Comment;
 import com.xws.tim12.repository.AdRepository;
 import com.xws.tim12.service.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class AdServiceImpl implements AdService {
         Ad newAd = new Ad(
         	(Long)2222L,
             adDTO.getVehicle(),
-            adDTO.getComments(),
+            new ArrayList<Comment>(),
             adDTO.getPickupLocation(),
             adDTO.getPickupFrom(),
             adDTO.getPickupTo()
