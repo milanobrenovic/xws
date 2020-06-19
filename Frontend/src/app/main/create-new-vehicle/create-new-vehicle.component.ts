@@ -30,11 +30,11 @@ export class CreateNewVehicleComponent implements OnInit {
       price: new FormControl(null, [Validators.required]),
       travelledMileage: new FormControl(null, [Validators.required]),
       plannedMileageToTravel: new FormControl(null, [Validators.required]),
-      isMileageUnlimited: new FormControl(null),
-      hasCollisionDamageWaiver: new FormControl(null),
+      isMileageUnlimited: new FormControl(false),
+      hasCollisionDamageWaiver: new FormControl(false),
       numberOfSeats: new FormControl(null, [Validators.required]),
       grade: new FormControl(null, [Validators.required]),
-      available: new FormControl(null, [Validators.required]),
+      available: new FormControl(false, [Validators.required]),
       vehicleDiscount: new FormControl(null, [Validators.required]),
       insurancePrice: new FormControl(null, [Validators.required]),
     });
@@ -60,6 +60,7 @@ export class CreateNewVehicleComponent implements OnInit {
     );
     this._vehicleService.createNewVehicle(vehicle).subscribe(
       () => {
+        this.createNewVehicleForm.reset();
 				this._toastrService.success("New vehicle added successfully.", "Success");
       },
       (e: HttpErrorResponse) => {

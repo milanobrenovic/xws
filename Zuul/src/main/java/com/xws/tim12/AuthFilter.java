@@ -42,16 +42,11 @@ public class AuthFilter extends ZuulFilter{
 		
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-		
-		if(request.getHeader("Authorization") == null) {
-			setFailedRequest("User does not exist", 403);
-			return null;
-		} 
-		
+
 		String authRequest = request.getHeader("Authorization");
 		System.out.println(authRequest);
 		
-		if(authRequest.contains("Bearer")) {
+		if(authRequest != null && authRequest.contains("Bearer")) {
 			System.out.println("IMA TOKEN");
 			String token = tokenUtils.getToken(request);
 			System.out.println(token);

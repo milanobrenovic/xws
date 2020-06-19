@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 public class FuelType {
 
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	

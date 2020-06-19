@@ -10,6 +10,7 @@ export const environment = {
     login               : "/authentication/api/auth/login",
     register            : "/authentication/register",
     createNewVehicle    : "/vehicle/createVehicle",
+    createNewAd         : "/ad-service/create",
 };
 
 /*

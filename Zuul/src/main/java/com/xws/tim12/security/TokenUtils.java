@@ -37,7 +37,7 @@ public class TokenUtils {
 
     private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
 
-    public String generateToken(String email) {
+    public String generateToken(String email, String role, Long id) {
         return Jwts
                 .builder()
                 .setIssuer(APP_NAME)
@@ -45,7 +45,8 @@ public class TokenUtils {
                 .setAudience(generateAudience())
                 .setIssuedAt(timeProvider.now())
                 .setExpiration(generateExpirationDate())
-                // .claim("role", role) //postavljanje proizvoljnih podataka u telo JWT tokena
+                .claim("role", role) //postavljanje proizvoljnih podataka u telo JWT tokena
+                .claim("id", id.toString())
                 .signWith(SIGNATURE_ALGORITHM, SECRET).compact();
     }
 
@@ -196,6 +197,7 @@ public class TokenUtils {
                     .getBody();
         } catch (Exception e) {
             claims = null;
+            System.out.println("EEE >>> %s" + e.getMessage());
         }
         return claims;
     }

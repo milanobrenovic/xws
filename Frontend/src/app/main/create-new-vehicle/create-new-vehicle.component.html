@@ -109,6 +109,18 @@
 					<tr>
 						<td>
 							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Planned mileage to travel</mat-label>
+								<input matInput formControlName="plannedMileageToTravel" type="number" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('plannedMileageToTravel').errors && createNewVehicleForm.get('plannedMileageToTravel').errors['required']">
+									Planned mileage to travel is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
 								<mat-label>Number of seats</mat-label>
 								<input matInput formControlName="numberOfSeats" type="number" required>
 								<mat-error
