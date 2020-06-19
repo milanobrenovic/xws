@@ -57,26 +57,26 @@ public class MessageController {
         return new ResponseEntity<Message>(message, HttpStatus.OK);
     }
 	
-	@PutMapping(value = "/edit")
-	public ResponseEntity<MessageDTO> editMessage(@RequestBody MessageDTO messageDTO) {
-		Message message = messageService.findById(messageDTO.getId());
+	@PutMapping(value = "/edit/{id}")
+	public ResponseEntity<MessageDTO> editMessage(@RequestBody MessageDTO messageDTO, @PathVariable("id") Long id) {
+		Message message = messageService.findById(id);
 		message.setSubject(messageDTO.getSubject());
 		message.setContent(messageDTO.getContent());
 		Message editedMessage = messageService.saveMessage(message);
 		return new ResponseEntity<MessageDTO>(new MessageDTO(editedMessage), HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/{id}")
-    public ResponseEntity<MessageDTO> deleteMessage(@PathVariable("id") Long id) {
+	@DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<Long> deleteMessage(@PathVariable("id") Long id) {
 		Message message = messageService.findById(id);
 
         if (message == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         
-        /*MessageDTO deletedMessage = messageService.deleteMessage(id);
+        /*messageService.deleteMessage(id);
         
-        return new ResponseEntity<MessageDTO>(deletedMessage, HttpStatus.OK);*/
+        return new ResponseEntity<Long>(id , HttpStatus.OK);*/
         return null;
     }
 	
