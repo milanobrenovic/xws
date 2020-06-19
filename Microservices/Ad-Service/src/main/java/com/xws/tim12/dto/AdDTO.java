@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xws.tim12.model.Ad;
 import com.xws.tim12.model.Comment;
 
-
 import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class AdDTO {
@@ -27,15 +26,13 @@ public class AdDTO {
 
 //    @NotEmpty(message = "Pickup from cannot be empty.")
     @NotNull(message = "Pickup from cannot be null.")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(nullable = false)
-    private LocalDateTime pickupFrom;
+    private Date pickupFrom;
 
 //    @NotEmpty(message = "Pickup to cannot be empty.")
     @NotNull(message = "Pickup to cannot be null.")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(nullable = false)
-    private LocalDateTime pickupTo;
+    private Date pickupTo;
 
     public AdDTO() {
 
@@ -51,7 +48,7 @@ public class AdDTO {
         );
     }
 
-    public AdDTO(@NotEmpty(message = "Vehicle is empty.") Long vehicle, List<Comment> comments, @NotEmpty(message = "Pickup location cannot be empty.") @NotNull(message = "Pickup location cannot be null.") String pickupLocation, @NotEmpty(message = "Pickup from cannot be empty.") @NotNull(message = "Pickup from cannot be null.") LocalDateTime pickupFrom, @NotEmpty(message = "Pickup to cannot be empty.") @NotNull(message = "Pickup to cannot be null.") LocalDateTime pickupTo) {
+    public AdDTO(@NotEmpty(message = "Vehicle is empty.") Long vehicle, List<Comment> comments, @NotEmpty(message = "Pickup location cannot be empty.") @NotNull(message = "Pickup location cannot be null.") String pickupLocation, @NotEmpty(message = "Pickup from cannot be empty.") @NotNull(message = "Pickup from cannot be null.") Date pickupFrom, @NotEmpty(message = "Pickup to cannot be empty.") @NotNull(message = "Pickup to cannot be null.") Date pickupTo) {
         this.vehicle = vehicle;
         this.comments = comments;
         this.pickupLocation = pickupLocation;
@@ -91,19 +88,19 @@ public class AdDTO {
         this.pickupLocation = pickupLocation;
     }
 
-    public LocalDateTime getPickupFrom() {
+    public Date getPickupFrom() {
         return pickupFrom;
     }
 
-    public void setPickupFrom(LocalDateTime pickupFrom) {
+    public void setPickupFrom(Date pickupFrom) {
         this.pickupFrom = pickupFrom;
     }
 
-    public LocalDateTime getPickupTo() {
+    public Date getPickupTo() {
         return pickupTo;
     }
 
-    public void setPickupTo(LocalDateTime pickupTo) {
+    public void setPickupTo(Date pickupTo) {
         this.pickupTo = pickupTo;
     }
 

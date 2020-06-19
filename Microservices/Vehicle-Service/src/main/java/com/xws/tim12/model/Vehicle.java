@@ -1,5 +1,7 @@
 package com.xws.tim12.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;

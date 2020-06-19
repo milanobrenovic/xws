@@ -11,6 +11,7 @@ export const environment = {
     register            : "/authentication/register",
     createNewVehicle    : "/vehicle/createVehicle",
     createNewAd         : "/ad-service/create",
+    getAllVehicles      : "/vehicle/all",
 };
 
 /*

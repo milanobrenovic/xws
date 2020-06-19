@@ -65,7 +65,7 @@ public class AuthFilter extends ZuulFilter{
 		} else {
 			System.out.println("IMA USERNAME I PASSWORD");
 		}
-		
+
 		try {
 			//System.out.println(jwt.getUsername());
 			//System.out.println(jwt.getPassword());

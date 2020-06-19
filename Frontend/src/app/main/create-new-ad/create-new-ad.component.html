@@ -19,9 +19,9 @@
 							<mat-form-field appearance="outline" fxFlex="50">
 								<mat-label>Choose existing vehicle</mat-label>
 								<mat-select formControlName="selectedVehicle" required>
-									<mat-option [value]="1">Mercedes</mat-option>
-									<mat-option [value]="2">BMW</mat-option>
-									<mat-option [value]="3">Audi</mat-option>
+									<mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+										Brand: {{vehicle.brand}}, Model: {{vehicle.model}}
+									</mat-option>
 								</mat-select>
 								<mat-error
 									*ngIf="createNewAdForm.get('selectedVehicle').errors && createNewAdForm.get('selectedVehicle').errors['required']">

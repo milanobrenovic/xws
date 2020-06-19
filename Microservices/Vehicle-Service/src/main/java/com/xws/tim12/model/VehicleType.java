@@ -1,5 +1,7 @@
 package com.xws.tim12.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +23,7 @@ public class VehicleType {
 	
 	@Column (nullable = false)
 	private String type;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "vehicleType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 	

@@ -1,5 +1,6 @@
 package com.xws.tim12.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +31,22 @@ public class VehicleController {
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	@GetMapping("/vehicle/all")
-	public ResponseEntity<List<Vehicle>> getVehicleAll(){
-		List<Vehicle>vehicles = vehicleService.findAll();
-		
 
-	
-		
-		
-		return new ResponseEntity<>(vehicles, HttpStatus.OK);
+	@GetMapping("/all")
+	public ResponseEntity<List<VehicleDTO>> getVehicleAll(){
+		List<Vehicle> vehicles = vehicleService.findAll();
+
+		if(vehicles == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<VehicleDTO> vehicleDTOs = new ArrayList<>();
+
+		for (Vehicle vehicle: vehicles) {
+			VehicleDTO vehicleDTO = new VehicleDTO(vehicle);
+			vehicleDTOs.add(vehicleDTO);
+		}
+
+		return new ResponseEntity<>(vehicleDTOs, HttpStatus.OK);
 	}
 	
 	@PostMapping(path = "/createVehicle")

@@ -70,6 +70,8 @@ import { ErrorInternalServerComponent } from './main/errors/error-internal-serve
 import { ErrorComponent } from './main/errors/error/error.component';
 import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.component';
 import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-vehicle.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
 	declarations: [
@@ -164,6 +166,18 @@ import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-
 		// App modules
 		LayoutModule,
 		AppRoutingModule,
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
+			multi: true,
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: ErrorInterceptor,
+			multi: true,
+		},
 	],
 	bootstrap: [
 		AppComponent

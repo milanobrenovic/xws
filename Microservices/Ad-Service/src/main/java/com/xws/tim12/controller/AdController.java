@@ -9,10 +9,12 @@ import com.xws.tim12.service.AdService;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Enumeration;
+import java.util.Map;
 
 @RestController
 //@RequestMapping(value = "/api/ad", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,16 +30,29 @@ public class AdController {
     @Autowired
     private AdRepository adRepository;
     @PostMapping(value = "/create")
-    //@PreAuthorize("hasRole('ROLE_NORMAL_USER')")
-    public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO,HttpServletRequest httpRequest) {
+
+    //@PreAuthorize("hasRole('ROLE_NORMAL_USER')"
+    public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO, @RequestHeader HttpHeaders httpHeaders) {
     /*	if(!authenticationClient.hasRole("ROLE_USER", request)){
     		System.out.println("Ulazis u unnn");
     		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     	}*/
-    	System.out.println("ID: "+Long.parseLong(httpRequest.getHeader("id")));
-    	if(!httpRequest.getHeader("role").equals("ROLE_NORMAL_USER") && !httpRequest.getHeader("role").equals("ROLE_ADMIN")){
-    		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    	}
+        Map<String,String> headerMap=httpHeaders.toSingleValueMap();
+        System.out.println(">>> " + headerMap.get("id"));
+        System.out.println(">>> " + headerMap.get("role"));
+        System.out.println(">>> " + headerMap.get("token"));
+
+        String id = headerMap.get("id");
+        String role = headerMap.get("role");
+//        String token = headerMap.get("token");
+
+        if (!role.equals("ROLE_NORMAL_USER")){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+/*    	if(!httpRequest.getHeaders().get("role").equals("ROLE_NORMAL_USER") && !httpRequest.getHeader("role").equals("ROLE_ADMIN")){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    	}*/
     	
     	
 //    	System.out.println("Ulazak u kreiranje oglasa");
@@ -58,7 +73,7 @@ public class AdController {
     	if(vehicleClient.getVehicle(adDTO.getVehicle())==null){
     		return new ResponseEntity<>(HttpStatus.CONFLICT);
     	}
-    	Long idd = (Long.parseLong(httpRequest.getHeader("id")));
+    	Long idd = (Long.parseLong(/*httpRequest.getHeader("id")*/id));
     	System.out.println("FunkRet: "+authenticationClient.getNumberOfAds(idd));
     	if(authenticationClient.getNumberOfAds(idd) >= 3){
     		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -71,7 +86,7 @@ public class AdController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             else{
-            	authenticationClient.incrementAds(Long.parseLong(httpRequest.getHeader("id")));
+            	authenticationClient.incrementAds(Long.parseLong(/*httpRequest.getHeader("id")*/id));
             }
         //    normalUser.setNumberOfAds(normalUser.getNumberOfAds() + 1);
         //    normalUserRepository.save(normalUser);

@@ -12,6 +12,7 @@ export class VehicleService {
   url = environment.baseUrl;
   _createNewVehicle = this.url + environment.createNewVehicle;
   _createNewAd = this.url + environment.createNewAd;
+  _getAllVehicles = this.url + environment.getAllVehicles;
 
   constructor(
     private httpClient: HttpClient,
@@ -22,7 +23,19 @@ export class VehicleService {
   }
 
   public createNewAd(ad: Ad) {
+    const headerDict = {
+      'id': '1',
+      'role': 'ROLE_NORMAL_USER',
+    }
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new Headers(headerDict), 
+    };
+
     return this.httpClient.post(this._createNewAd, ad);
+  }
+
+  public getAllVehicles() {
+    return this.httpClient.get(this._getAllVehicles);
   }
 
 }
