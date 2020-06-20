@@ -23,14 +23,6 @@ export class VehicleService {
   }
 
   public createNewAd(ad: Ad) {
-    const headerDict = {
-      'id': '1',
-      'role': 'ROLE_NORMAL_USER',
-    }
-    const requestOptions = {                                                                                                                                                                                 
-      headers: new Headers(headerDict), 
-    };
-    
     return this.httpClient.post(this._createNewAd, ad);
   }
 
