@@ -24,13 +24,6 @@ public class VehicleUser {
 	//id Usera/Agenta koji koristi vozilo
 	private Long idUser;
 		
-	private String name;
-	
-	private String surname;
-	
-	private String address;
-
-	private String phone;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="vehicleUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -50,27 +43,19 @@ public class VehicleUser {
 	
 	
 	
-	public VehicleUser(Long id, Long idUser, String name, String surname, String address, String phone,
+	public VehicleUser(Long id, Long idUser, 
 			Set<RequestToRent> requsets, Set<ServiceReview> serviceReviews) {
 		super();
 		this.id = id;
 		this.idUser = idUser;
-		this.name = name;
-		this.surname = surname;
-		this.address = address;
-		this.phone = phone;
 		this.requsets = requsets;
 		this.serviceReviews = serviceReviews;
 	}
 	
-	public VehicleUser(Long id, Long idUser, String name, String surname, String address, String phone) {
+	public VehicleUser(Long id, Long idUser) {
 		super();
 		this.id = id;
 		this.idUser = idUser;
-		this.name = name;
-		this.surname = surname;
-		this.address = address;
-		this.phone = phone;
 		this.requsets = new HashSet<>();
 		this.serviceReviews = new HashSet<>();
 	}
@@ -91,29 +76,7 @@ public class VehicleUser {
 		this.idUser = idUser;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
 	
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 	
 	public Set<ServiceReview> getServiceReviews() {
 		return serviceReviews;
@@ -123,14 +86,6 @@ public class VehicleUser {
 		this.serviceReviews = serviceReviews;
 	}
 	
-	
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 
 	public Set<RequestToRent> getRequsets() {
@@ -145,10 +100,13 @@ public class VehicleUser {
 
 	@Override
 	public String toString() {
-		return "VehicleUser [id=" + id + ", idUser=" + idUser + ", name=" + name + ", surname=" + surname + ", address="
-				+ address + ", phone=" + phone + ", requsets=" + requsets + ", serviceReviews=" + serviceReviews + "]";
+		return "VehicleUser [id=" + id + ", idUser=" + idUser + ", requsets=" + requsets + ", serviceReviews="
+				+ serviceReviews + "]";
 	}
 
+
+
+	
 	
 	
 }

@@ -26,12 +26,10 @@
 --VALUES ('company1', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'Company1', 'Companic1', 'companic1@gmail.com', 'NSA', '345-67-890', 'Washington Blvd. 4', null, 'COMPANY', false);
 --INSERT INTO agent_authority (agent_id, authority_id) VALUES (3, 3);
 
-insert into vehicle_user (address, id_user, name, phone, surname) values 
-('Bulevar Cara Lazara 11', '2', 'Jovan', '061234567', 'Jovanovic');
-insert into vehicle_user (address, id_user, name, phone, surname) values 
-('Bulevar Cara Lazara 22', '3', 'Eleonora', '06999999', 'Markovic');
-insert into vehicle_user (address, id_user, name, phone, surname) values 
-('Bulevar Cara Lazara 33', '4', 'Marko', '065555555', 'Petrovic');
+insert into vehicle_user (id_user) values ('2');
+insert into vehicle_user (id_user) values ('3');
+insert into vehicle_user (id_user) values ('4');
+
 
 
 insert into vehicle_renter (id_user_renter) values ('1');
