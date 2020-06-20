@@ -65,10 +65,10 @@ public class RequestToRentController {
 	}
 	
 	@PostMapping(value = "/addAllFrom/{id}")
-	public ResponseEntity<RequestToRent> addVehicles(@PathVariable("id") Long id) {
-		RequestToRent request = requestToRentService.addVehiclesFromCart(id);
+	public ResponseEntity<Set<RequestToRent>> addVehicles(@PathVariable("id") Long id) {
+		Set<RequestToRent> requests = requestToRentService.addVehiclesFromCart(id);
 		
-		return new ResponseEntity<RequestToRent>(request, HttpStatus.OK);
+		return new ResponseEntity<Set<RequestToRent>>(requests, HttpStatus.OK);
 	}
 	
 }

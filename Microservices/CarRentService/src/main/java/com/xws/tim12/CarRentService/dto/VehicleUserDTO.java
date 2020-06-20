@@ -1,19 +1,13 @@
 package com.xws.tim12.CarRentService.dto;
 
+import com.xws.tim12.CarRentService.model.VehicleUser;
+
 public class VehicleUserDTO {
 	
 	private Long id;
 	
 	//id Usera/Agenta koji koristi vozilo
 	private Long idUser;
-		
-	private String name;
-	
-	private String surname;
-	
-	private String address;
-
-	private String phone;
 
 	
 	
@@ -21,14 +15,16 @@ public class VehicleUserDTO {
 		super();
 	}
 	
-	public VehicleUserDTO(Long id, Long idUser, String name, String surname, String address, String phone) {
+	public VehicleUserDTO(Long id, Long idUser) {
 		super();
 		this.id = id;
 		this.idUser = idUser;
-		this.name = name;
-		this.surname = surname;
-		this.address = address;
-		this.phone = phone;
+	}
+	
+	public VehicleUserDTO(VehicleUser v) {
+		super();
+		this.id = v.getId();
+		this.idUser = v.getId();
 	}
 
 	
@@ -48,38 +44,6 @@ public class VehicleUserDTO {
 		this.idUser = idUser;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
 	
 	
 }

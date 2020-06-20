@@ -1,5 +1,7 @@
 package com.xws.tim12.CarRentService.service;
 
+import java.util.Set;
+
 import com.xws.tim12.CarRentService.dto.RequestToRentDTO;
 import com.xws.tim12.CarRentService.model.RequestToRent;
 
@@ -11,6 +13,6 @@ public interface RequestToRentService {
 	
 	RequestToRent addVehicleFromCart(Long id, Long id2);
 	
-	RequestToRent addVehiclesFromCart(Long id);
+	Set<RequestToRent> addVehiclesFromCart(Long id);
 	
 }
