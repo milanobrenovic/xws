@@ -20,7 +20,7 @@ export class SearchAdComponent implements OnInit {
 
   public searchAdForm: FormGroup;
   public ads: object;
-  public displayedColumns: string[] = ['pickupLocation', 'pickupFrom', 'pickupTo'];
+  public displayedColumns: string[] = ['pickupLocation', 'pickupFrom', 'pickupTo', 'details'];
   public itemsPerPage = environment.itemsPerPage;
   public adSearchDataSource = new MatTableDataSource<Ad>();
 
@@ -64,7 +64,7 @@ export class SearchAdComponent implements OnInit {
           const pickupTo = formatDate(adObject.pickupTo, 'yyyy-MM-dd HH:mm', 'en-US');
           adObject.pickupFrom = pickupFrom;
           adObject.pickupTo = pickupTo;
-          console.log(adObject);
+          adObject.details = "/pages/vehicle-details/" + adObject.vehicle;
           formattedObject.push(adObject);
         });
 

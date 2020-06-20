@@ -33,45 +33,15 @@ public class AdController {
 
 
     @PostMapping(value = "/create")
-    //@PreAuthorize("hasRole('ROLE_NORMAL_USER')"
     public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO, @RequestHeader(value = "Role") String role, @RequestHeader(value = "Id") String id) {
-    /*	if(!authenticationClient.hasRole("ROLE_USER", request)){
-    		System.out.println("Ulazis u unnn");
-    		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    	}*/
-
-//        String token = headerMap.get("token");
-
-    	System.out.println(role);
         if (!role.equals("ROLE_NORMAL_USER")){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        System.out.println(id);
-/*    	if(!httpRequest.getHeaders().get("role").equals("ROLE_NORMAL_USER") && !httpRequest.getHeader("role").equals("ROLE_ADMIN")){
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    	}*/
 
-
-//    	System.out.println("Ulazak u kreiranje oglasa");
-    //	NormalUser currentLogged = normalUserService.getUserLogin();
-    	//NormalUser currentLogged = authenticationClient.getIdd(httpRequest.getHeader("id")));
-    //	String token = tokenUtils.getToken(request);
-    //	String user = tokenUtils.getUsernameFromToken(token);
-    	//System.out.println("user??"+user);
-    //	NormalUser normalUser = normalUserService.findOneByUsername(user);
-
-     /*   if(normalUser == null){
-    		 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    	}
-    	if(normalUser.getNumberOfAds() != null && normalUser.getNumberOfAds() > 2){
-    		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-    	}
-    	System.out.println("User :"+ normalUser.getUsername());*/
     	if(vehicleClient.getVehicle(adDTO.getVehicle())==null){
     		return new ResponseEntity<>(HttpStatus.CONFLICT);
     	}
     	Long idd = (Long.parseLong(id));
-    	System.out.println("FunkRet: "+authenticationClient.getNumberOfAds(idd));
     	if(authenticationClient.getNumberOfAds(idd) >= 3){
     		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     	}
@@ -85,10 +55,6 @@ public class AdController {
             else{
             	authenticationClient.incrementAds(Long.parseLong(/*httpRequest.getHeader("id")*/id));
             }
-        //    normalUser.setNumberOfAds(normalUser.getNumberOfAds() + 1);
-        //    normalUserRepository.save(normalUser);
-            
-            
             return new ResponseEntity<>(newAdDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

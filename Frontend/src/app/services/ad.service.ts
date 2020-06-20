@@ -17,7 +17,6 @@ export class AdService {
   ) { }
 
   public searchAd(ad: Ad) {
-    console.log(ad);
     return this.httpClient.post(this._searchAd, ad);
   }
 

@@ -13,6 +13,7 @@ export const environment = {
     createNewAd         : "/ad-service/create",
     getAllVehicles      : "/vehicle/all",
     searchAd            : "/ad-service/search",
+    vehicleDetails      : "/vehicle",
 };
 
 /*

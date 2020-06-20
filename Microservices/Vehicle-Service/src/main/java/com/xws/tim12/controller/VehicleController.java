@@ -20,17 +20,14 @@ public class VehicleController {
 	@Autowired
 	private VehicleService vehicleService;
 	
-	@GetMapping("/vehicle/{id}")
-	public ResponseEntity<?> getVehicle(@PathVariable Long id){
-
+	@GetMapping("/{id}")
+	public ResponseEntity<VehicleDTO> getVehicle(@PathVariable Long id){
 		Vehicle vehicle = vehicleService.findOne(id);
-		System.out.println("IDVEHICLE: "+id );
-		if(vehicle == null){
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		if (vehicle == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		VehicleDTO vehicleDTO = new VehicleDTO(vehicle);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
 	}
 
 	@GetMapping("/all")

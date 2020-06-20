@@ -73,6 +73,7 @@ import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { SearchAdComponent } from './main/search-ad/search-ad.component';
+import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.component';
 
 @NgModule({
 	declarations: [
@@ -88,6 +89,7 @@ import { SearchAdComponent } from './main/search-ad/search-ad.component';
 		CreateNewAdComponent,
 		CreateNewVehicleComponent,
 		SearchAdComponent,
+		VehicleDetailsComponent,
 	],
 	imports: [
 		BrowserModule,

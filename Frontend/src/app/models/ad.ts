@@ -7,6 +7,7 @@ export class Ad {
 	public pickupLocation: string;
 	public pickupFrom: Date;
 	public pickupTo: Date;
+	public details: string;
 
 	constructor($vehicle: number, $pickupLocation: string, $pickupFrom: Date, $pickupTo: Date) {
 		this.vehicle = $vehicle;

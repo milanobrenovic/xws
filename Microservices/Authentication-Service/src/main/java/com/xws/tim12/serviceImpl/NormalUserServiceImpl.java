@@ -99,7 +99,7 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
                 normalUserDTO.getPhoneNumber(),
                 normalUserDTO.getAddress(),
                 normalUserDTO.getCity(),
-                normalUserDTO.getNumberOfAds(),
+                normalUserDTO.getNumberOfAds() == null ? 0 : normalUserDTO.getNumberOfAds(),
                 normalUserDTO.getIsBanned()
         );
         newNormalUser.setAuthorities(authService.findById(2L));
