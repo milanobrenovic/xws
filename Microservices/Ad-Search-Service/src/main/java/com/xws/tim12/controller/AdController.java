@@ -22,6 +22,7 @@ public class AdController {
 
     @PostMapping(value = "/search")
     public ResponseEntity<List<AdDTO>> searchAd(@RequestBody AdDTO adDTO) {
+        System.out.println(adDTO);
         try {
             List<AdDTO> searchedAdDTO = adService.findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
                     adDTO.getPickupLocation(),

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,7 +42,7 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public List<AdDTO> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
-            String pickupLocation, LocalDateTime pickupFrom, LocalDateTime pickupTo) {
+            String pickupLocation, Date pickupFrom, Date pickupTo) {
         return convertToDTO(adRepository.findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(pickupLocation, pickupFrom, pickupTo));
     }
 

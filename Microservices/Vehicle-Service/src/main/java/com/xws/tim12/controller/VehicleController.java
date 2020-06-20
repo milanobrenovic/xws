@@ -14,7 +14,7 @@ import com.xws.tim12.model.Vehicle;
 import com.xws.tim12.service.VehicleService;
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:8087", "http://localhost:4200" })
 public class VehicleController {
 	
 	@Autowired
@@ -22,6 +22,7 @@ public class VehicleController {
 	
 	@GetMapping("/vehicle/{id}")
 	public ResponseEntity<?> getVehicle(@PathVariable Long id){
+
 		Vehicle vehicle = vehicleService.findOne(id);
 		System.out.println("IDVEHICLE: "+id );
 		if(vehicle == null){

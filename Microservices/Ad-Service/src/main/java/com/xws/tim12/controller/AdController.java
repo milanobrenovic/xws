@@ -14,6 +14,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,8 +30,9 @@ public class AdController {
     private VehicleClient vehicleClient;
     @Autowired
     private AdRepository adRepository;
-    @PostMapping(value = "/create")
 
+
+    @PostMapping(value = "/create")
     //@PreAuthorize("hasRole('ROLE_NORMAL_USER')"
     public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO, @RequestHeader(value = "Role") String role, @RequestHeader(value = "Id") String id) {
     /*	if(!authenticationClient.hasRole("ROLE_USER", request)){
@@ -48,8 +50,8 @@ public class AdController {
 /*    	if(!httpRequest.getHeaders().get("role").equals("ROLE_NORMAL_USER") && !httpRequest.getHeader("role").equals("ROLE_ADMIN")){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     	}*/
-    	
-    	
+
+
 //    	System.out.println("Ulazak u kreiranje oglasa");
     //	NormalUser currentLogged = normalUserService.getUserLogin();
     	//NormalUser currentLogged = authenticationClient.getIdd(httpRequest.getHeader("id")));
@@ -68,7 +70,7 @@ public class AdController {
     	if(vehicleClient.getVehicle(adDTO.getVehicle())==null){
     		return new ResponseEntity<>(HttpStatus.CONFLICT);
     	}
-    	Long idd = (Long.parseLong(/*httpRequest.getHeader("id")*/id));
+    	Long idd = (Long.parseLong(id));
     	System.out.println("FunkRet: "+authenticationClient.getNumberOfAds(idd));
     	if(authenticationClient.getNumberOfAds(idd) >= 3){
     		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -88,6 +90,24 @@ public class AdController {
             
             
             return new ResponseEntity<>(newAdDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(value = "/search")
+    public ResponseEntity<List<AdDTO>> searchAd(@RequestBody AdDTO adDTO) {
+        try {
+            List<AdDTO> searchedAdDTO = adService.findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
+                    adDTO.getPickupLocation(),
+                    adDTO.getPickupFrom(),
+                    adDTO.getPickupTo()
+            );
+            if (searchedAdDTO == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(searchedAdDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

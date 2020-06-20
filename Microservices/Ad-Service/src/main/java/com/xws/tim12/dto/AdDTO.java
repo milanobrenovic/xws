@@ -37,7 +37,7 @@ public class AdDTO {
     public AdDTO() {
 
     }
-
+    
     public AdDTO(Ad ad) {
         this(
                 ad.getVehicle(),
@@ -71,15 +71,15 @@ public class AdDTO {
     public void setVehicle(Long vehicle) {
         this.vehicle = vehicle;
     }
-
+    
     public List<Comment> getComments() {
         return comments;
     }
-
+    
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-
+    
     public String getPickupLocation() {
         return pickupLocation;
     }

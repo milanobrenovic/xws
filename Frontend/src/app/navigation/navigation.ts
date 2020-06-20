@@ -28,6 +28,13 @@ export const navigation: FuseNavigation[] = [
 				url			: '/pages/create-new-ad',
 			},
 			{
+				id			: 'search-ad',
+				title		: 'Search Ad',
+				type		: 'item',
+				icon		: 'add_circle_outline',
+				url			: '/pages/search-ad',
+			},
+			{
 				id			: 'register',
 				title		: 'Register',
 				type		: 'item',

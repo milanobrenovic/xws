@@ -10,6 +10,7 @@ import { ErrorUnauthenticatedComponent } from './main/errors/error-unauthenticat
 import { RegisterComponent } from './main/register/register.component';
 import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.component';
 import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-vehicle.component';
+import { SearchAdComponent } from './main/search-ad/search-ad.component';
 
 const appRoutes: Routes = [
 
@@ -54,6 +55,11 @@ const appRoutes: Routes = [
     {
         path        : 'pages/create-new-ad',
         component   : CreateNewAdComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/search-ad',
+        component   : SearchAdComponent,
         // canActivate : [AdminGuard],
     },
 

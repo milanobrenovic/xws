@@ -30,7 +30,7 @@ export class VehicleService {
     const requestOptions = {                                                                                                                                                                                 
       headers: new Headers(headerDict), 
     };
-
+    
     return this.httpClient.post(this._createNewAd, ad);
   }
 

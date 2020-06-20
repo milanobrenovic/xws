@@ -72,6 +72,7 @@ import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.compone
 import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-vehicle.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { SearchAdComponent } from './main/search-ad/search-ad.component';
 
 @NgModule({
 	declarations: [
@@ -86,6 +87,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 		ErrorComponent,
 		CreateNewAdComponent,
 		CreateNewVehicleComponent,
+		SearchAdComponent,
 	],
 	imports: [
 		BrowserModule,

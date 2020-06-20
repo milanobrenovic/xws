@@ -1,0 +1,35 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Search a specific ad that has been created in the system
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Please fill out the required files in order to commit a search.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="createNewVehicleForm">
+
+				<table class="form-full-width">
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Brand</mat-label>
+								<input matInput formControlName="brand" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('brand').errors && createNewVehicleForm.get('brand').errors['required']">
+									Brand is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+
+		</mat-card-content>
+	</mat-card>
+
+</div>
