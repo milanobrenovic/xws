@@ -3,6 +3,7 @@ import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Vehicle } from 'app/models/vehicle';
 import { Ad } from 'app/models/ad';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class VehicleService {
   _createNewVehicle = this.url + environment.createNewVehicle;
   _createNewAd = this.url + environment.createNewAd;
   _getAllVehicles = this.url + environment.getAllVehicles;
+  _getVehicleDetails = this.url + environment.vehicleDetails;
 
   constructor(
     private httpClient: HttpClient,
@@ -23,19 +25,15 @@ export class VehicleService {
   }
 
   public createNewAd(ad: Ad) {
-    const headerDict = {
-      'id': '1',
-      'role': 'ROLE_NORMAL_USER',
-    }
-    const requestOptions = {                                                                                                                                                                                 
-      headers: new Headers(headerDict), 
-    };
-
     return this.httpClient.post(this._createNewAd, ad);
   }
 
   public getAllVehicles() {
     return this.httpClient.get(this._getAllVehicles);
+  }
+
+  public getVehicleById(id: number) {
+    return this.httpClient.get(this._getVehicleDetails + "/" + id);
   }
 
 }

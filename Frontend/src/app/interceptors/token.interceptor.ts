@@ -14,18 +14,20 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const userTokenState = localStorage.getItem('LoggedInUser');
-	console.log(localStorage.getItem("role"));
+	  // console.log(localStorage.getItem("role"));
  
-    
-		console.log("STIGAO DOVDE++++++++++++++++++++++++++++++");
-        request = request.clone(
-          {
-            setHeaders: {
-              Role: JSON.parse(localStorage.getItem("role")),
-              Id: localStorage.getItem("id")
-            }
+    if(userTokenState){
+      // console.log("STIGAO DOVDE++++++++++++++++++++++++++++++");
+      request = request.clone(
+        {
+          setHeaders: {
+            Role: JSON.parse(localStorage.getItem("role")),
+            Id: localStorage.getItem("id")
           }
-        );
+        }
+      );
+    }
+
     
 
     return next.handle(request);

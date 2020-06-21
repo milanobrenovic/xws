@@ -4,6 +4,8 @@ import com.xws.tim12.model.Vehicle;
 
 public class VehicleDTO {
 
+	private Long id;
+
     private String brand;
 
     private String model;
@@ -33,8 +35,8 @@ public class VehicleDTO {
     private Double vehicleDiscount;
 
     private Double insurancePrice;
-    
-    
+
+
     public VehicleDTO() {
     	
 	}
@@ -55,6 +57,7 @@ public class VehicleDTO {
 			 Double vehicleDiscount,
 			 Double insurancePrice) {
 		super();
+		this.id = id;
 		this.brand = brand;
 		this.model = model;
 		this.fuelType = fuelType;
@@ -74,6 +77,7 @@ public class VehicleDTO {
 	
 	public VehicleDTO(Vehicle vehicle) {
 		super();
+		this.id = vehicle.getId();
 		this.brand = vehicle.getBrand();
 		this.model = vehicle.getModel();
 		this.fuelType = vehicle.getFuelType().getId();
@@ -89,6 +93,14 @@ public class VehicleDTO {
 		this.available = vehicle.getAvailable();
 		this.vehicleDiscount = vehicle.getVehicleDiscount();
 		this.insurancePrice = vehicle.getInsurancePrice();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getBrand() {
@@ -211,4 +223,11 @@ public class VehicleDTO {
 		this.insurancePrice = insurancePrice;
 	}
 
+	public Boolean getMileageUnlimited() {
+		return isMileageUnlimited;
+	}
+
+	public void setMileageUnlimited(Boolean mileageUnlimited) {
+		isMileageUnlimited = mileageUnlimited;
+	}
 }

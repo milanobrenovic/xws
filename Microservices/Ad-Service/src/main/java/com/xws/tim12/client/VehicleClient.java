@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "vehicle")
 public interface VehicleClient {
-	@GetMapping("/vehicle/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> getVehicle(@PathVariable("id") Long id);
 }

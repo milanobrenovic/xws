@@ -12,6 +12,8 @@ export const environment = {
     createNewVehicle    : "/vehicle/createVehicle",
     createNewAd         : "/ad-service/create",
     getAllVehicles      : "/vehicle/all",
+    searchAd            : "/ad-service/search",
+    vehicleDetails      : "/vehicle",
 };
 
 /*

@@ -4,6 +4,7 @@ import com.xws.tim12.dto.AdDTO;
 import com.xws.tim12.model.Ad;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public interface AdService {
@@ -13,7 +14,7 @@ public interface AdService {
     List<AdDTO> findAll();
 
     List<AdDTO> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
-            String pickupLocation, LocalDateTime pickupFrom, LocalDateTime pickupTo);
+            String pickupLocation, Date pickupFrom, Date pickupTo);
     
     Ad findById(Long id);
 }

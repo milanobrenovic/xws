@@ -21,7 +21,6 @@ public class Comment {
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Ad ad;
-    
 
     public Comment() {
 
