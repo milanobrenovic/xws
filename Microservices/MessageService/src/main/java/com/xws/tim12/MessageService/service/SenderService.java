@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.xws.tim12.MessageService.dto.SenderDTO;
 import com.xws.tim12.MessageService.model.Message;
+import com.xws.tim12.MessageService.model.Receiver;
 import com.xws.tim12.MessageService.model.Sender;
 
 public interface SenderService {
@@ -24,4 +25,6 @@ public interface SenderService {
 	Set<Long> getAllReceiverIds(Long id);
 	
 	Set<Message> getAllReceiverMessages(Long id);
+	
+	Receiver setSenderAsReciever(Long id);
 }

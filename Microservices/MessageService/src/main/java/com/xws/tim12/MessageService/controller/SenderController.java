@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xws.tim12.MessageService.dto.ReceiverDTO;
 import com.xws.tim12.MessageService.dto.SenderDTO;
 import com.xws.tim12.MessageService.model.Message;
+import com.xws.tim12.MessageService.model.Receiver;
 import com.xws.tim12.MessageService.model.Sender;
 import com.xws.tim12.MessageService.service.SenderService;
 
@@ -94,4 +96,25 @@ public class SenderController {
         
         return new ResponseEntity<Set<Message>>(messages, HttpStatus.OK);
     }
+	
+	
+	@PostMapping(value = "/setSenderAsReceiver/{id}")
+    public ResponseEntity<Receiver> setSenderAsReceiver(@PathVariable("id") Long id) {
+		Sender sender = senderService.findById(id);
+
+        if (sender == null) {
+        	System.out.println("Sender je null;");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        Receiver receiver = senderService.setSenderAsReciever(id);
+        
+        if(receiver == null) {
+        	System.out.println("Receiver je null;");
+        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        return new ResponseEntity<Receiver>(receiver, HttpStatus.OK);
+    }
+	
 }

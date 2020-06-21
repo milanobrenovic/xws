@@ -69,4 +69,25 @@ public class ReceiverController {
         
         return new ResponseEntity<Set<Message>>(messages, HttpStatus.OK);
     }
+	
+	
+	@PostMapping(value = "/setReceiverAsSender/{id}")
+    public ResponseEntity<Sender> setReceiverAsSender(@PathVariable("id") Long id) {
+		Receiver receiver = receiverService.findById(id);
+
+        if (receiver == null) {
+        	System.out.println("Receiver je null;");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        Sender sender = receiverService.setReceiverAsSender(id);
+        
+        if(sender == null) {
+        	System.out.println("Sender je null;");
+        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        return new ResponseEntity<Sender>(sender, HttpStatus.OK);
+    }
+	
 }

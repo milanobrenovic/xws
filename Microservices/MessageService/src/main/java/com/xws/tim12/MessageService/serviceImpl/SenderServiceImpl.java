@@ -1,6 +1,5 @@
 package com.xws.tim12.MessageService.serviceImpl;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.xws.tim12.MessageService.dto.SenderDTO;
 import com.xws.tim12.MessageService.model.Message;
+import com.xws.tim12.MessageService.model.Receiver;
 import com.xws.tim12.MessageService.model.Sender;
+import com.xws.tim12.MessageService.repository.ReceiverRepository;
 import com.xws.tim12.MessageService.repository.SenderRepository;
 import com.xws.tim12.MessageService.service.SenderService;
 
@@ -19,6 +20,9 @@ public class SenderServiceImpl implements SenderService {
 	
 	@Autowired
 	private SenderRepository senderRepository;
+	
+	@Autowired
+	private ReceiverRepository receiverRepository;
 	
 	@Override
 	public Sender findById(Long id) {
@@ -104,6 +108,20 @@ public class SenderServiceImpl implements SenderService {
 			}
 		}
 		return receiverMessages;
+	}
+	
+	public Receiver setSenderAsReciever(Long id) {
+		Sender sender = senderRepository.findOneByUserId(id);
+		if(sender == null) {
+			return null;
+		}
+		
+		Receiver receiver = new Receiver();
+		receiver.setId(sender.getId());
+		receiver.setUserId(sender.getUserId());
+		receiver.setMessages(sender.getMessages());
+		
+		return new Receiver(receiverRepository.save(receiver));
 	}
 
 }

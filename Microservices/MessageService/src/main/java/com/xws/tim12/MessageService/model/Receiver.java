@@ -56,6 +56,13 @@ public class Receiver {
 		this.messages = messages;
 	}
 	
+	public Receiver(Receiver r) {
+		super();
+		this.id = r.getId();
+		this.userId = r.getUserId();
+		this.messages = r.getMessages();
+	}
+	
 	public Receiver(ReceiverDTO r) {
 		this(r.getUserId());
 	}

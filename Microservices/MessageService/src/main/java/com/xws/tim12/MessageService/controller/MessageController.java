@@ -141,4 +141,42 @@ public class MessageController {
         return new ResponseEntity<Message>(msg, HttpStatus.CREATED);
     }
 	
+	@PostMapping(value = "/sendBack/from/{id2}/to/{id1}")
+    public ResponseEntity<Message> sendMessageBack(@RequestBody MessageDTO msgDTO, 
+    												@PathVariable("id1") Long id1, 
+    												@PathVariable("id2") Long id2) {
+		MessageDTO createdMessage = messageService.createMessage(msgDTO);
+        if (createdMessage == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        Message msg = new Message(createdMessage);
+        
+        
+        Receiver receiver = receiverService.findByReceiverId(id2);
+        if(receiver == null) {
+        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        
+        Sender sender =  senderService.findBySenderId(id1);
+        if(sender == null) {
+        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        
+        msg.setReceiverAsSender(receiver);
+        msg.setSenderAsReceiver(sender);
+        
+        /*sender.getMessages().add(msg);
+        
+        receiver.getMessages().add(msg);*/
+        
+        messageService.saveMessage(msg);
+        /*senderService.saveSender(sender);
+        receiverService.saveReceiver(receiver);*/
+        
+        return new ResponseEntity<Message>(msg, HttpStatus.CREATED);
+    }
+	
 }

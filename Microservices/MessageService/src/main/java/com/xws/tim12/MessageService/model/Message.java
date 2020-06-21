@@ -130,6 +130,22 @@ public class Message {
 	public void setReceiver(Receiver receiver) {
 		this.receiver = receiver;
 	}
+	
+	public void setSenderAsReceiver(Sender s) {
+		Receiver r = new Receiver();
+		r.setId(s.getId());
+		r.setUserId(s.getUserId());
+		r.setMessages(s.getMessages());
+		this.receiver = r;
+	}
+	
+	public void setReceiverAsSender(Receiver r) {
+		Sender s = new Sender();
+		s.setId(r.getId());
+		s.setUserId(r.getUserId());
+		s.setMessages(r.getMessages());
+		this.sender = s;
+	}
 
 	
 }

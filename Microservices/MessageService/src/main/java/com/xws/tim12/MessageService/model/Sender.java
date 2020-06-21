@@ -55,6 +55,13 @@ public class Sender {
 		this.messages = messages;
 	}
 	
+	public Sender(Sender s) {
+		super();
+		this.id = s.getId();
+		this.userId = s.getUserId();
+		this.messages = s.getMessages();
+	}
+	
 	public Sender(SenderDTO s) {
 		this(s.getUserId());
 	}
