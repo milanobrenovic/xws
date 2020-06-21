@@ -58,7 +58,20 @@ public class RequestToRentCotroller {
 		
 		
 	}
-	
+	@PostMapping(value = "/acceptRequest/{id}")
+	public ResponseEntity<RequestToRent>acceptRequest(@PathVariable Long id){
+		RequestToRent r = requestToRentService.findById(id);
+		r.setRequestStatusType(RequestStatusType.RESERVED);
+		requestToRentService.save(r);
+		return new ResponseEntity<>(r,HttpStatus.OK);
+	}
+	@PostMapping(value = "/declineRequest/{id}")
+	public ResponseEntity<RequestToRent>declineRequest(@PathVariable Long id){
+		RequestToRent r = requestToRentService.findById(id);
+		r.setRequestStatusType(RequestStatusType.CANCELED);
+		requestToRentService.save(r);
+		return new ResponseEntity<>(r,HttpStatus.OK);
+	}
 	
 	
 	@GetMapping(value="/requestToShowForUser/{id}")
