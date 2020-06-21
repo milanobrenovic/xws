@@ -61,11 +61,11 @@ public class VehicleController {
 	}
 	/*--------------------*/
 	@GetMapping(path= "/vehicleOfUser/{id}")
-	public ResponseEntity<List<Long>> getVehicleOfUser(@PathVariable("id") Long id){
+	public List<Long> getVehicleOfUser(@PathVariable("id") Long id){
 		List<Vehicle> vehicles = vehicleService.findByIdOwner(id);
 
 		if(vehicles == null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return null;
 		}
 		List<Long> vehicless = new ArrayList<>();
 
@@ -74,7 +74,7 @@ public class VehicleController {
 			vehicless.add(vehicle.getId());
 		}
 
-		return new ResponseEntity<>(vehicless, HttpStatus.OK);
+		return vehicless;
 	}
 	
 	

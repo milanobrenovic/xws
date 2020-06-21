@@ -60,9 +60,11 @@ public class RequestToRentCotroller {
 	}
 	
 	
+	
 	@GetMapping(value="/requestToShowForUser/{id}")
 	public ResponseEntity<List<RequestToRent>>getRequestsForUser(@PathVariable Long id){
-		List<Long>vehicles = (List<Long>) vehicleClient.getVehicleOfUser(id);
+		List<Long>vehicles =  vehicleClient.getVehicleOfUser(id);
+		System.out.println("VEHICLES: "+vehicles);
 		if (vehicles == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
