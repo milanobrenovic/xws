@@ -40,7 +40,9 @@ public class VehicleService {
 	public Vehicle save(Vehicle vehicle) {
 		return vehicleRepository.save(vehicle);
 	}
-	
+	public List<Vehicle> findByIdOwner(Long idOwner){
+		return vehicleRepository.findAllByIdOwner(idOwner);
+	}
 	
 	public Vehicle convertFromDTO(VehicleDTO vehicleDTO) {
 		

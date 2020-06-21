@@ -59,6 +59,22 @@ public class VehicleController {
 		
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.CREATED);
 	}
+	@GetMapping(path= "/vehicleOfUser/{id}")
+	public ResponseEntity<List<VehicleDTO>> getVehicleOfUser(@PathVariable Long id){
+		List<Vehicle> vehicles = vehicleService.findByIdOwner(id);
+
+		if(vehicles == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<VehicleDTO> vehicleDTOs = new ArrayList<>();
+
+		for (Vehicle vehicle: vehicles) {
+			VehicleDTO vehicleDTO = new VehicleDTO(vehicle);
+			vehicleDTOs.add(vehicleDTO);
+		}
+
+		return new ResponseEntity<>(vehicleDTOs, HttpStatus.OK);
+	}
 	
 	
 }
