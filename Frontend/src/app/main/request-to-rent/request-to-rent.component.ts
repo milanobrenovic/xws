@@ -48,7 +48,7 @@ export class RequestToRentComponent implements OnInit {
 
   createNewRentRequest() {
     const pickupFrom = formatDate(this.createNewCarRequestForm.value.rentDateFrom, 'yyyy-MM-dd HH:mm', 'en-US');
-    const pickupTo = formatDate(this.createNewCarRequestForm.value.rentDateFrom, 'yyyy-MM-dd HH:mm', 'en-US');
+    const pickupTo = formatDate(this.createNewCarRequestForm.value.rentDateTo, 'yyyy-MM-dd HH:mm', 'en-US');
     
     const userId = this._userService.getLoggedInUser().id;
 

@@ -18,7 +18,7 @@ import { formatDate } from '@angular/common';
 export class RequestDetailsComponent implements OnInit {
 
   public displayedColumns: string[] = ['id', 'vehicleId', 'normalUser', 'requestStatusType',
-  'rentDateFrom', 'rentDateTo'];
+  'rentDateFrom', 'rentDateTo', 'options'];
   public itemsPerPage = environment.itemsPerPage;
   public requestDetailsDataSource = new MatTableDataSource<RequestToRentDetails>();
 
@@ -35,6 +35,10 @@ export class RequestDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.fetchData();
+  }
+
+  fetchData() {
     const id = this._userService.getLoggedInUser().id;
     
     this._requestToRentService.getRequestToRentDetails(+id).subscribe(
@@ -49,12 +53,36 @@ export class RequestDetailsComponent implements OnInit {
           formattedObject.push(adObject);
         });
 
-        this.requestDetailsDataSource = new MatTableDataSource(data);
+        this.requestDetailsDataSource = new MatTableDataSource(formattedObject);
         this.requestDetailsDataSource.paginator = this.paginator;
         this.requestDetailsDataSource.sort = this.sort;
       },
       (e: HttpErrorResponse) => {
 				this._toastrService.error(e.message, "Failed to get details about this request");
+      }
+    );
+  }
+
+  acceptRequest(data: RequestToRentDetails) {
+    this._requestToRentService.acceptRequestToRent(data.id).subscribe(
+      () => {
+        this._toastrService.success("Request has been accepted.", "Success");
+        this.fetchData();
+      },
+      (e: HttpErrorResponse) => {
+        this._toastrService.error(e.message, "Failed to accept this request");
+      }
+    );
+  }
+
+  declineRequest(data: RequestToRentDetails) {
+    this._requestToRentService.declineRequestToRent(data.id).subscribe(
+      () => {
+        this._toastrService.success("Request has been declined.", "Success");
+        this.fetchData();
+      },
+      (e: HttpErrorResponse) => {
+        this._toastrService.error(e.message, "Failed to decline this request");
       }
     );
   }

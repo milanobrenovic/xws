@@ -19,6 +19,8 @@ export const environment = {
     createCarRentRequest    : "/request-microservice/api/request/createRequest",
     getAllAds               : "/ad-service/getAds",
     getRequestDetails       : "/request-microservice/api/request/requestToShowForUser",
+    acceptRequestToRent     : "/request-microservice/api/request/acceptRequest",
+    declineRequestToRent    : "/request-microservice/api/request/declineRequest",
 };
 
 /*
