@@ -24,7 +24,7 @@ import com.xws.tim12.MessageService.service.ReceiverService;
 import com.xws.tim12.MessageService.service.SenderService;
 
 @RestController
-@RequestMapping(value = "/api/message", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/message")
 public class MessageController {
 	
 	@Autowired 
