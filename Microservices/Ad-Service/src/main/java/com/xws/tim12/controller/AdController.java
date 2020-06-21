@@ -79,5 +79,15 @@ public class AdController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    @GetMapping(value = "/getAds")
+    public ResponseEntity<List<AdDTO>> getAds(){
+    	List<AdDTO> ads = adService.findAll();
+    	if(ads == null){
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    	}
+    	return new ResponseEntity<>(ads,HttpStatus.OK);
+    	
+    	
+    }
 
 }
