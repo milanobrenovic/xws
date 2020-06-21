@@ -1,0 +1,79 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Add a new vehicle into the system
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Please fill out the form in order to add a new ad for
+				the desired vehicle.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="createNewAdForm">
+				
+				<table class="form-full-width">
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Choose existing vehicle</mat-label>
+								<mat-select formControlName="selectedVehicle" required>
+									<mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+										Brand: {{vehicle.brand}}, Model: {{vehicle.model}}
+									</mat-option>
+								</mat-select>
+								<mat-error
+									*ngIf="createNewAdForm.get('selectedVehicle').errors && createNewAdForm.get('selectedVehicle').errors['required']">
+									Please select a vehicle.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Pickup location</mat-label>
+								<input matInput formControlName="pickupLocation" required>
+								<mat-error
+									*ngIf="createNewAdForm.get('pickupLocation').errors && createNewAdForm.get('pickupLocation').errors['required']">
+									Pickup location is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Pickup from</mat-label>
+								<input matInput [matDatepicker]="pickerFrom" formControlName="pickupFrom" required>
+								<mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+								<mat-datepicker #pickerFrom></mat-datepicker>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Pickup to</mat-label>
+								<input matInput [matDatepicker]="pickerTo" formControlName="pickupTo" required>
+								<mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+								<mat-datepicker #pickerTo></mat-datepicker>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button mat-raised-button color="primary" (click)="createNewAd()">
+								Create new ad
+							</button>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+
+		</mat-card-content>
+	</mat-card>
+
+</div>

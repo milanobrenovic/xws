@@ -22,7 +22,7 @@ public class RequestToRent {
     @Enumerated(EnumType.STRING)
     private RequestStatusType requestStatusType;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Long normalUserId;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

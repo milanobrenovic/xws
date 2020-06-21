@@ -1,0 +1,21 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Welcome back, @{{ loggedInUsername }}.
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Your role is: <strong>{{ loggedInUserRole }}</strong>.
+				<br>
+				Click the button below to create a new vehicle.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<button mat-button mat-raised-button color="primary" routerLink="/pages/create-new-vehicle">
+				Create New Vehicle
+			</button>
+		</mat-card-content>
+	</mat-card>
+
+</div>
