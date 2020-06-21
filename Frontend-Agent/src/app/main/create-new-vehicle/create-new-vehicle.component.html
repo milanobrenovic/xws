@@ -1,0 +1,205 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Add a new vehicle into the system
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Please fill out the form in order to add a new vehicle.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="createNewVehicleForm">
+
+				<table class="form-full-width">
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Brand</mat-label>
+								<input matInput formControlName="brand" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('brand').errors && createNewVehicleForm.get('brand').errors['required']">
+									Brand is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Model</mat-label>
+								<input matInput formControlName="model" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('model').errors && createNewVehicleForm.get('model').errors['required']">
+									Model is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Fuel Type</mat-label>
+								<mat-select formControlName="fuelType" required>
+									<mat-option [value]="1">Diesel</mat-option>
+									<mat-option [value]="2">Gasoline</mat-option>
+								</mat-select>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('fuelType').errors && createNewVehicleForm.get('fuelType').errors['required']">
+									Fuel type is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Vehicle Type</mat-label>
+								<mat-select formControlName="vehicleType" required>
+									<mat-option [value]="1">SUV</mat-option>
+									<mat-option [value]="2">Caravan</mat-option>
+								</mat-select>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('vehicleType').errors && createNewVehicleForm.get('vehicleType').errors['required']">
+									Vehicle type is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Transmission Type</mat-label>
+								<mat-select formControlName="transmissionType" required>
+									<mat-option [value]="1">Manual</mat-option>
+									<mat-option [value]="2">Automatic</mat-option>
+								</mat-select>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('transmissionType').errors && createNewVehicleForm.get('transmissionType').errors['required']">
+									Transmission type is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Price</mat-label>
+								<input matInput formControlName="price" type="number" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('price').errors && createNewVehicleForm.get('price').errors['required']">
+									Price is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Travelled Mileage</mat-label>
+								<input matInput formControlName="travelledMileage" type="number" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('travelledMileage').errors && createNewVehicleForm.get('travelledMileage').errors['required']">
+									Travelled mileage is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Planned mileage to travel</mat-label>
+								<input matInput formControlName="plannedMileageToTravel" type="number" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('plannedMileageToTravel').errors && createNewVehicleForm.get('plannedMileageToTravel').errors['required']">
+									Planned mileage to travel is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Number of seats</mat-label>
+								<input matInput formControlName="numberOfSeats" type="number" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('numberOfSeats').errors && createNewVehicleForm.get('numberOfSeats').errors['required']">
+									Number of seats is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Grade</mat-label>
+								<input matInput formControlName="grade" type="number" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('grade').errors && createNewVehicleForm.get('grade').errors['required']">
+									Grade is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Vehicle discount</mat-label>
+								<input matInput formControlName="vehicleDiscount" type="number" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('vehicleDiscount').errors && createNewVehicleForm.get('vehicleDiscount').errors['required']">
+									Vehicle discount is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Insurance price</mat-label>
+								<input matInput formControlName="insurancePrice" type="number" required>
+								<mat-error
+									*ngIf="createNewVehicleForm.get('insurancePrice').errors && createNewVehicleForm.get('insurancePrice').errors['required']">
+									Insurance price is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-checkbox formControlName="isMileageUnlimited">
+								Is the mileage unlimited?
+							</mat-checkbox>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-checkbox formControlName="hasCollisionDamageWaiver">
+								Does this vehicle have a collision damage waiver?
+							</mat-checkbox>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-checkbox formControlName="available">
+								Is this vehicle available to rent?
+							</mat-checkbox>
+						</td>
+					</tr>
+					<br>
+					<tr>
+						<td>
+							<button mat-raised-button color="primary" (click)="addNewVehicle()">
+								Add new vehicle
+							</button>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+
+		</mat-card-content>
+	</mat-card>
+
+</div>

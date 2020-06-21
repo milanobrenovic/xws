@@ -22,13 +22,13 @@ import com.example.requestService.client.AuthenticationClient;
 @RestController
 @RequestMapping(value = "/api/request/")
 public class RequestToRentCotroller {
+
 	@Autowired
 	private RequestToRentService requestToRentService;
+
 	@Autowired
 	private AuthenticationClient authenticationClient;
 
-	
-	
 	@PostMapping(value = "/createRequest", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RequestToRentDTO> addRequest(@RequestBody RequestToRentDTO requestToRentDTO){
 		if(requestToRentDTO.getClass() == null)

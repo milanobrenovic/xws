@@ -1,0 +1,99 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Search a specific ad that has been created in the system
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Please fill out the required files in order to commit a search.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="searchAdForm">
+
+				<table class="form-full-width">
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Pickup location</mat-label>
+								<input matInput formControlName="pickupLocation" required>
+								<mat-error
+									*ngIf="searchAdForm.get('pickupLocation').errors && searchAdForm.get('pickupLocation').errors['required']">
+									Pickup location is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Pickup from</mat-label>
+								<input matInput [matDatepicker]="pickerFrom" formControlName="pickupFrom" required value="11/12/2020">
+								<mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+								<mat-datepicker #pickerFrom></mat-datepicker>
+								<mat-error
+									*ngIf="searchAdForm.get('pickupFrom').errors && searchAdForm.get('pickupFrom').errors['required']">
+									Pickup from is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Pickup to</mat-label>
+								<input matInput [matDatepicker]="pickerTo" formControlName="pickupTo" required value="11/17/2020">
+								<mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+								<mat-datepicker #pickerTo></mat-datepicker>
+								<mat-error
+									*ngIf="searchAdForm.get('pickupTo').errors && searchAdForm.get('pickupTo').errors['required']">
+									Pickup to is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button mat-raised-button color="primary" (click)="searchAd()">
+								Search ads
+							</button>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+
+			<br>
+
+			<table mat-table [dataSource]="adSearchDataSource" class="mat-elevation-z8">
+
+				<ng-container matColumnDef="pickupLocation">
+					<th mat-header-cell *matHeaderCellDef> Pickup location </th>
+					<td mat-cell *matCellDef="let element"> {{element.pickupLocation}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="pickupFrom">
+					<th mat-header-cell *matHeaderCellDef> Pickup from </th>
+					<td mat-cell *matCellDef="let element"> {{element.pickupFrom}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="pickupTo">
+					<th mat-header-cell *matHeaderCellDef> Pickup to </th>
+					<td mat-cell *matCellDef="let element"> {{element.pickupTo}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="details">
+					<th mat-header-cell *matHeaderCellDef> View Details </th>
+					<td mat-cell *matCellDef="let element"> <a routerLink="{{element.details}}">View Details</a> </td>
+				</ng-container>
+			
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+			</table>
+			
+		</mat-card-content>
+	</mat-card>
+
+</div>
