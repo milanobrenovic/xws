@@ -67,4 +67,31 @@ public class SenderController {
         
         return new ResponseEntity<Set<Message>>(messages, HttpStatus.OK);
     }
+	
+	@GetMapping(value = "/allReceiverIds/{id}")
+    public ResponseEntity<Set<Long>> getAllReceiverIds(@PathVariable("id") Long id) {
+		Sender sender = senderService.findById(id);
+
+        if (sender == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        Set<Long> ids = senderService.getAllReceiverIds(id);
+        
+        return new ResponseEntity<Set<Long>>(ids, HttpStatus.OK);
+    }
+	
+	
+	@GetMapping(value = "/allReceiverMessages/{id}")
+    public ResponseEntity<Set<Message>> getAllReceiverMessages(@PathVariable("id") Long id) {
+		Sender sender = senderService.findById(id);
+
+        if (sender == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        Set<Message> messages = senderService.getAllReceiverMessages(id);
+        
+        return new ResponseEntity<Set<Message>>(messages, HttpStatus.OK);
+    }
 }
