@@ -3,17 +3,21 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production          : false,
-    hmr                 : false,
-    itemsPerPage        : 5,
-    baseUrl             : "http://localhost:8087",
-    login               : "/authentication/api/auth/login",
-    register            : "/authentication/register",
-    createNewVehicle    : "/vehicle/createVehicle",
-    createNewAd         : "/ad-service/create",
-    getAllVehicles      : "/vehicle/all",
-    searchAd            : "/ad-service/search",
-    vehicleDetails      : "/vehicle",
+    production              : false,
+    hmr                     : false,
+    itemsPerPage            : 5,
+    baseUrl                 : "http://localhost:8087",
+    login                   : "/authentication/api/auth/login",
+    register                : "/authentication/register",
+    createNewVehicle        : "/vehicle/createVehicle",
+    createNewAd             : "/ad-service/create",
+    getAllVehicles          : "/vehicle/all",
+    searchAd                : "/ad-service/search",
+    vehicleDetails          : "/vehicle",
+    getAllSentMessages      : "/message-microservice/api/sender/allMessages",
+    getAllReceivedMessages  : "/message-microservice/api/receiver/allMessages",
+    createCarRentRequest    : "/request-microservice/api/request/createRequest",
+    getAllAds               : "/ad-service/getAds",
 };
 
 /*

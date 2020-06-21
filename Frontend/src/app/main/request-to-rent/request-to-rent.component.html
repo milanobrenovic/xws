@@ -1,0 +1,73 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Requests to rent a vehicle
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Here you can create a request to rent a new vehicle.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="createNewCarRequestForm">
+				
+				<table class="form-full-width">
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Choose existing ad</mat-label>
+								<mat-select formControlName="selectedAd" required>
+									<mat-option *ngFor="let ad of ads" [value]="ad">
+										Pickup location: {{ad.pickupLocation}}
+									</mat-option>
+								</mat-select>
+								<mat-error
+									*ngIf="createNewCarRequestForm.get('selectedAd').errors && createNewCarRequestForm.get('selectedAd').errors['required']">
+									Please select an ad.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Rent date from</mat-label>
+								<input matInput [matDatepicker]="pickerFrom" formControlName="rentDateFrom" required>
+								<mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+								<mat-datepicker #pickerFrom></mat-datepicker>
+								<mat-error
+									*ngIf="createNewCarRequestForm.get('rentDateFrom').errors && createNewCarRequestForm.get('rentDateFrom').errors['required']">
+									Please select the start date.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Rent date to</mat-label>
+								<input matInput [matDatepicker]="pickerTo" formControlName="rentDateTo" required>
+								<mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+								<mat-datepicker #pickerTo></mat-datepicker>
+								<mat-error
+									*ngIf="createNewCarRequestForm.get('rentDateTo').errors && createNewCarRequestForm.get('rentDateTo').errors['required']">
+									Please select the end date.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button mat-raised-button color="primary" (click)="createNewRentRequest()">
+								Create new rent request
+							</button>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+		</mat-card-content>
+	</mat-card>
+
+</div>

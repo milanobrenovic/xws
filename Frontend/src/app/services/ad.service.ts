@@ -11,6 +11,7 @@ export class AdService {
 
   url = environment.baseUrl;
   _searchAd = this.url + environment.searchAd;
+  _getAllAds = this.url + environment.getAllAds;
 
   constructor(
     private httpClient: HttpClient,
@@ -18,6 +19,10 @@ export class AdService {
 
   public searchAd(ad: Ad) {
     return this.httpClient.post(this._searchAd, ad);
+  }
+
+  public getAllAds() {
+    return this.httpClient.get(this._getAllAds);
   }
 
 }

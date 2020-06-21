@@ -1,0 +1,120 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Sent private messages
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Here you can see private messages that you had sent.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<table mat-table [dataSource]="mailSentDataSource" class="mat-elevation-z8">
+
+				<ng-container matColumnDef="subject">
+					<th mat-header-cell *matHeaderCellDef> Subject </th>
+					<td mat-cell *matCellDef="let element"> {{element.subject}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="content">
+					<th mat-header-cell *matHeaderCellDef> Content </th>
+					<td mat-cell *matCellDef="let element"> {{element.content}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="date">
+					<th mat-header-cell *matHeaderCellDef> Date </th>
+					<td mat-cell *matCellDef="let element"> {{element.date}} </td>
+				</ng-container>
+			
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+			</table>
+		</mat-card-content>
+	</mat-card>
+
+	<br>
+
+	<mat-card>
+		<mat-card-title>
+			Received private messages
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Here you can see private messages that you had received.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<table mat-table [dataSource]="mailReceivedDataSource" class="mat-elevation-z8">
+
+				<ng-container matColumnDef="subject">
+					<th mat-header-cell *matHeaderCellDef> Subject </th>
+					<td mat-cell *matCellDef="let element"> {{element.subject}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="content">
+					<th mat-header-cell *matHeaderCellDef> Content </th>
+					<td mat-cell *matCellDef="let element"> {{element.content}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="date">
+					<th mat-header-cell *matHeaderCellDef> Date </th>
+					<td mat-cell *matCellDef="let element"> {{element.date}} </td>
+				</ng-container>
+			
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+			</table>
+		</mat-card-content>
+	</mat-card>
+
+	<br>
+
+	<mat-card>
+		<mat-card-title>
+			Send message to...
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Who would you like to send a private message to?
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="sendPrivateMessageForm">
+				
+				<table class="form-full-width">
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Choose existing user</mat-label>
+								<mat-select formControlName="selectedUser" required>
+									<!-- <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+										Brand: {{vehicle.brand}}, Model: {{vehicle.model}}
+									</mat-option> -->
+									<mat-option>User 1</mat-option>
+									<mat-option>User 2</mat-option>
+								</mat-select>
+								<mat-error
+									*ngIf="sendPrivateMessageForm.get('selectedUser').errors && sendPrivateMessageForm.get('selectedUser').errors['required']">
+									Please select a user.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button mat-raised-button color="primary" (click)="sendMessage()">
+								Send message
+							</button>
+						</td>
+					</tr>
+				</table>
+		
+			</form>
+		</mat-card-content>
+	</mat-card>
+
+
+</div>

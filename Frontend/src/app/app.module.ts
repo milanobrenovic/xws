@@ -74,6 +74,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { SearchAdComponent } from './main/search-ad/search-ad.component';
 import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.component';
+import { MessagesComponent } from './main/messages/messages.component';
+import { RequestToRentComponent } from './main/request-to-rent/request-to-rent.component';
 
 @NgModule({
 	declarations: [
@@ -90,6 +92,8 @@ import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.
 		CreateNewVehicleComponent,
 		SearchAdComponent,
 		VehicleDetailsComponent,
+		MessagesComponent,
+		RequestToRentComponent,
 	],
 	imports: [
 		BrowserModule,

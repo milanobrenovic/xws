@@ -228,3 +228,7 @@ body.theme-pink-dark {
 
     @include fuse-color-classes($palettes);
 }
+
+.main-content {
+    margin-top: 32px;
+}

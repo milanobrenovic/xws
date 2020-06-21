@@ -12,6 +12,8 @@ import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.compone
 import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-vehicle.component';
 import { SearchAdComponent } from './main/search-ad/search-ad.component';
 import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.component';
+import { MessagesComponent } from './main/messages/messages.component';
+import { RequestToRentComponent } from './main/request-to-rent/request-to-rent.component';
 
 const appRoutes: Routes = [
 
@@ -66,6 +68,16 @@ const appRoutes: Routes = [
     {
         path        : 'pages/vehicle-details/:id',
         component   : VehicleDetailsComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/messages',
+        component   : MessagesComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/request-to-rent',
+        component   : RequestToRentComponent,
         // canActivate : [AdminGuard],
     },
 
