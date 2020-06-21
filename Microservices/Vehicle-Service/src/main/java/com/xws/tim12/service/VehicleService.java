@@ -48,7 +48,7 @@ public class VehicleService {
 		TransmissionType transmissionType = transmissionTypeService.findOne(vehicleDTO.getTransmissionType());
 		VehicleType vehicleType = vehicleTypeService.findOne(vehicleDTO.getVehicleType());
 		
-		Vehicle vehicle = new Vehicle(vehicleDTO.getBrand(), vehicleDTO.getModel(), fuelType, transmissionType, vehicleType, vehicleDTO.getPrice(), vehicleDTO.getTravelledMileage(), vehicleDTO.getPlannedMileageToTravel(), vehicleDTO.getIsMileageUnlimited(), vehicleDTO.getHasCollisionDamageWaiver(), vehicleDTO.getNumberOfSeats(), vehicleDTO.getGrade(), vehicleDTO.getAvailable(), vehicleDTO.getVehicleDiscount(), vehicleDTO.getInsurancePrice(), null);
+		Vehicle vehicle = new Vehicle(vehicleDTO.getIdOwner(),vehicleDTO.getBrand(), vehicleDTO.getModel(), fuelType, transmissionType, vehicleType, vehicleDTO.getPrice(), vehicleDTO.getTravelledMileage(), vehicleDTO.getPlannedMileageToTravel(), vehicleDTO.getIsMileageUnlimited(), vehicleDTO.getHasCollisionDamageWaiver(), vehicleDTO.getNumberOfSeats(), vehicleDTO.getGrade(), vehicleDTO.getAvailable(), vehicleDTO.getVehicleDiscount(), vehicleDTO.getInsurancePrice(), null);
 		return vehicle;
 	}
 	

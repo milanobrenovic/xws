@@ -5,7 +5,7 @@ import com.xws.tim12.model.Vehicle;
 public class VehicleDTO {
 
 	private Long id;
-
+	private Long idOwner;
     private String brand;
 
     private String model;
@@ -42,6 +42,41 @@ public class VehicleDTO {
 	}
     
     
+	public VehicleDTO(Long id, Long idOwner, String brand, String model, Long fuelType, Long transmissionType,
+			Long vehicleType, Double price, Double travelledMileage, Double plannedMileageToTravel,
+			Boolean isMileageUnlimited, Boolean hasCollisionDamageWaiver, Integer numberOfSeats, Integer grade,
+			Boolean available, Double vehicleDiscount, Double insurancePrice) {
+		super();
+		this.id = id;
+		this.idOwner = idOwner;
+		this.brand = brand;
+		this.model = model;
+		this.fuelType = fuelType;
+		this.transmissionType = transmissionType;
+		this.vehicleType = vehicleType;
+		this.price = price;
+		this.travelledMileage = travelledMileage;
+		this.plannedMileageToTravel = plannedMileageToTravel;
+		this.isMileageUnlimited = isMileageUnlimited;
+		this.hasCollisionDamageWaiver = hasCollisionDamageWaiver;
+		this.numberOfSeats = numberOfSeats;
+		this.grade = grade;
+		this.available = available;
+		this.vehicleDiscount = vehicleDiscount;
+		this.insurancePrice = insurancePrice;
+	}
+	
+
+	public Long getIdOwner() {
+		return idOwner;
+	}
+
+
+	public void setIdOwner(Long idOwner) {
+		this.idOwner = idOwner;
+	}
+
+
 	public VehicleDTO(Long id,  String brand,
 			 String model,
 			 Double price,

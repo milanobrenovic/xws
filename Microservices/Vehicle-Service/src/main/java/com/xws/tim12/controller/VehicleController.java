@@ -48,10 +48,11 @@ public class VehicleController {
 	}
 	
 	@PostMapping(path = "/createVehicle")
-	public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO){
+	public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO, @RequestHeader(value = "Id") String id){
 		if(vehicleDTO.getClass() == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		
+		Long idd = (Long.parseLong(id));
+		vehicleDTO.setIdOwner(idd);
 		Vehicle vehicle = vehicleService.convertFromDTO(vehicleDTO);
 		
 		vehicleService.save(vehicle);

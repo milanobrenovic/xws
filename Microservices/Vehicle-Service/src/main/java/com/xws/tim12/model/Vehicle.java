@@ -20,7 +20,9 @@ public class Vehicle {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+	@Column
+	private Long idOwner;
+	
     @Column(nullable = false)
     private String brand;
 
@@ -73,8 +75,67 @@ public class Vehicle {
     public Vehicle() {
 
     }
+    
+    public Vehicle(Long id, Long idOwner, String brand, String model, FuelType fuelType,
+			TransmissionType transmissionType, VehicleType vehicleType, Double price, Double travelledMileage,
+			Double plannedMileageToTravel, Boolean isMileageUnlimited, Boolean hasCollisionDamageWaiver,
+			Integer numberOfSeats, Integer grade, Boolean available, Double vehicleDiscount, Double insurancePrice,
+			List<VehicleImage> images) {
+		super();
+		this.id = id;
+		this.idOwner = idOwner;
+		this.brand = brand;
+		this.model = model;
+		this.fuelType = fuelType;
+		this.transmissionType = transmissionType;
+		this.vehicleType = vehicleType;
+		this.price = price;
+		this.travelledMileage = travelledMileage;
+		this.plannedMileageToTravel = plannedMileageToTravel;
+		this.isMileageUnlimited = isMileageUnlimited;
+		this.hasCollisionDamageWaiver = hasCollisionDamageWaiver;
+		this.numberOfSeats = numberOfSeats;
+		this.grade = grade;
+		this.available = available;
+		this.vehicleDiscount = vehicleDiscount;
+		this.insurancePrice = insurancePrice;
+		this.images = images;
+	}
+    	
+	public Long getIdOwner() {
+		return idOwner;
+	}
 
-    public Vehicle(
+	public void setIdOwner(Long idOwner) {
+		this.idOwner = idOwner;
+	}
+	
+
+	public Vehicle(Long idOwner, String brand, String model, FuelType fuelType, TransmissionType transmissionType,
+			VehicleType vehicleType, Double price, Double travelledMileage, Double plannedMileageToTravel,
+			Boolean isMileageUnlimited, Boolean hasCollisionDamageWaiver, Integer numberOfSeats, Integer grade,
+			Boolean available, Double vehicleDiscount, Double insurancePrice, List<VehicleImage> images) {
+		super();
+		this.idOwner = idOwner;
+		this.brand = brand;
+		this.model = model;
+		this.fuelType = fuelType;
+		this.transmissionType = transmissionType;
+		this.vehicleType = vehicleType;
+		this.price = price;
+		this.travelledMileage = travelledMileage;
+		this.plannedMileageToTravel = plannedMileageToTravel;
+		this.isMileageUnlimited = isMileageUnlimited;
+		this.hasCollisionDamageWaiver = hasCollisionDamageWaiver;
+		this.numberOfSeats = numberOfSeats;
+		this.grade = grade;
+		this.available = available;
+		this.vehicleDiscount = vehicleDiscount;
+		this.insurancePrice = insurancePrice;
+		this.images = images;
+	}
+
+	public Vehicle(
             String brand,
             String model,
              FuelType fuelType,
