@@ -76,6 +76,7 @@ import { SearchAdComponent } from './main/search-ad/search-ad.component';
 import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.component';
 import { MessagesComponent } from './main/messages/messages.component';
 import { RequestToRentComponent } from './main/request-to-rent/request-to-rent.component';
+import { RequestDetailsComponent } from './main/request-details/request-details.component';
 
 @NgModule({
 	declarations: [
@@ -94,6 +95,7 @@ import { RequestToRentComponent } from './main/request-to-rent/request-to-rent.c
 		VehicleDetailsComponent,
 		MessagesComponent,
 		RequestToRentComponent,
+		RequestDetailsComponent,
 	],
 	imports: [
 		BrowserModule,

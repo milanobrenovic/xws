@@ -54,8 +54,6 @@ export class MessagesComponent implements OnInit {
           formattedObject.push(adObject);
         });
 
-        console.log(formattedObject);
-
         this.mailSentDataSource = new MatTableDataSource(formattedObject);
         this.mailSentDataSource.paginator = this.paginator;
         this.mailSentDataSource.sort = this.sort;

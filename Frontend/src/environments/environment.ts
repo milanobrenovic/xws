@@ -18,6 +18,7 @@ export const environment = {
     getAllReceivedMessages  : "/message-microservice/api/receiver/allMessages",
     createCarRentRequest    : "/request-microservice/api/request/createRequest",
     getAllAds               : "/ad-service/getAds",
+    getRequestDetails       : "/request-microservice/api/request/requestToShowForUser",
 };
 
 /*

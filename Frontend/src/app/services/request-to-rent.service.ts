@@ -10,6 +10,7 @@ export class RequestToRentService {
 
   url = environment.baseUrl;
   _createCarRentRequest = this.url + environment.createCarRentRequest;
+  _getRequestDetails = this.url + environment.getRequestDetails;
 
   constructor(
     private httpClient: HttpClient,
@@ -17,6 +18,10 @@ export class RequestToRentService {
 
   public createNewCarRequest(requestToRent: RequestToRent) {
     return this.httpClient.post(this._createCarRentRequest, requestToRent);
+  }
+
+  public getRequestToRentDetails(userId: number) {
+    return this.httpClient.get(this._getRequestDetails + "/" + userId);
   }
 
 }

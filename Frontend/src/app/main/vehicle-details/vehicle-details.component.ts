@@ -8,7 +8,6 @@ import { ToastrService } from 'ngx-toastr';
 import { VehicleService } from 'app/services/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vehicle-details',

@@ -42,6 +42,13 @@ export const navigation: FuseNavigation[] = [
 				url			: '/pages/request-to-rent',
 			},
 			{
+				id			: 'request-to-rent-details',
+				title		: 'Requests to rent details',
+				type		: 'item',
+				icon		: 'account_balance',
+				url			: '/pages/request-to-rent-details',
+			},
+			{
 				id			: 'messages',
 				title		: 'Messages',
 				type		: 'item',
