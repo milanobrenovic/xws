@@ -3,57 +3,43 @@ package com.xws.tim12.dto;
 import com.xws.tim12.enumeration.FuelType;
 import com.xws.tim12.enumeration.TransmissionType;
 import com.xws.tim12.enumeration.VehicleType;
+import com.xws.tim12.model.Vehicle;
 
 public class VehicleDTO {
 	
 
     private Long id;
 
-
     private String brand;
-
 
     private String model;
 
-
     private FuelType fuelType;
-
 
     private TransmissionType transmissionType;
 
-
     private VehicleType vehicleType;
-
 
     private Double price;
 
-
     private Double travelledMileage;
-
 
     private Double plannedMileageToTravel;
 
-
     private Boolean isMileageUnlimited;
-
 
     private Boolean hasCollisionDamageWaiver;
 
-
     private Integer numberOfSeats;
-
 
     private Integer grade;
 
     private Boolean available;
 
-
     private Double vehicleDiscount;
 
-
     private Double insurancePrice;
-    
-    
+        
     public VehicleDTO() {
     	
 	}
@@ -94,6 +80,26 @@ public class VehicleDTO {
 		this.insurancePrice = insurancePrice;
 	}
 
+	public VehicleDTO(Vehicle vehicle) {
+		super();
+		this.id = vehicle.getId();
+		this.brand = vehicle.getBrand();
+		this.model = vehicle.getModel();
+		this.fuelType = vehicle.getFuelType();
+		this.transmissionType = vehicle.getTransmissionType();
+		this.vehicleType = vehicle.getVehicleType();
+		this.price = vehicle.getPrice();
+		this.travelledMileage = vehicle.getTravelledMileage();
+		this.plannedMileageToTravel = vehicle.getPlannedMileageToTravel();
+		this.isMileageUnlimited = vehicle.getMileageUnlimited();
+		this.hasCollisionDamageWaiver = vehicle.getHasCollisionDamageWaiver();
+		this.numberOfSeats = vehicle.getNumberOfSeats();
+		this.grade = vehicle.getGrade();
+		this.available = vehicle.getAvailable();
+		this.vehicleDiscount = vehicle.getVehicleDiscount();
+		this.insurancePrice = vehicle.getInsurancePrice();
+	}
+	
 	public Long getId() {
 		return id;
 	}

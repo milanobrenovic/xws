@@ -1,11 +1,8 @@
 package com.xws.tim12.serviceImpl;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +11,7 @@ import com.xws.tim12.dto.AdDTO;
 import com.xws.tim12.model.Ad;
 import com.xws.tim12.repository.AdRepository;
 import com.xws.tim12.service.AdService;
+import com.xws.tim12.service.VehicleService;
 
 @Service
 public class AdServiceImpl implements AdService {
@@ -21,10 +19,12 @@ public class AdServiceImpl implements AdService {
     @Autowired
     private AdRepository adRepository;
 
+    @Autowired VehicleService vehicleService;
+    
     @Override
     public AdDTO create(AdDTO adDTO) {
         Ad newAd = new Ad(
-            adDTO.getVehicle(),
+            vehicleService.convertFromDTO(adDTO.getVehicle()),
             adDTO.getComments(),
             adDTO.getPickupLocation(),
             adDTO.getPickupFrom(),
@@ -40,7 +40,7 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public List<AdDTO> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
-            String pickupLocation, LocalDateTime pickupFrom, LocalDateTime pickupTo) {
+            String pickupLocation, Date pickupFrom, Date pickupTo) {
         return convertToDTO(adRepository.findByPickupLocationAndPickupFromIsGreaterThanEqualAndPickupToIsGreaterThanEqual(pickupLocation, pickupFrom, pickupTo));
     }
 
@@ -57,4 +57,5 @@ public class AdServiceImpl implements AdService {
         return adDTOList;
     }
 
+    
 }

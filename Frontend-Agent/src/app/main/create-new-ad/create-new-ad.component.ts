@@ -47,7 +47,7 @@ export class CreateNewAdComponent implements OnInit {
     const pickupTo = formatDate(this.createNewAdForm.value.pickupTo, 'yyyy-MM-dd HH:mm', 'en-US');
 
     const ad = new Ad(
-      this.createNewAdForm.value.selectedVehicle.id,
+      this.createNewAdForm.value.selectedVehicle,
       this.createNewAdForm.value.pickupLocation,
       new Date(pickupFrom),
       new Date(pickupTo),

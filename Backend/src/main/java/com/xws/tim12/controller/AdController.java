@@ -48,7 +48,7 @@ public class AdController {
     	String token = tokenUtils.getToken(request);
     	String user = tokenUtils.getUsernameFromToken(token);
     	//System.out.println("user??"+user);
-    	NormalUser normalUser = normalUserService.findOneByUsername(user);
+/*    	NormalUser normalUser = normalUserService.findOneByUsername(user);
 
         if(normalUser == null){
     		 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
@@ -56,14 +56,14 @@ public class AdController {
     	if(normalUser.getNumberOfAds() != null && normalUser.getNumberOfAds() > 2){
     		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     	}
-    	System.out.println("User :"+ normalUser.getUsername());
+    	System.out.println("User :"+ normalUser.getUsername());*/
     	try {
             AdDTO newAdDTO = adService.create(adDTO);
             if (newAdDTO == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            normalUser.setNumberOfAds(normalUser.getNumberOfAds() + 1);
-            normalUserRepository.save(normalUser);
+/*            normalUser.setNumberOfAds(normalUser.getNumberOfAds() + 1);
+            normalUserRepository.save(normalUser);*/
             return new ResponseEntity<>(newAdDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

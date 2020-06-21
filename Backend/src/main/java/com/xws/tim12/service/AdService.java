@@ -1,9 +1,9 @@
 package com.xws.tim12.service;
 
-import com.xws.tim12.dto.AdDTO;
-
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+
+import com.xws.tim12.dto.AdDTO;
 
 public interface AdService {
 
@@ -12,6 +12,6 @@ public interface AdService {
     List<AdDTO> findAll();
 
     List<AdDTO> findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
-            String pickupLocation, LocalDateTime pickupFrom, LocalDateTime pickupTo);
+            String pickupLocation, Date pickupFrom, Date pickupTo);
 
 }
