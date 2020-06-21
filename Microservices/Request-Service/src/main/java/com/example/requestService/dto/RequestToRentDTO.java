@@ -36,19 +36,20 @@ public class RequestToRentDTO {
     	
 	}
     
-	public RequestToRentDTO(Long id, RequestStatusType requestStatusType,
-		    Date rentDateFrom,
-			Date rentDateTo,
-			Long normalUserId,
-			Long vehicleId) {
+	
+
+	public RequestToRentDTO(Long id, RequestStatusType requestStatusType, Long normalUserId, Long vehicleId,
+			Date rentDateFrom, Date rentDateTo) {
 		super();
 		this.id = id;
 		this.requestStatusType = requestStatusType;
-		this.rentDateFrom = rentDateFrom;
-		this.rentDateTo = rentDateTo;
 		this.normalUserId = normalUserId;
 		this.vehicleId = vehicleId;
+		this.rentDateFrom = rentDateFrom;
+		this.rentDateTo = rentDateTo;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -94,13 +95,18 @@ public class RequestToRentDTO {
 		this.id = id;
 	}
 
-	public Long getVehicle() {
+	
+	public Long getVehicleId() {
 		return vehicleId;
 	}
 
-	public void setVehicle(Long vehicle) {
-		this.vehicleId = vehicle;
+
+
+	public void setVehicleId(Long vehicleId) {
+		this.vehicleId = vehicleId;
 	}
+
+
 
 	@Override
 	public String toString() {
