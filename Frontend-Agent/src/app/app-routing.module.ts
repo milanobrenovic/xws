@@ -12,6 +12,7 @@ import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.compone
 import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-vehicle.component';
 import { SearchAdComponent } from './main/search-ad/search-ad.component';
 import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.component';
+import { VehicleStatisticComponent } from './main/vehicle-statistic/vehicle-statistic.component';
 
 const appRoutes: Routes = [
 
@@ -66,6 +67,11 @@ const appRoutes: Routes = [
     {
         path        : 'pages/vehicle-details/:id',
         component   : VehicleDetailsComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/vehicle-statistic',
+        component   : VehicleStatisticComponent,
         // canActivate : [AdminGuard],
     },
 

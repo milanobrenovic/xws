@@ -14,6 +14,8 @@ export const environment = {
     getAllVehicles      : "/api/vehicle/all",
     searchAd            : "/ad-service/search",
     vehicleDetails      : "/vehicle",
+    vehicleMostKM       : "/api/vehicle/mostKM",
+    vehicleBestGrade    : "/api/vehicle/best-grade"
 };
 
 /*

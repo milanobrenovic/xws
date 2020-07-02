@@ -15,6 +15,8 @@ export class VehicleService {
   _createNewAd = this.url + environment.createNewAd;
   _getAllVehicles = this.url + environment.getAllVehicles;
   _getVehicleDetails = this.url + environment.vehicleDetails;
+  _getMostKMVehicle = this.url + environment.vehicleMostKM;
+  _getBestGradeVehicle = this.url + environment.vehicleBestGrade;
 
   constructor(
     private httpClient: HttpClient,
@@ -34,6 +36,14 @@ export class VehicleService {
 
   public getVehicleById(id: number) {
     return this.httpClient.get(this._getVehicleDetails + "/" + id);
+  }
+
+  public getMostKMVehicle(){
+    return this.httpClient.get(this._getMostKMVehicle);
+  }
+
+  public getBestGradeVehicle(){
+    return this.httpClient.get(this._getBestGradeVehicle);
   }
 
 }

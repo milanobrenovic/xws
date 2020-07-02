@@ -50,7 +50,7 @@ export class VehicleDetailsComponent implements OnInit {
         this.vehicleDetailsDataSource.sort = this.sort;
       },
       (e: HttpErrorResponse) => {
-				this._toastrService.error(e.message, "Failed to get details about this ad");
+				this._toastrService.error(e.message, "Failed to get details about this vehicle");
       }
     );
   }

@@ -15,7 +15,7 @@ export const navigation: FuseNavigation[] = [
 			},
 			{
 				id			: 'create-new-vehicle',
-				title		: 'Create New Vehicle',
+				title		: 'Ad New Vehicle',
 				type		: 'item',
 				icon		: 'add_box',
 				url			: '/pages/create-new-vehicle',
@@ -40,6 +40,13 @@ export const navigation: FuseNavigation[] = [
 				type		: 'item',
 				icon		: 'person',
 				url			: '/pages/register',
+			},
+			{
+				id			: 'statistic',
+				title		: 'Statistic',
+				type		: 'item',
+				icon		: 'assessment',
+				url			: '/pages/vehicle-statistic',
 			},
 		],
 	},

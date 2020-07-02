@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/vehicles" xmlns:tns="http://www.example.org/vehicles" elementFormDefault="qualified">
+	<xs:element name="getVehicleRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getVehicleResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="vehicle" type="tns:vehicle"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="vehicle">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="brand" type="xs:string"/>
+            <xs:element name="model" type="xs:string"/>
+            <xs:element name="fueltype" type="tns:fueltype"/>
+            <xs:element name="transmissiontype" type="tns:transmissiontype"/>
+            <xs:element name="vehicletype" type="tns:vehicletype"/>
+            <xs:element name="price" type="xs:double"/>
+            <xs:element name="travelledMileage" type="xs:double"/>
+            <xs:element name="plannedMileageToTravel" type="xs:double"/>
+            <xs:element name="isMileageUnlimited" type="xs:boolean"/>
+            <xs:element name="hasCollisionDamageWaiver" type="xs:boolean"/>
+            <xs:element name="numberOfSeats" type="xs:double"/>
+            <xs:element name="grade" type="xs:integer"/>
+            <xs:element name="available" type="xs:boolean"/>
+            <xs:element name="vehicleDiscount" type="xs:double"/>
+            <xs:element name="insurancePrice" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="fueltype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GASOLINE"/>
+            <xs:enumeration value="DIESEL"/>
+        </xs:restriction>
+    </xs:simpleType>
+        <xs:simpleType name="transmissiontype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MANUAL"/>
+            <xs:enumeration value="AUTOMATIC"/>
+        </xs:restriction>
+    </xs:simpleType>
+        <xs:simpleType name="vehicletype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUV"/>
+            <xs:enumeration value="CARAVAN"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
