@@ -9,8 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 //@RequestMapping(value = "/api/auth/user")
+@CrossOrigin(origins = { "http://localhost:4200" })
 public class NormalUserController {
 
     @Autowired
@@ -63,6 +66,20 @@ public class NormalUserController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             return new ResponseEntity<>(normalUserDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping(value = "/all")
+    public ResponseEntity<List<NormalUserDTO>> getNormalUsers() {
+        try {
+            List<NormalUserDTO> normalUsersDTO = normalUserService.findAllNormalUsers();
+            if (normalUsersDTO == null) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            return new ResponseEntity<>(normalUsersDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

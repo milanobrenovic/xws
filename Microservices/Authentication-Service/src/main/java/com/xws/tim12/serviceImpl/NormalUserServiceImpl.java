@@ -128,6 +128,19 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
         return new NormalUserDTO(normalUser);
     }
 
+    private List<NormalUserDTO> convertToDTO(List<NormalUser> normalUsers) {
+        List<NormalUserDTO> normalUserDTOS = new ArrayList<>();
+        for (NormalUser normalUser : normalUsers) {
+            normalUserDTOS.add(new NormalUserDTO(normalUser));
+        }
+        return normalUserDTOS;
+    }
+
+    @Override
+    public List<NormalUserDTO> findAllNormalUsers() {
+        return convertToDTO(normalUserRepository.findAll());
+    }
+
     private NormalUserDTO block(String username, boolean block) {
         if (normalUserRepository.findByUsername(username) == null) {
             return null;

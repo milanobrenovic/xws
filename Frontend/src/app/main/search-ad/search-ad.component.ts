@@ -67,7 +67,7 @@ export class SearchAdComponent implements OnInit {
           adObject.details = "/pages/vehicle-details/" + adObject.vehicle;
           formattedObject.push(adObject);
         });
-
+        
         this.adSearchDataSource = new MatTableDataSource(formattedObject);
         this.adSearchDataSource.paginator = this.paginator;
         this.adSearchDataSource.sort = this.sort;

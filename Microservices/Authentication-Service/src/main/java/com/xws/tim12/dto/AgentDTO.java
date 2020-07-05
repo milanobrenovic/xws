@@ -3,6 +3,7 @@ package com.xws.tim12.dto;
 import javax.validation.constraints.NotEmpty;
 
 import com.xws.tim12.enumeration.EntityType;
+import com.xws.tim12.model.Agent;
 
 public class AgentDTO {
 	
@@ -73,6 +74,20 @@ public class AgentDTO {
 		this.isBanned = agent.isBanned;
 	}
 
+	public AgentDTO(Agent agent) {
+		super();
+		this.id = agent.getId();
+		this.username = agent.getUsername();
+		this.password = agent.getPassword();
+		this.firstName = agent.getFirstName();
+		this.lastName = agent.getLastName();
+		this.email = agent.getEmail();
+		//this.entityType = agent.entityType;
+		this.companyName = agent.getCompanyName();
+		this.businessRegistrationNumber = agent.getBusinessRegistrationNumber();
+		this.address = agent.getAddress();
+		this.isBanned = agent.getBanned();
+	}
 
 	public Long getId() {
 		return id;

@@ -4,6 +4,7 @@ import com.xws.tim12.model.NormalUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NormalUserRepository extends JpaRepository<NormalUser, Long> {
+
 	NormalUser findOneById(Long id);
     NormalUser findByUsername(String username);
 

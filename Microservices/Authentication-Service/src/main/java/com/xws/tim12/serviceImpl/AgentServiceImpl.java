@@ -1,6 +1,9 @@
 package com.xws.tim12.serviceImpl;
 
+import com.xws.tim12.dto.AgentDTO;
+import com.xws.tim12.dto.NormalUserDTO;
 import com.xws.tim12.model.Agent;
+import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.repository.AgentRepository;
 import com.xws.tim12.service.AgentService;
 import com.xws.tim12.service.AuthService;
@@ -41,6 +44,28 @@ public class AgentServiceImpl implements UserDetailsService, AgentService {
     @Override
     public Agent findByUsername(String username) {
         return agentRepository.findByUsername(username);
+    }
+
+    @Override
+    public AgentDTO blockAgent(String username) {
+        return block(username, true);
+    }
+
+    @Override
+    public AgentDTO unblockAgent(String username) {
+        return block(username, false);
+    }
+
+    private AgentDTO block(String username, boolean block) {
+        if (agentRepository.findByUsername(username) == null) {
+            return null;
+        }
+
+        Agent agent = findByUsername(username);
+        agent.setBanned(block);
+        agentRepository.save(agent);
+
+        return new AgentDTO(agent);
     }
 
     @Override
