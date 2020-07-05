@@ -22,6 +22,8 @@ public class Vehicle {
     private Long id;
 	@Column
 	private Long idOwner;
+	@Column
+	private String ownerRole;
 	
     @Column(nullable = false)
     private String brand;
@@ -76,7 +78,40 @@ public class Vehicle {
 
     }
     
-    public Vehicle(Long id, Long idOwner, String brand, String model, FuelType fuelType,
+    
+    
+    
+    public Vehicle(Long id, Long idOwner, String ownerRole, String brand, String model, FuelType fuelType,
+			TransmissionType transmissionType, VehicleType vehicleType, Double price, Double travelledMileage,
+			Double plannedMileageToTravel, Boolean isMileageUnlimited, Boolean hasCollisionDamageWaiver,
+			Integer numberOfSeats, Integer grade, Boolean available, Double vehicleDiscount, Double insurancePrice,
+			List<VehicleImage> images) {
+		super();
+		this.id = id;
+		this.idOwner = idOwner;
+		this.ownerRole = ownerRole;
+		this.brand = brand;
+		this.model = model;
+		this.fuelType = fuelType;
+		this.transmissionType = transmissionType;
+		this.vehicleType = vehicleType;
+		this.price = price;
+		this.travelledMileage = travelledMileage;
+		this.plannedMileageToTravel = plannedMileageToTravel;
+		this.isMileageUnlimited = isMileageUnlimited;
+		this.hasCollisionDamageWaiver = hasCollisionDamageWaiver;
+		this.numberOfSeats = numberOfSeats;
+		this.grade = grade;
+		this.available = available;
+		this.vehicleDiscount = vehicleDiscount;
+		this.insurancePrice = insurancePrice;
+		this.images = images;
+	}
+
+
+
+
+	public Vehicle(Long id, Long idOwner, String brand, String model, FuelType fuelType,
 			TransmissionType transmissionType, VehicleType vehicleType, Double price, Double travelledMileage,
 			Double plannedMileageToTravel, Boolean isMileageUnlimited, Boolean hasCollisionDamageWaiver,
 			Integer numberOfSeats, Integer grade, Boolean available, Double vehicleDiscount, Double insurancePrice,
@@ -327,5 +362,21 @@ public class Vehicle {
                // ", images=" + images.toString() +
                 '}';
     }
+
+
+
+
+	public String getOwnerRole() {
+		return ownerRole;
+	}
+
+
+
+
+	public void setOwnerRole(String ownerRole) {
+		this.ownerRole = ownerRole;
+	}
+    
+    
 
 }

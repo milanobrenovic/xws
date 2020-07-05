@@ -6,6 +6,7 @@ public class VehicleDTO {
 
 	private Long id;
 	private Long idOwner;
+	private String ownerRole;
     private String brand;
 
     private String model;
@@ -42,6 +43,32 @@ public class VehicleDTO {
 	}
     
     
+	public VehicleDTO(Long id, Long idOwner, String ownerRole, String brand, String model, Long fuelType,
+			Long transmissionType, Long vehicleType, Double price, Double travelledMileage,
+			Double plannedMileageToTravel, Boolean isMileageUnlimited, Boolean hasCollisionDamageWaiver,
+			Integer numberOfSeats, Integer grade, Boolean available, Double vehicleDiscount, Double insurancePrice) {
+		super();
+		this.id = id;
+		this.idOwner = idOwner;
+		this.ownerRole = ownerRole;
+		this.brand = brand;
+		this.model = model;
+		this.fuelType = fuelType;
+		this.transmissionType = transmissionType;
+		this.vehicleType = vehicleType;
+		this.price = price;
+		this.travelledMileage = travelledMileage;
+		this.plannedMileageToTravel = plannedMileageToTravel;
+		this.isMileageUnlimited = isMileageUnlimited;
+		this.hasCollisionDamageWaiver = hasCollisionDamageWaiver;
+		this.numberOfSeats = numberOfSeats;
+		this.grade = grade;
+		this.available = available;
+		this.vehicleDiscount = vehicleDiscount;
+		this.insurancePrice = insurancePrice;
+	}
+
+
 	public VehicleDTO(Long id, Long idOwner, String brand, String model, Long fuelType, Long transmissionType,
 			Long vehicleType, Double price, Double travelledMileage, Double plannedMileageToTravel,
 			Boolean isMileageUnlimited, Boolean hasCollisionDamageWaiver, Integer numberOfSeats, Integer grade,
@@ -265,4 +292,15 @@ public class VehicleDTO {
 	public void setMileageUnlimited(Boolean mileageUnlimited) {
 		isMileageUnlimited = mileageUnlimited;
 	}
+
+
+	public String getOwnerRole() {
+		return ownerRole;
+	}
+
+
+	public void setOwnerRole(String ownerRole) {
+		this.ownerRole = ownerRole;
+	}
+	
 }
