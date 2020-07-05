@@ -11,7 +11,11 @@ export const environment = {
     login                   : "/authentication/api/auth/login",
     register                : "/authentication/api/normal-user/register",
     getAllNormalUsers       : "/authentication/api/normal-user/all",
+    blockNormalUser         : "/authentication/api/normal-user/block",
+    unblockNormalUser       : "/authentication/api/normal-user/unblock",
     getAllAgents            : "/authentication/api/agent/all",
+    blockAgent              : "/authentication/api/agent/block",
+    unblockAgent            : "/authentication/api/agent/unblock",
 
     vehicleDetails          : "/vehicle",
     getAllVehicles          : "/vehicle/all",
