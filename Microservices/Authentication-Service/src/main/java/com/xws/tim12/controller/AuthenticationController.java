@@ -1,9 +1,15 @@
 package com.xws.tim12.controller;
 
+import com.xws.tim12.dto.AgentDTO;
 import com.xws.tim12.dto.LoggedInUserDTO;
+import com.xws.tim12.dto.NormalUserDTO;
+import com.xws.tim12.model.Agent;
+import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.security.TokenUtils;
 import com.xws.tim12.security.auth.JwtAuthenticationRequest;
+import com.xws.tim12.service.AgentService;
 import com.xws.tim12.service.AuthService;
+import com.xws.tim12.service.NormalUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,6 +29,13 @@ public class AuthenticationController {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private NormalUserService normalUserService;
+
+    @Autowired
+    private AgentService agentService;
+
     @Autowired 
     private TokenUtils tokenUtils;
 
@@ -35,6 +48,19 @@ public class AuthenticationController {
             if (loggedInUserDTO == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             } else {
+                if (loggedInUserDTO.getRole().equals("ROLE_NORMAL_USER")) {
+                    NormalUser normalUser = normalUserService.findOneByUsername(loggedInUserDTO.getUsername());
+                    NormalUserDTO normalUserDTO = new NormalUserDTO(normalUser);
+                    if (normalUserDTO.getIsBanned()) {
+                        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                    }
+                } else if (loggedInUserDTO.getRole().equals("ROLE_AGENT")) {
+                    Agent agent = agentService.findByUsername(loggedInUserDTO.getUsername());
+                    AgentDTO agentDTO = new AgentDTO(agent);
+                    if (agentDTO.getIsBanned()) {
+                        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                    }
+                }
                 return new ResponseEntity<>(loggedInUserDTO, HttpStatus.OK);
             }
         } catch (AuthenticationException e) {

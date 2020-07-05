@@ -6,6 +6,7 @@ import { UserService } from 'app/services/user.service';
 import { Router } from '@angular/router';
 import { UserLoginRequest } from 'app/models/userLoginRequest';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'login',
@@ -63,7 +64,6 @@ export class LoginComponent implements OnInit {
           password  : ['', Validators.required]
 			});
 			
-			this.redirectToHomePage();
   }
 
   login() : void {
@@ -77,9 +77,13 @@ export class LoginComponent implements OnInit {
 				this._toastrService.success("Login successful.", "Success");
 				this.redirectToHomePage();
 			},
-			(e) => {
-				this._toastrService.error("Login failed, invalid credentials.", "Error");
-				// console.log(e);
+			(e: HttpErrorResponse) => {
+                if (e.status == 401) {
+                    this._toastrService.error("You are banned, you can't login.", "Failed to login");
+                    this._router.navigate(['/pages/login']);
+                } else {
+                    this._toastrService.error(e.message, "Failed to login");
+                }
 			}
 		);
 	}
