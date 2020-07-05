@@ -1,0 +1,137 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Normal users control panel
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Here you can take control as the administrator to ban any of the registered normal users.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+
+			<table mat-table [dataSource]="normalUsersDataSource" class="mat-elevation-z8">
+
+				<ng-container matColumnDef="id">
+					<th mat-header-cell *matHeaderCellDef> Id </th>
+					<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="username">
+					<th mat-header-cell *matHeaderCellDef> Username </th>
+					<td mat-cell *matCellDef="let element"> {{element.username}} </td>
+				</ng-container>
+				
+				<ng-container matColumnDef="firstName">
+					<th mat-header-cell *matHeaderCellDef> First name </th>
+					<td mat-cell *matCellDef="let element"> {{element.firstName == null ? "N/A" : element.firstName}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="lastName">
+					<th mat-header-cell *matHeaderCellDef> Last name </th>
+					<td mat-cell *matCellDef="let element"> {{element.lastName == null ? "N/A" : element.lastName}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef> Email </th>
+					<td mat-cell *matCellDef="let element"> {{element.email == null ? "N/A" : element.email}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="country">
+					<th mat-header-cell *matHeaderCellDef> Country </th>
+					<td mat-cell *matCellDef="let element"> {{element.country == null ? "N/A" : element.country}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="phoneNumber">
+					<th mat-header-cell *matHeaderCellDef> Phone number </th>
+					<td mat-cell *matCellDef="let element"> {{element.phoneNumber == null ? "N/A" : element.phoneNumber}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="numberOfAds">
+					<th mat-header-cell *matHeaderCellDef> Number of ads </th>
+					<td mat-cell *matCellDef="let element"> {{element.numberOfAds == null ? "N/A" : element.numberOfAds}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="isBanned">
+					<th mat-header-cell *matHeaderCellDef> Is banned? </th>
+					<td mat-cell *matCellDef="let element"> {{element.isBanned == null ? "N/A" : element.isBanned ? "Yes" : "No"}} </td>
+				</ng-container>
+			
+				<tr mat-header-row *matHeaderRowDef="displayedNormalUserColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedNormalUserColumns;"></tr>
+
+			</table>
+
+		</mat-card-content>
+	</mat-card>
+
+	<br>
+
+	<mat-card>
+		<mat-card-title>
+			Agents control panel
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Here you can take control as the administrator to ban any of the registered agents.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+
+			<table mat-table [dataSource]="agentsDataSource" class="mat-elevation-z8">
+
+				<ng-container matColumnDef="id">
+					<th mat-header-cell *matHeaderCellDef> Id </th>
+					<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="username">
+					<th mat-header-cell *matHeaderCellDef> Username </th>
+					<td mat-cell *matCellDef="let element"> {{element.username}} </td>
+				</ng-container>
+				
+				<ng-container matColumnDef="firstName">
+					<th mat-header-cell *matHeaderCellDef> First name </th>
+					<td mat-cell *matCellDef="let element"> {{element.firstName == null ? "N/A" : element.firstName}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="lastName">
+					<th mat-header-cell *matHeaderCellDef> Last name </th>
+					<td mat-cell *matCellDef="let element"> {{element.lastName == null ? "N/A" : element.lastName}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef> Email </th>
+					<td mat-cell *matCellDef="let element"> {{element.email == null ? "N/A" : element.email}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="companyName">
+					<th mat-header-cell *matHeaderCellDef> Company name </th>
+					<td mat-cell *matCellDef="let element"> {{element.companyName == null ? "N/A" : element.companyName}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="businessRegistrationNumber">
+					<th mat-header-cell *matHeaderCellDef> Business registration number </th>
+					<td mat-cell *matCellDef="let element"> {{element.businessRegistrationNumber == null ? "N/A" : element.businessRegistrationNumber}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="address">
+					<th mat-header-cell *matHeaderCellDef> Address </th>
+					<td mat-cell *matCellDef="let element"> {{element.address == null ? "N/A" : element.address}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="isBanned">
+					<th mat-header-cell *matHeaderCellDef> Is banned? </th>
+					<td mat-cell *matCellDef="let element"> {{element.isBanned == null ? "N/A" : element.isBanned ? "Yes" : "No"}} </td>
+				</ng-container>
+			
+				<tr mat-header-row *matHeaderRowDef="displayedAgentColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedAgentColumns;"></tr>
+
+			</table>
+
+		</mat-card-content>
+	</mat-card>
+
+</div>

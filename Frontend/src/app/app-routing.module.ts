@@ -16,6 +16,7 @@ import { MessagesComponent } from './main/messages/messages.component';
 import { RequestToRentComponent } from './main/request-to-rent/request-to-rent.component';
 import { RequestToRentDetails } from './models/requestToRentDetails';
 import { RequestDetailsComponent } from './main/request-details/request-details.component';
+import { UserAccessComponent } from './main/user-access/user-access.component';
 
 const appRoutes: Routes = [
 
@@ -85,6 +86,11 @@ const appRoutes: Routes = [
     {
         path        : 'pages/request-to-rent-details',
         component   : RequestDetailsComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/user-access',
+        component   : UserAccessComponent,
         // canActivate : [AdminGuard],
     },
 

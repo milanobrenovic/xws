@@ -7,17 +7,24 @@ export const environment = {
     hmr                     : false,
     itemsPerPage            : 5,
     baseUrl                 : "http://localhost:8087",
+
     login                   : "/authentication/api/auth/login",
     register                : "/authentication/api/normal-user/register",
-    createNewVehicle        : "/vehicle/createVehicle",
-    createNewAd             : "/ad-service/create",
-    getAllVehicles          : "/vehicle/all",
-    searchAd                : "/ad-service/search",
+    getAllNormalUsers       : "/authentication/api/normal-user/all",
+    getAllAgents            : "/authentication/api/agent/all",
+
     vehicleDetails          : "/vehicle",
+    getAllVehicles          : "/vehicle/all",
+    createNewVehicle        : "/vehicle/createVehicle",
+
+    createNewAd             : "/ad-service/create",
+    getAllAds               : "/ad-service/getAds",
+    searchAd                : "/ad-service/search",
+
     getAllSentMessages      : "/message-microservice/api/sender/allMessages",
     getAllReceivedMessages  : "/message-microservice/api/receiver/allMessages",
+
     createCarRentRequest    : "/request-microservice/api/request/createRequest",
-    getAllAds               : "/ad-service/getAds",
     getRequestDetails       : "/request-microservice/api/request/requestToShowForUser",
     acceptRequestToRent     : "/request-microservice/api/request/acceptRequest",
     declineRequestToRent    : "/request-microservice/api/request/declineRequest",

@@ -6,15 +6,20 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { UserTokenState } from 'app/models/userTokenState';
 import { UserLoginRequest } from 'app/models/userLoginRequest';
+import { List } from 'lodash';
+import { NormalUser } from 'app/models/normalUser';
+import { Agent } from 'app/models/agent';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url = environment.baseUrl;
-  _login = this.url + environment.login;
-  _register = this.url + environment.register;
+  private _url = environment.baseUrl;
+  private _login = this._url + environment.login;
+  private _register = this._url + environment.register;
+  private _getAllNormalUsers = this._url + environment.getAllNormalUsers;
+  private _getAllAgents = this._url + environment.getAllAgents;
 
   jwt_access_token = null;
   req: UserTokenState;
@@ -59,6 +64,14 @@ export class UserService {
 
   isLoggedIn(): boolean {
     return localStorage.getItem('LoggedInUser') !== null;
+  }
+
+  public getAllNormalUsers() {
+    return this.httpClient.get(this._getAllNormalUsers);
+  }
+
+  public getAllAgents() {
+    return this.httpClient.get(this._getAllAgents);
   }
 
 }

@@ -3,6 +3,7 @@ package com.xws.tim12.dto;
 import javax.validation.constraints.NotEmpty;
 
 import com.xws.tim12.model.NormalUser;
+import net.minidev.json.annotate.JsonIgnore;
 
 public class NormalUserDTO {
 	
@@ -11,6 +12,7 @@ public class NormalUserDTO {
 	@NotEmpty(message = "Username is empty.")
     private String username;
 
+	@JsonIgnore
 	@NotEmpty(message = "Password is empty.")
     private String password;
 
