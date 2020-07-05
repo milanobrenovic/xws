@@ -16,6 +16,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AgentServiceImpl implements UserDetailsService, AgentService {
 
@@ -54,6 +57,19 @@ public class AgentServiceImpl implements UserDetailsService, AgentService {
     @Override
     public AgentDTO unblockAgent(String username) {
         return block(username, false);
+    }
+
+    @Override
+    public List<AgentDTO> findAllAgents() {
+        return convertToDTO(agentRepository.findAll());
+    }
+
+    private List<AgentDTO> convertToDTO(List<Agent> agents) {
+        List<AgentDTO> agentDTOS = new ArrayList<>();
+        for (Agent agent : agents) {
+            agentDTOS.add(new AgentDTO(agent));
+        }
+        return agentDTOS;
     }
 
     private AgentDTO block(String username, boolean block) {

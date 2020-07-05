@@ -10,5 +10,6 @@ public interface AgentService {
     Agent findByUsername(String username);
     AgentDTO blockAgent(String username);
     AgentDTO unblockAgent(String username);
+    List<AgentDTO> findAllAgents();
 
 }

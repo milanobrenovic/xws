@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping(value = "/api/auth/user")
+@RequestMapping(value = "/api/normal-user")
 @CrossOrigin(origins = { "http://localhost:4200" })
 public class NormalUserController {
 
