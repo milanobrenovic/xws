@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { List } from 'lodash';
 import { Vehicle } from 'app/models/vehicle';
 import { formatDate } from '@angular/common';
+import { AdService } from 'app/services/ad.service';
 
 @Component({
   selector: 'app-create-new-ad',
@@ -22,6 +23,7 @@ export class CreateNewAdComponent implements OnInit {
     private _toastrService: ToastrService,
     private _vehicleService: VehicleService,
     private _formBuilder: FormBuilder,
+    private _adService: AdService,
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +54,7 @@ export class CreateNewAdComponent implements OnInit {
       new Date(pickupFrom),
       new Date(pickupTo),
     );
-    this._vehicleService.createNewAd(ad).subscribe(
+    this._adService.createNewAd(ad).subscribe(
       () => {
         this.createNewAdForm.reset();
 				this._toastrService.success("New ad created successfully.", "Success");

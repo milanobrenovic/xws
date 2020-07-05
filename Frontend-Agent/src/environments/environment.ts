@@ -8,14 +8,17 @@ export const environment = {
     itemsPerPage        : 5,
     baseUrl             : "http://localhost:8080",
     login               : "/api/auth/login",
-    register            : "/authentication/register",
+    register            : "/api/auth/user/register",
     createNewVehicle    : "/api/vehicle/createVehicle",
     createNewAd         : "/api/ad/create",
     getAllVehicles      : "/api/vehicle/all",
-    searchAd            : "/ad-service/search",
-    vehicleDetails      : "/vehicle",
+    searchAd            : "/api/ad/search",
+    vehicleDetails      : "/api/vehicle",
     vehicleMostKM       : "/api/vehicle/mostKM",
-    vehicleBestGrade    : "/api/vehicle/best-grade"
+    vehicleBestGrade    : "/api/vehicle/best-grade",
+    uploadImage         : "/api/image/uploadImage",
+    updateVehicle       : "/api/vehicle",
+    getImage            : "/api/image/getImage"
 };
 
 /*

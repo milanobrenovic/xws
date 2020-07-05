@@ -3,7 +3,9 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { VehicleService } from 'app/services/vehicle.service';
 import { Vehicle } from 'app/models/vehicle';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ImageFile } from 'app/models/image';
 
 @Component({
   selector: 'app-create-new-vehicle',
@@ -37,6 +39,7 @@ export class CreateNewVehicleComponent implements OnInit {
       available: new FormControl(false, [Validators.required]),
       vehicleDiscount: new FormControl(null, [Validators.required]),
       insurancePrice: new FormControl(null, [Validators.required]),
+
     });
   }
 

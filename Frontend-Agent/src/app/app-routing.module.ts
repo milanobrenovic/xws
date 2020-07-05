@@ -13,6 +13,7 @@ import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-
 import { SearchAdComponent } from './main/search-ad/search-ad.component';
 import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.component';
 import { VehicleStatisticComponent } from './main/vehicle-statistic/vehicle-statistic.component';
+import { AddImagesComponent } from './main/add-images/add-images.component';
 
 const appRoutes: Routes = [
 
@@ -74,7 +75,11 @@ const appRoutes: Routes = [
         component   : VehicleStatisticComponent,
         // canActivate : [AdminGuard],
     },
-
+    {
+        path        : 'pages/add-images',
+        component   : AddImagesComponent,
+        // canActivate : [AdminGuard],
+    },
 
     //==============================================================================//
     // ERRORS

@@ -75,6 +75,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { SearchAdComponent } from './main/search-ad/search-ad.component';
 import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.component';
 import { VehicleStatisticComponent } from './main/vehicle-statistic/vehicle-statistic.component';
+import { AddImagesComponent } from './main/add-images/add-images.component';
 
 @NgModule({
 	declarations: [
@@ -92,6 +93,7 @@ import { VehicleStatisticComponent } from './main/vehicle-statistic/vehicle-stat
 		SearchAdComponent,
 		VehicleDetailsComponent,
 		VehicleStatisticComponent,
+		AddImagesComponent,
 	],
 	imports: [
 		BrowserModule,

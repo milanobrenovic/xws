@@ -101,15 +101,6 @@ public class Vehicle {
 		this.insurancePrice = insurancePrice;
 		this.images = images;
 	}
-    	
-	public Long getIdOwner() {
-		return idOwner;
-	}
-
-	public void setIdOwner(Long idOwner) {
-		this.idOwner = idOwner;
-	}
-	
 
 	public Vehicle(Long idOwner, String brand, String model, FuelType fuelType, TransmissionType transmissionType,
 			VehicleType vehicleType, Double price, Double travelledMileage, Double plannedMileageToTravel,
@@ -177,6 +168,14 @@ public class Vehicle {
     public void setId(Long id) {
         this.id = id;
     }
+    
+	public Long getIdOwner() {
+		return idOwner;
+	}
+
+	public void setIdOwner(Long idOwner) {
+		this.idOwner = idOwner;
+	}
 
     public String getBrand() {
         return brand;

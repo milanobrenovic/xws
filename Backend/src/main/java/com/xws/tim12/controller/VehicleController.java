@@ -3,6 +3,8 @@ package com.xws.tim12.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,12 +12,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xws.tim12.dto.VehicleDTO;
 import com.xws.tim12.model.Vehicle;
+import com.xws.tim12.model.VehicleImage;
+import com.xws.tim12.service.VehicleImageService;
 import com.xws.tim12.service.VehicleService;
 
 @RestController
@@ -24,6 +29,9 @@ public class VehicleController {
 	
 	@Autowired
 	private VehicleService vehicleService;
+	
+	@Autowired
+	private VehicleImageService vehicleImageService;
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<VehicleDTO> getVehicle(@PathVariable Long id){
@@ -58,6 +66,7 @@ public class VehicleController {
 		v.setVehicleDiscount(vehicleDTO.getVehicleDiscount());
 		v.setVehicleType(vehicleDTO.getVehicleType());
 		v.setNumberOfSeats(vehicleDTO.getNumberOfSeats());
+		v.setImages(new ArrayList<VehicleImage>());
 	
 		vehicleService.save(v);
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.CREATED);
@@ -79,6 +88,26 @@ public class VehicleController {
 		}
 
 		return new ResponseEntity<>(vehicleDTOs, HttpStatus.OK);
+	}
+	
+	
+	// Ovaj endpoint sluzi za ubacianje slika u vozilo
+	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<VehicleDTO> updateVehicle(@RequestBody VehicleDTO vehicleDTO, @PathVariable Long id){
+		Vehicle vehicle = vehicleService.findOne(vehicleDTO.getId());
+		
+		if(vehicle == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		List<VehicleImage> images = vehicle.getImages();
+		VehicleImage image = vehicleImageService.findOne(id);
+		images.add(image);
+		vehicle.setImages(images);
+		
+		vehicle = vehicleService.save(vehicle);
+		
+		return new ResponseEntity<>(new VehicleDTO(vehicle), HttpStatus.OK);
 	}
 	
 	@GetMapping("/mostKM")

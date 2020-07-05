@@ -48,13 +48,13 @@ export class SearchAdComponent implements OnInit {
     const pickupFrom = formatDate(this.searchAdForm.value.pickupFrom, 'yyyy-MM-dd HH:mm', 'en-US');
     const pickupTo = formatDate(this.searchAdForm.value.pickupTo, 'yyyy-MM-dd HH:mm', 'en-US');
 
-    const ad = new Ad(
+    var ad = new Ad(
       null,
       this.searchAdForm.value.pickupLocation,
       new Date(pickupFrom),
       new Date(pickupTo),
     );
-
+      
     this._adService.searchAd(ad).subscribe(
       (data: any) => {
         var formattedObject: Array<Ad> = [];
@@ -64,7 +64,7 @@ export class SearchAdComponent implements OnInit {
           const pickupTo = formatDate(adObject.pickupTo, 'yyyy-MM-dd HH:mm', 'en-US');
           adObject.pickupFrom = pickupFrom;
           adObject.pickupTo = pickupTo;
-          adObject.details = "/pages/vehicle-details/" + adObject.vehicle;
+          adObject.details = "/pages/vehicle-details/" + adObject.vehicle.id;
           formattedObject.push(adObject);
         });
 

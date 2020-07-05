@@ -48,6 +48,13 @@ export const navigation: FuseNavigation[] = [
 				icon		: 'assessment',
 				url			: '/pages/vehicle-statistic',
 			},
+			{
+				id			: 'image',
+				title		: 'Add Images',
+				type		: 'item',
+				icon		: 'image',
+				url			: '/pages/add-images',
+			},
 		],
 	},
 ];

@@ -74,6 +74,7 @@ public class AdController {
     @PostMapping(value = "/search")
     public ResponseEntity<List<AdDTO>> searchAd(@RequestBody AdDTO adDTO) {
         try {
+        	System.out.println(adDTO.getPickupLocation());
             List<AdDTO> searchedAdDTO = adService.findByPickupLocationAndPickupFromLessThanEqualAndPickupToGreaterThanEqual(
                     adDTO.getPickupLocation(),
                     adDTO.getPickupFrom(),
@@ -82,6 +83,7 @@ public class AdController {
             if (searchedAdDTO == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
+            System.out.println(searchedAdDTO.size());
             return new ResponseEntity<>(searchedAdDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

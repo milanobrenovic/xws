@@ -78,6 +78,10 @@
 
 			</table>
 			
+			<mat-divider></mat-divider>
+
+			<img [src]="domSanitizer.bypassSecurityTrustUrl(image)"/>
+
 		</mat-card-content>
 	</mat-card>
 
