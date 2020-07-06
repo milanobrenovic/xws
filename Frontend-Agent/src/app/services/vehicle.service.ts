@@ -19,6 +19,7 @@ export class VehicleService {
   _uploadImage = this.url + environment.uploadImage;
   _updateVehicle = this.url + environment.updateVehicle;
   _getImage = this.url + environment.getImage;
+  _getAllImages = this.url + environment.getAllImages;
 
   constructor(
     private httpClient: HttpClient,
@@ -58,6 +59,10 @@ export class VehicleService {
 
   public getImage(id: number){
     return this.httpClient.get(this._getImage + "/" + id, {responseType: 'blob'});
+  }
+
+  public getAllImages(id: number){
+    return this.httpClient.get(this._getAllImages + "/" + id);
   }
 
 }

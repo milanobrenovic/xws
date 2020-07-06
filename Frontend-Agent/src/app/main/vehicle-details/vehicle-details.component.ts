@@ -24,7 +24,8 @@ export class VehicleDetailsComponent implements OnInit {
   public itemsPerPage = environment.itemsPerPage;
   public vehicleDetailsDataSource = new MatTableDataSource<Vehicle>();
 
-  public image = undefined;
+  public images = undefined;
+  public imageIDs : Array<number>
 
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
@@ -41,7 +42,7 @@ export class VehicleDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    this.fetchImage();
+    this.fetchAllImages();
   }
 
   private fetchData() {
@@ -60,18 +61,34 @@ export class VehicleDetailsComponent implements OnInit {
     );
   }
 
-  private fetchImage(){
-    const id = this._route.snapshot.paramMap.get("id");
-    this._vehicleService.getImage(+id).subscribe(
+  public fetchImage(id: number){
+    
+    this._vehicleService.getImage(id).subscribe(
       (data: any) => { 
         console.log(data);
         const reader = new FileReader();
-        reader.onload = (e) => this.image = e.target.result;
+        reader.onload = (e) => this.images = e.target.result;
         reader.readAsDataURL(new Blob([data]));
-
       },
       (e: HttpErrorResponse) => {
-				this._toastrService.error(e.message, "Failed to get images about this vehicle");
+				this._toastrService.error(e.message, "Failed to get one of the images of this vehicle");
+      }
+
+    );
+  }
+
+  private fetchAllImages(){
+    const id = this._route.snapshot.paramMap.get("id");
+    this._vehicleService.getAllImages(+id).subscribe(
+      (data: any) => { 
+        console.log(data);
+        this.imageIDs = data;
+        this.imageIDs.forEach(element => {
+          this.fetchImage(element);
+        });
+      },
+      (e: HttpErrorResponse) => {
+				this._toastrService.error(e.message, "Failed to get images of this vehicle");
       }
 
     );

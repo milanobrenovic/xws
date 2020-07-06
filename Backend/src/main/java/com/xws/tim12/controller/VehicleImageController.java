@@ -69,5 +69,4 @@ public class VehicleImageController {
 	                .body(new ByteArrayResource(retrievedImage.getImageBytes()));
 	}
 	
-	
 }

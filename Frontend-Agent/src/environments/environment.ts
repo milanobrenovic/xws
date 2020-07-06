@@ -18,7 +18,8 @@ export const environment = {
     vehicleBestGrade    : "/api/vehicle/best-grade",
     uploadImage         : "/api/image/uploadImage",
     updateVehicle       : "/api/vehicle",
-    getImage            : "/api/image/getImage"
+    getImage            : "/api/image/getImage",
+    getAllImages        : "/api/vehicle/images"
 };
 
 /*

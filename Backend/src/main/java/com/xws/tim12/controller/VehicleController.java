@@ -3,9 +3,9 @@ package com.xws.tim12.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -157,6 +157,25 @@ public class VehicleController {
 		VehicleDTO vehicleDTO = new VehicleDTO(v);
 		
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
+	}
+	
+	@GetMapping("/images/{id}")
+	public ResponseEntity<List<Long>> getAllImagesOfVehicle(@PathVariable("id") Long id) {
+		Vehicle vehicle = vehicleService.findOne(id);
+		
+		List<VehicleImage> images = vehicle.getImages();
+		
+		if(images == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		List<Long> imagesIds = new ArrayList<>();
+		for (VehicleImage img : images) {
+			imagesIds.add(img.getId());
+		}
+		
+		return new ResponseEntity<>(imagesIds, HttpStatus.OK);
+		
 	}
 	
 }
