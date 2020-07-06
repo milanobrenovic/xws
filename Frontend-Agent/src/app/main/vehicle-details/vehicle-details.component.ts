@@ -8,8 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { VehicleService } from 'app/services/vehicle.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -24,8 +23,8 @@ export class VehicleDetailsComponent implements OnInit {
   public itemsPerPage = environment.itemsPerPage;
   public vehicleDetailsDataSource = new MatTableDataSource<Vehicle>();
 
-  public images = undefined;
-  public imageIDs : Array<number>
+  public images: Array<object> = [];
+  public imageIDs: Array<number>;
 
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
@@ -42,6 +41,7 @@ export class VehicleDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+    // this.fetchImage(1);
     this.fetchAllImages();
   }
 
@@ -62,18 +62,23 @@ export class VehicleDetailsComponent implements OnInit {
   }
 
   public fetchImage(id: number){
-    
     this._vehicleService.getImage(id).subscribe(
       (data: any) => { 
-        console.log(data);
         const reader = new FileReader();
-        reader.onload = (e) => this.images = e.target.result;
+        reader.onload = (e) => {
+          // console.log(e.target.result);
+          console.log(this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+          + e.target.result));
+          //this.images.push(this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+            //    + e.target.result));
+          this.images.push(e.target.result as object);
+        }
         reader.readAsDataURL(new Blob([data]));
+        // console.log(">>> " + typeof(this.images));
       },
       (e: HttpErrorResponse) => {
 				this._toastrService.error(e.message, "Failed to get one of the images of this vehicle");
       }
-
     );
   }
 
@@ -81,7 +86,7 @@ export class VehicleDetailsComponent implements OnInit {
     const id = this._route.snapshot.paramMap.get("id");
     this._vehicleService.getAllImages(+id).subscribe(
       (data: any) => { 
-        console.log(data);
+        // console.log(data);
         this.imageIDs = data;
         this.imageIDs.forEach(element => {
           this.fetchImage(element);
@@ -90,7 +95,6 @@ export class VehicleDetailsComponent implements OnInit {
       (e: HttpErrorResponse) => {
 				this._toastrService.error(e.message, "Failed to get images of this vehicle");
       }
-
     );
   }
 

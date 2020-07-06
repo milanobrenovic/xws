@@ -79,14 +79,12 @@
 			</table>
 
 			<ul>
-				<li *ngfor="let i of images">
-					fetchData(i);
-					<img [src]="domSanitizer.bypassSecurityTrustUrl(image)"/>
+				<li *ngFor="let image of images">
+					<img [src]="domSanitizer.bypassSecurityTrustUrl(image)">
+					<br>
 				</li>
 			</ul>
 			<mat-divider></mat-divider>
-
-			<img [src]="domSanitizer.bypassSecurityTrustUrl(image)"/>
 
 		</mat-card-content>
 	</mat-card>
