@@ -77,6 +77,14 @@
 				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 			</table>
+
+			<mat-divider></mat-divider>
+			<ul>
+				<li *ngFor="let image of images">
+					<img [src]="domSanitizer.bypassSecurityTrustUrl(image)">
+					<br>
+				</li>
+			</ul>
 			
 		</mat-card-content>
 	</mat-card>

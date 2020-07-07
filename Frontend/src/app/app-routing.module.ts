@@ -17,6 +17,7 @@ import { RequestToRentComponent } from './main/request-to-rent/request-to-rent.c
 import { RequestToRentDetails } from './models/requestToRentDetails';
 import { RequestDetailsComponent } from './main/request-details/request-details.component';
 import { UserAccessComponent } from './main/user-access/user-access.component';
+import { AddImagesComponent } from './main/add-images/add-images.component';
 import { AdminGuard } from './guards/admin.guard';
 
 const appRoutes: Routes = [
@@ -93,6 +94,11 @@ const appRoutes: Routes = [
         path        : 'pages/user-access',
         component   : UserAccessComponent,
         canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/add-images',
+        component   : AddImagesComponent,
+        // canActivate : [AdminGuard],
     },
 
 

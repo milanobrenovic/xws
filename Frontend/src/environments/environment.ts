@@ -20,6 +20,10 @@ export const environment = {
     vehicleDetails          : "/vehicle",
     getAllVehicles          : "/vehicle/all",
     createNewVehicle        : "/vehicle/createVehicle",
+    uploadImage             : "/vehicle/uploadImage",
+    updateVehicle           : "/vehicle",
+    getImage                : "/vehicle/getImage",
+    getAllImages            : "/vehicle/images",
 
     createNewAd             : "/ad-service/create",
     getAllAds               : "/ad-service/getAds",

@@ -19,17 +19,20 @@ public class AdServiceImpl implements AdService {
     @Autowired
     private AdRepository adRepository;
 
-    @Autowired VehicleService vehicleService;
+    @Autowired
+    private VehicleService vehicleService;
     
     @Override
     public AdDTO create(AdDTO adDTO) {
         Ad newAd = new Ad(
-            vehicleService.convertFromDTO(adDTO.getVehicle()),
+            vehicleService.findOne(adDTO.getVehicle().getId()),
             adDTO.getComments(),
             adDTO.getPickupLocation(),
             adDTO.getPickupFrom(),
             adDTO.getPickupTo()
         );
+        System.out.println("BROJ VOZILA U SISTEMU");
+        System.out.println(vehicleService.findAll().size());
         return new AdDTO(adRepository.save(newAd));
     }
 

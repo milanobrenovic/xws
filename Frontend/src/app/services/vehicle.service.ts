@@ -15,6 +15,10 @@ export class VehicleService {
   _createNewAd = this.url + environment.createNewAd;
   _getAllVehicles = this.url + environment.getAllVehicles;
   _getVehicleDetails = this.url + environment.vehicleDetails;
+  _uploadImage = this.url + environment.uploadImage;
+  _updateVehicle = this.url + environment.updateVehicle;
+  _getImage = this.url + environment.getImage;
+  _getAllImages = this.url + environment.getAllImages;
 
   constructor(
     private httpClient: HttpClient,
@@ -34,6 +38,26 @@ export class VehicleService {
 
   public getVehicleById(id: number) {
     return this.httpClient.get(this._getVehicleDetails + "/" + id);
+  }
+
+  public uploadImage(image: File): Observable<any> {
+    const formData = new FormData();
+
+    formData.append("imageFile", image);
+
+    return this.httpClient.post(this._uploadImage, formData);
+  }
+
+  public updateVehicle(vehicle: Vehicle, id: BigInteger){
+    return this.httpClient.put(this._updateVehicle + "/" + id, vehicle);
+  }
+
+  public getImage(id: number){
+    return this.httpClient.get(this._getImage + "/" + id, {responseType: 'blob'});
+  }
+
+  public getAllImages(id: number){
+    return this.httpClient.get(this._getAllImages + "/" + id);
   }
 
 }

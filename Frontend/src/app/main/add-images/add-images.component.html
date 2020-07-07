@@ -1,0 +1,57 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Add images to your existing vehicle
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				First upload an image and then choose vehicle which you wish to add it
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="addImageForm">
+				
+				<table class="form-full-width">
+                    <tr>
+						<td>
+							<mat-label class="image-upload-container btn btn-bwm">
+								<span>Add Image</span>
+								<input #imageInput
+									   type="file"
+									   accept="image/*"
+									   (change)="processFile(imageInput)">
+							</mat-label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Choose existing vehicle</mat-label>
+								<mat-select formControlName="selectedVehicle" required>
+									<mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+										Brand: {{vehicle.brand}}, Model: {{vehicle.model}}
+									</mat-option>
+								</mat-select>
+								<mat-error
+									*ngIf="addImageForm.get('selectedVehicle').errors && addImageForm.get('selectedVehicle').errors['required']">
+									Please select a vehicle.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button mat-raised-button color="primary" (click)="adImage()">
+								Ad image to vehicle
+							</button>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+
+		</mat-card-content>
+	</mat-card>
+
+</div>

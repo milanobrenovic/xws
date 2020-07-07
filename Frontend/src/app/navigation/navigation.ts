@@ -69,6 +69,13 @@ export const navigation: FuseNavigation[] = [
 				icon		: 'person',
 				url			: '/pages/register',
 			},
+			{
+				id			: 'image',
+				title		: 'Add Images',
+				type		: 'item',
+				icon		: 'image',
+				url			: '/pages/add-images',
+			},
 		],
 	},
 ];

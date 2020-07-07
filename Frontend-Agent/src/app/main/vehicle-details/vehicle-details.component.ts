@@ -41,7 +41,6 @@ export class VehicleDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    // this.fetchImage(1);
     this.fetchAllImages();
   }
 
@@ -66,15 +65,9 @@ export class VehicleDetailsComponent implements OnInit {
       (data: any) => { 
         const reader = new FileReader();
         reader.onload = (e) => {
-          // console.log(e.target.result);
-          console.log(this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-          + e.target.result));
-          //this.images.push(this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-            //    + e.target.result));
           this.images.push(e.target.result as object);
         }
         reader.readAsDataURL(new Blob([data]));
-        // console.log(">>> " + typeof(this.images));
       },
       (e: HttpErrorResponse) => {
 				this._toastrService.error(e.message, "Failed to get one of the images of this vehicle");
@@ -86,7 +79,6 @@ export class VehicleDetailsComponent implements OnInit {
     const id = this._route.snapshot.paramMap.get("id");
     this._vehicleService.getAllImages(+id).subscribe(
       (data: any) => { 
-        // console.log(data);
         this.imageIDs = data;
         this.imageIDs.forEach(element => {
           this.fetchImage(element);

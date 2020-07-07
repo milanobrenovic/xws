@@ -78,6 +78,7 @@ import { MessagesComponent } from './main/messages/messages.component';
 import { RequestToRentComponent } from './main/request-to-rent/request-to-rent.component';
 import { RequestDetailsComponent } from './main/request-details/request-details.component';
 import { UserAccessComponent } from './main/user-access/user-access.component';
+import { AddImagesComponent } from './main/add-images/add-images.component';
 
 @NgModule({
 	declarations: [
@@ -98,6 +99,7 @@ import { UserAccessComponent } from './main/user-access/user-access.component';
 		RequestToRentComponent,
 		RequestDetailsComponent,
 		UserAccessComponent,
+		AddImagesComponent,
 	],
 	imports: [
 		BrowserModule,
