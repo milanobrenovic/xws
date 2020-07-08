@@ -19,6 +19,9 @@ import { RequestDetailsComponent } from './main/request-details/request-details.
 import { UserAccessComponent } from './main/user-access/user-access.component';
 import { AddImagesComponent } from './main/add-images/add-images.component';
 import { AdminGuard } from './guards/admin.guard';
+import { FuelTypesComponent } from './main/fuel-types/fuel-types.component';
+import { TransmissionTypesComponent } from './main/transmission-types/transmission-types.component';
+import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.component';
 
 const appRoutes: Routes = [
 
@@ -98,6 +101,21 @@ const appRoutes: Routes = [
     {
         path        : 'pages/add-images',
         component   : AddImagesComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/fuel-types',
+        component   : FuelTypesComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/transmission-types',
+        component   : TransmissionTypesComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/vehicle-types',
+        component   : VehicleTypesComponent,
         // canActivate : [AdminGuard],
     },
 

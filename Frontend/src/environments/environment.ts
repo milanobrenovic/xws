@@ -24,6 +24,12 @@ export const environment = {
     updateVehicle           : "/vehicle",
     getImage                : "/vehicle/getImage",
     getAllImages            : "/vehicle/images",
+    getAllFuelTypes         : "/vehicle/fueltype/all",
+    getAllTransmissionTypes : "/vehicle/transmissiontype/all",
+    getAllVehicleTypes      : "/vehicle/vehicletype/all",
+    createFuelType          : "/vehicle/fueltype",
+    createTransmissionType  : "/vehicle/transmissiontype",
+    createVehicleType       : "/vehicle/vehicletype",
 
     createNewAd             : "/ad-service/create",
     getAllAds               : "/ad-service/getAds",

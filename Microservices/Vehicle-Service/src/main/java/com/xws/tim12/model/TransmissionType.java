@@ -24,7 +24,7 @@ public class TransmissionType {
 	@Column (nullable = false)
 	private String type;
 	@JsonIgnore
-	@OneToMany(mappedBy = "transmissionType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(/*mappedBy = "transmissionType",*/ fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 	
 	public TransmissionType() {

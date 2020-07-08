@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Vehicle } from 'app/models/vehicle';
 import { Ad } from 'app/models/ad';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { CodebookType } from 'app/models/codebookType';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,12 @@ export class VehicleService {
   _updateVehicle = this.url + environment.updateVehicle;
   _getImage = this.url + environment.getImage;
   _getAllImages = this.url + environment.getAllImages;
+  _getAllFuelTypes = this.url + environment.getAllFuelTypes;
+  _getAllTransmissionTypes = this.url + environment.getAllTransmissionTypes;
+  _getAllVehicleTypes = this.url + environment.getAllVehicleTypes;
+  _createFuelType = this.url + environment.createFuelType;
+  _createTransmissionType = this.url + environment.createTransmissionType;
+  _createVehicleType = this.url + environment.createVehicleType;
 
   constructor(
     private httpClient: HttpClient,
@@ -60,4 +67,27 @@ export class VehicleService {
     return this.httpClient.get(this._getAllImages + "/" + id);
   }
 
+  public getAllFuelTypes(){
+    return this.httpClient.get(this._getAllFuelTypes);
+  }
+
+  public getAllTransmissionTypes(){
+    return this.httpClient.get(this._getAllTransmissionTypes);
+  }
+
+  public getAllVehicleTypes(){
+    return this.httpClient.get(this._getAllVehicleTypes);
+  }
+
+  public createFuelType(codebookType: CodebookType){
+    return this.httpClient.post(this._createFuelType, codebookType);
+  }
+
+  public createTransmissionType(codebookType: CodebookType){
+    return this.httpClient.post(this._createTransmissionType, codebookType);
+  }
+
+  public createVehicleType(codebookType: CodebookType){
+    return this.httpClient.post(this._createVehicleType, codebookType);
+  }
 }

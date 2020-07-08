@@ -76,6 +76,32 @@ export const navigation: FuseNavigation[] = [
 				icon		: 'image',
 				url			: '/pages/add-images',
 			},
+			{
+				id			: 'codebook',
+				title		: 'Codebook',
+				type		: 'collapsable',
+				icon		: 'import_contacts',
+				children	: [
+					{
+						id			: 'fuel-types',
+						title		: 'Fuel Types',
+						type		: 'item',
+						url			: '/pages/fuel-types',
+					},
+					{
+						id			: 'transmission-types',
+						title		: 'Transmission Types',
+						type		: 'item',
+						url			: '/pages/transmission-types',
+					},
+					{
+						id			: 'vehicle-types',
+						title		: 'Vehicle Types',
+						type		: 'item',
+						url			: '/pages/vehicle-types',
+					},
+				],
+			},
 		],
 	},
 ];

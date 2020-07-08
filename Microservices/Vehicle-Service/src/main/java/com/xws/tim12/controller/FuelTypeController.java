@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.xws.tim12.model.FuelType;
 import com.xws.tim12.service.FuelTypeService;
 
 @RestController
+@CrossOrigin(origins = { "http://localhost:8087", "http://localhost:4200" })
 public class FuelTypeController {
 
 	@Autowired
@@ -38,7 +40,7 @@ public class FuelTypeController {
 	}
 	
 	
-	@GetMapping("fueltype/all")
+	@GetMapping("/fueltype/all")
 	public ResponseEntity<List<FuelTypeDTO>> getAllFuelTypes(){
 
 		List<FuelType> fuelTypes = new ArrayList<>();
@@ -59,7 +61,7 @@ public class FuelTypeController {
 		return new ResponseEntity<>(fuelTypeDTOs, HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/createfueltype", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/fueltype", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<FuelTypeDTO> createFuelType(@RequestBody FuelTypeDTO fuelTypeDTO, HttpServletRequest httpRequest){
 		
 		String role = httpRequest.getHeader("role");

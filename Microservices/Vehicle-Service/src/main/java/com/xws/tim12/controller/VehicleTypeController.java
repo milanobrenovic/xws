@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.xws.tim12.model.VehicleType;
 import com.xws.tim12.service.VehicleTypeService;
 
 @RestController
+@CrossOrigin(origins = { "http://localhost:8087", "http://localhost:4200" })
 public class VehicleTypeController {
 	
 	@Autowired
@@ -38,7 +40,7 @@ public class VehicleTypeController {
 		return new ResponseEntity<>(vehicleTypeDTO, HttpStatus.OK);
 	}
 	
-	@GetMapping("vehicletype/all")
+	@GetMapping("/vehicletype/all")
 	public ResponseEntity<List<VehicleTypeDTO>> getAllVehicleTypes(){
 		
 		List<VehicleType> vehicleTypes = new ArrayList<>();
@@ -59,7 +61,7 @@ public class VehicleTypeController {
 		return new ResponseEntity<>(vehicleTypeDTOs, HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/createvehicletype", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/vehicletype", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VehicleTypeDTO> createVehicleType(@RequestBody VehicleTypeDTO vehicleTypeDTO, HttpServletRequest httpRequest){
 		
 		String role = httpRequest.getHeader("role");

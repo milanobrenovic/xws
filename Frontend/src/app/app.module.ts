@@ -79,6 +79,9 @@ import { RequestToRentComponent } from './main/request-to-rent/request-to-rent.c
 import { RequestDetailsComponent } from './main/request-details/request-details.component';
 import { UserAccessComponent } from './main/user-access/user-access.component';
 import { AddImagesComponent } from './main/add-images/add-images.component';
+import { FuelTypesComponent } from './main/fuel-types/fuel-types.component';
+import { TransmissionTypesComponent } from './main/transmission-types/transmission-types.component';
+import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.component';
 
 @NgModule({
 	declarations: [
@@ -100,6 +103,9 @@ import { AddImagesComponent } from './main/add-images/add-images.component';
 		RequestDetailsComponent,
 		UserAccessComponent,
 		AddImagesComponent,
+		FuelTypesComponent,
+		TransmissionTypesComponent,
+		VehicleTypesComponent,
 	],
 	imports: [
 		BrowserModule,
