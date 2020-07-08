@@ -85,6 +85,11 @@ const appRoutes: Routes = [
         // canActivate : [AdminGuard],
     },
     {
+        path        : 'pages/chat',
+        component   : ChatComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
         path        : 'pages/request-to-rent',
         component   : RequestToRentComponent,
         // canActivate : [AdminGuard],
