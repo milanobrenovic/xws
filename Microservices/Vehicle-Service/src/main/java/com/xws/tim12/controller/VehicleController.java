@@ -41,6 +41,18 @@ public class VehicleController {
 		VehicleDTO vehicleDTO = new VehicleDTO(vehicle);
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
 	}
+	@GetMapping("/ownerId/{id}")
+	public ResponseEntity<Long> getOwner(@PathVariable("id") Long id){
+		Vehicle vehicle = vehicleService.findOne(id);
+		if (vehicle == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(vehicle.getIdOwner(), HttpStatus.OK);
+
+	}
+
+	
 
 	@GetMapping("/all")
 	public ResponseEntity<List<VehicleDTO>> getVehicleAll(){

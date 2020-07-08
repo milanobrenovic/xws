@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import com.xws.tim12.CarRentService.model.Cart;
-import com.xws.tim12.CarRentService.model.Vehicle;
 
 public class CartDTO {
 	
@@ -14,7 +13,7 @@ public class CartDTO {
 	
 	private Long userId;
 	
-	private Set<Vehicle> vehicles;
+	private ArrayList<Long> vehicles;
 	
 	
 	public CartDTO() {
@@ -24,10 +23,10 @@ public class CartDTO {
 	public CartDTO(Long userId) {
 		super();
 		this.userId = userId;
-		this.vehicles = new HashSet<>();
+		this.vehicles = new ArrayList<>();
 	}
 	
-	public CartDTO(Long userId, Set<Vehicle> vehicles) {
+	public CartDTO(Long userId, ArrayList<Long> vehicles) {
 		super();
 		this.userId = userId;
 		this.vehicles = vehicles;
@@ -37,7 +36,7 @@ public class CartDTO {
 		super();
 		this.id = id;
 		this.userId = userId;
-		this.vehicles = new HashSet<>();
+		this.vehicles = new ArrayList<>();
 	}
 	
 	

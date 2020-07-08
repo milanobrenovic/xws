@@ -1,5 +1,6 @@
 package com.xws.tim12.CarRentService.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,12 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xws.tim12.CarRentService.dto.CartDTO;
 import com.xws.tim12.CarRentService.model.Cart;
-import com.xws.tim12.CarRentService.model.Vehicle;
 import com.xws.tim12.CarRentService.service.CartService;
 
 
 @RestController
-@RequestMapping(value = "/api/cart", produces = MediaType.APPLICATION_JSON_VALUE)
+//@RequestMapping(value = "/api/cart", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CartController {
 	
 	@Autowired
@@ -53,11 +53,11 @@ public class CartController {
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, 
 			value="/allVehicles/{id}")
-	public ResponseEntity<Set<Vehicle>> getAllVehicles(@PathVariable Long id) {
-		Set<Vehicle> vehicles = new HashSet<>();
+	public ResponseEntity<ArrayList<Long>> getAllVehicles(@PathVariable Long id) {
+		ArrayList<Long> vehicles = new ArrayList<>();
 		vehicles = cartService.getAllCartVehicles(id);
 		/*return (ResponseEntity<List<Ad>>) ads;*/
-		return new ResponseEntity<Set<Vehicle>>(vehicles, HttpStatus.OK);
+		return new ResponseEntity<ArrayList<Long>>(vehicles, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/add/{id}/to/{id2}")

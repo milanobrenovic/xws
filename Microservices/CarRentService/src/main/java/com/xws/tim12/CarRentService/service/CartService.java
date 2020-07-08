@@ -1,10 +1,10 @@
 package com.xws.tim12.CarRentService.service;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import com.xws.tim12.CarRentService.dto.CartDTO;
 import com.xws.tim12.CarRentService.model.Cart;
-import com.xws.tim12.CarRentService.model.Vehicle;
 
 
 
@@ -14,9 +14,9 @@ public interface CartService {
 	
 	CartDTO createCart(CartDTO cart);
 	
-	void removeVehicleFromCart(Vehicle vehicle, Long id);
+	void removeVehicleFromCart(Long vehicle, Long id);
 	
-	Set<Vehicle> getAllCartVehicles(Long id);
+	ArrayList<Long> getAllCartVehicles(Long id);
 	
 	CartDTO addVehicleToCart(Long id, Long id2);
 }

@@ -1,134 +1,121 @@
 package com.xws.tim12.CarRentService.model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.xws.tim12.CarRentService.dto.RequestToRentDTO;
 import com.xws.tim12.CarRentService.enumeration.RequestStatusType;
+
+import java.util.Date;
 
 @Entity
 public class RequestToRent {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	
-	@ManyToMany(mappedBy = "requestsToRent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
-	
-	//User koji koristi vozilo
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private VehicleUser vehicleUser;
-	
-	//Renter kao User/Agent koji iznajmljuje vozilo
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private VehicleRenter vehicleRenter;
 
-	
-	private RequestStatusType status;
-	
-	
-	
-	public RequestToRent() {
-		super();
-	}
-	
-	/*public RequestToRent() {
-		super();
-		this.vehicles = new HashSet<>();
-		this.vehicleUser = null;
-		this.vehicleRenter = null;
-		this.status = status;
-	}*/
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public RequestToRent(Set<Vehicle> vehicles, VehicleUser vehicleUser, VehicleRenter vehicleRenter,
-			RequestStatusType status) {
-		super();
-		this.vehicles = vehicles;
-		this.vehicleUser = vehicleUser;
-		this.vehicleRenter = vehicleRenter;
-		this.status = status;
-	}
-	
-	public RequestToRent(RequestToRentDTO request) {
-		super();
-		this.id = request.getId();
-		this.vehicles = new HashSet<>();
-		this.vehicleUser = null;
-		this.vehicleRenter = null;
-		this.status = request.getStatus();
-	}
-	
-	
-	public RequestToRent(Vehicle vehicle) {
-		super();
-		this.vehicles.add(vehicle);
-		this.vehicleUser = null;
-		this.vehicleRenter = null;
-		this.status = RequestStatusType.PENDING;
-	}
+   // @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Long vehicleId;
 
+    @Enumerated(EnumType.STRING)
+    private RequestStatusType requestStatusType;
 
-	
-	public Long getId() {
-		return id;
-	}
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Long normalUserId;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private Agent agent;
 
-	public RequestStatusType getStatus() {
-		return status;
-	}
+   // @NotEmpty(message = "Rent date from cannot be empty.")
+    @Column(nullable = false)
+    private Date rentDateFrom;
 
-	public void setStatus(RequestStatusType status) {
-		this.status = status;
-	}
-	
-	public Set<Vehicle> getVehicles() {
-		return vehicles;
-	}
+    //@NotEmpty(message = "Rent date to cannot be empty.")
+    @Column(nullable = false)
+    private Date rentDateTo;
 
-	public void setVehicles(Set<Vehicle> vehicles) {
-		this.vehicles = vehicles;
-	}
+    public RequestToRent() {
 
-	public VehicleUser getVehicleUser() {
-		return vehicleUser;
-	}
+    }
 
-	public void setVehicleUser(VehicleUser vehicleUser) {
-		this.vehicleUser = vehicleUser;
-	}
+    public RequestToRent(Long id, Long vehicle, RequestStatusType requestStatusType, Long normalUser, Date rentDateFrom, Date rentDateTo) {
+        this.id = id;
+        this.vehicleId = vehicle;
+        this.requestStatusType = requestStatusType;
+        this.normalUserId = normalUser;
+        this.rentDateFrom = rentDateFrom;
+        this.rentDateTo = rentDateTo;
+    }
 
-	public VehicleRenter getVehicleRenter() {
-		return vehicleRenter;
-	}
+    public RequestToRent(RequestToRent requestToRent) {
+        this.id = requestToRent.id;
+        this.vehicleId = requestToRent.vehicleId;
+        this.requestStatusType = requestToRent.requestStatusType;
+        this.normalUserId = requestToRent.normalUserId;
+        this.rentDateFrom = requestToRent.rentDateFrom;
+        this.rentDateTo = requestToRent.rentDateTo;
+    }
 
-	public void setVehicleRenter(VehicleRenter vehicleRenter) {
-		this.vehicleRenter = vehicleRenter;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	@Override
-	public String toString() {
-		return "RequestToRent [id=" + id + ", vehicles=" + vehicles + ", vehicleUser=" + vehicleUser
-				+ ", vehicleRenter=" + vehicleRenter + ", status=" + status + "]";
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	
+    public Long getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicle(Long vehicle) {
+        this.vehicleId = vehicle;
+    }
+
+    public RequestStatusType getRequestStatusType() {
+        return requestStatusType;
+    }
+
+    public void setRequestStatusType(RequestStatusType requestStatusType) {
+        this.requestStatusType = requestStatusType;
+    }
+
+    public Long getNormalUser() {
+        return normalUserId;
+    }
+
+    public void setNormalUser(Long normalUser) {
+        this.normalUserId = normalUser;
+    }
+
+    public Date getRentDateFrom() {
+        return rentDateFrom;
+    }
+
+    public void setRentDateFrom(Date rentDateFrom) {
+        this.rentDateFrom = rentDateFrom;
+    }
+
+    public Date getRentDateTo() {
+        return rentDateTo;
+    }
+
+    public void setRentDateTo(Date rentDateTo) {
+        this.rentDateTo = rentDateTo;
+    }
+
+    @Override
+    public String toString() {
+        return "RequestToRent{" +
+                "id=" + id +
+                ", vehicle=" + vehicleId.toString() +
+                ", requestStatusType=" + requestStatusType +
+                ", user=" + normalUserId.toString() +
+                ", rentDateFrom=" + rentDateFrom +
+                ", rentDateTo=" + rentDateTo +
+                '}';
+    }
+
 }
