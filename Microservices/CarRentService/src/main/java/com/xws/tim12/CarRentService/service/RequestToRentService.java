@@ -11,14 +11,18 @@ import com.xws.tim12.CarRentService.repository.RequestToRentRepository;
 
 @Service
 public class RequestToRentService {
+	
 	@Autowired
 	private RequestToRentRepository requestToRentRepository;
+	
 	public RequestToRent findById(Long id){
 		return requestToRentRepository.findOneById(id);
 	}
+	
 	public RequestToRent save(RequestToRent requestToRent) {
 		return requestToRentRepository.save(requestToRent);
 	}
+	
 	public List<RequestToRent> findAll(){
 		return requestToRentRepository.findAll();
 	}

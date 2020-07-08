@@ -62,12 +62,10 @@ public class RequestToRentCotroller {
 		
 		
 		requestToRentService.save(r);
-		return new ResponseEntity<>(requestToRentDTO, HttpStatus.CREATED);
-		
-		
-		
+		return new ResponseEntity<>(requestToRentDTO, HttpStatus.CREATED);	
 		
 	}
+	
 	@GetMapping(value = "/acceptRequest/{id}")
 	public ResponseEntity<RequestToRent>acceptRequest(@PathVariable Long id){
 		RequestToRent r = requestToRentService.findById(id);
@@ -75,6 +73,7 @@ public class RequestToRentCotroller {
 		requestToRentService.save(r);
 		return new ResponseEntity<>(r,HttpStatus.OK);
 	}
+	
 	@GetMapping(value = "/declineRequest/{id}")
 	public ResponseEntity<RequestToRent>declineRequest(@PathVariable Long id){
 		RequestToRent r = requestToRentService.findById(id);

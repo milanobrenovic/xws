@@ -1,7 +1,6 @@
 package com.xws.tim12.CarRentService.model;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 
 import com.xws.tim12.CarRentService.enumeration.RequestStatusType;
@@ -35,6 +34,9 @@ public class RequestToRent {
     //@NotEmpty(message = "Rent date to cannot be empty.")
     @Column(nullable = false)
     private Date rentDateTo;
+    
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private ServiceReview serviceReview = null;
 
     public RequestToRent() {
 
@@ -105,8 +107,30 @@ public class RequestToRent {
     public void setRentDateTo(Date rentDateTo) {
         this.rentDateTo = rentDateTo;
     }
+    
+    
 
-    @Override
+    public Long getNormalUserId() {
+		return normalUserId;
+	}
+
+	public void setNormalUserId(Long normalUserId) {
+		this.normalUserId = normalUserId;
+	}
+
+	public ServiceReview getServiceReview() {
+		return serviceReview;
+	}
+
+	public void setServiceReview(ServiceReview serviceReview) {
+		this.serviceReview = serviceReview;
+	}
+
+	public void setVehicleId(Long vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+
+	@Override
     public String toString() {
         return "RequestToRent{" +
                 "id=" + id +
