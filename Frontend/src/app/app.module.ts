@@ -82,6 +82,13 @@ import { AddImagesComponent } from './main/add-images/add-images.component';
 import { FuelTypesComponent } from './main/fuel-types/fuel-types.component';
 import { TransmissionTypesComponent } from './main/transmission-types/transmission-types.component';
 import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.component';
+import { ChatComponent } from './main/chat/chat.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = {
+	url: "http://localhost:9000",
+	options: {},
+};
 
 @NgModule({
 	declarations: [
@@ -106,6 +113,7 @@ import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.compon
 		FuelTypesComponent,
 		TransmissionTypesComponent,
 		VehicleTypesComponent,
+		ChatComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -186,6 +194,9 @@ import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.compon
 		// App modules
 		LayoutModule,
 		AppRoutingModule,
+
+		// Socket.IO
+		SocketIoModule.forRoot(config),
 	],
 	providers: [
 		{

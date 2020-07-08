@@ -4,6 +4,9 @@ import { ToastrService } from 'ngx-toastr';
 import { VehicleService } from 'app/services/vehicle.service';
 import { Vehicle } from 'app/models/vehicle';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CodebookType } from 'app/models/codebookType';
+import { MatTableDataSource } from '@angular/material/table';
+import { List } from 'lodash';
 
 @Component({
   selector: 'app-create-new-vehicle',
@@ -13,6 +16,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CreateNewVehicleComponent implements OnInit {
   
   public createNewVehicleForm: FormGroup;
+  public fuelTypes: List<CodebookType>;
+  public vehicleTypes: List<CodebookType>;
+  public transmissionTypes: List<CodebookType>;
 
   constructor(
     private _toastrService: ToastrService,
@@ -38,6 +44,33 @@ export class CreateNewVehicleComponent implements OnInit {
       vehicleDiscount: new FormControl(null, [Validators.required]),
       insurancePrice: new FormControl(null, [Validators.required]),
     });
+
+    this._vehicleService.getAllFuelTypes().subscribe(
+      (data: Array<CodebookType>) => {
+        this.fuelTypes = data;
+      },
+      (e: HttpErrorResponse) => {
+				this._toastrService.error(e.message, "Failed to get existing fuel types");
+      }
+    );
+
+    this._vehicleService.getAllVehicleTypes().subscribe(
+      (data: Array<CodebookType>) => {
+        this.vehicleTypes = data;
+      },
+      (e: HttpErrorResponse) => {
+				this._toastrService.error(e.message, "Failed to get existing vehicle types");
+      }
+    );
+
+    this._vehicleService.getAllTransmissionTypes().subscribe(
+      (data: Array<CodebookType>) => {
+        this.transmissionTypes = data;
+      },
+      (e: HttpErrorResponse) => {
+				this._toastrService.error(e.message, "Failed to get existing transmission types");
+      }
+    );
   }
 
   addNewVehicle(): void {

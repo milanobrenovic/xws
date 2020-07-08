@@ -56,6 +56,13 @@ export const navigation: FuseNavigation[] = [
 				url			: '/pages/messages',
 			},
 			{
+				id			: 'chat',
+				title		: 'Chat',
+				type		: 'item',
+				icon		: 'chat',
+				url			: '/pages/chat',
+			},
+			{
 				id			: 'user-access',
 				title		: 'User access',
 				type		: 'item',

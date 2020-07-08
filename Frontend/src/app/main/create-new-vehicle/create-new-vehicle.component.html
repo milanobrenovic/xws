@@ -42,8 +42,9 @@
 							<mat-form-field appearance="outline" fxFlex="50">
 								<mat-label>Fuel Type</mat-label>
 								<mat-select formControlName="fuelType" required>
-									<mat-option [value]="1">Diesel</mat-option>
-									<mat-option [value]="2">Gasoline</mat-option>
+									<mat-option *ngFor="let fuelType of fuelTypes" [value]="fuelType.id">
+										{{fuelType.type}}
+									</mat-option>
 								</mat-select>
 								<mat-error
 									*ngIf="createNewVehicleForm.get('fuelType').errors && createNewVehicleForm.get('fuelType').errors['required']">
@@ -57,8 +58,9 @@
 							<mat-form-field appearance="outline" fxFlex="50">
 								<mat-label>Vehicle Type</mat-label>
 								<mat-select formControlName="vehicleType" required>
-									<mat-option [value]="1">SUV</mat-option>
-									<mat-option [value]="2">Caravan</mat-option>
+									<mat-option *ngFor="let vehicleType of vehicleTypes" [value]="vehicleType.id">
+										{{vehicleType.type}}
+									</mat-option>
 								</mat-select>
 								<mat-error
 									*ngIf="createNewVehicleForm.get('vehicleType').errors && createNewVehicleForm.get('vehicleType').errors['required']">
@@ -72,8 +74,9 @@
 							<mat-form-field appearance="outline" fxFlex="50">
 								<mat-label>Transmission Type</mat-label>
 								<mat-select formControlName="transmissionType" required>
-									<mat-option [value]="1">Manual</mat-option>
-									<mat-option [value]="2">Automatic</mat-option>
+									<mat-option *ngFor="let transmissionType of transmissionTypes" [value]="transmissionType.id">
+										{{transmissionType.type}}
+									</mat-option>
 								</mat-select>
 								<mat-error
 									*ngIf="createNewVehicleForm.get('transmissionType').errors && createNewVehicleForm.get('transmissionType').errors['required']">

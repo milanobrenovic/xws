@@ -71,7 +71,7 @@ public class VehicleController {
 		return new ResponseEntity<>(vehicleDTOs, HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/createVehicle", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/createVehicle", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO, @RequestHeader(value = "Id") String id, @RequestHeader(value = "Role") String role){
 		if(vehicleDTO.getClass() == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

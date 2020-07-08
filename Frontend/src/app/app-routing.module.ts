@@ -22,6 +22,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { FuelTypesComponent } from './main/fuel-types/fuel-types.component';
 import { TransmissionTypesComponent } from './main/transmission-types/transmission-types.component';
 import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.component';
+import { ChatComponent } from './main/chat/chat.component';
 
 const appRoutes: Routes = [
 
