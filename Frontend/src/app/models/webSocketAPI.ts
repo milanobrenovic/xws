@@ -23,7 +23,7 @@ export class WebSocketAPI {
       const _this = this;
       _this.stompClient.connect({}, function (frame) {
           _this.stompClient.subscribe(_this.topic, function (sdkEvent) {
-              _this.onMessageReceived(sdkEvent);
+              //_this.onMessageReceived(sdkEvent);
           });
           //_this.stompClient.reconnect_delay = 2000;
       }, this.errorCallBack);
@@ -53,9 +53,9 @@ export class WebSocketAPI {
       this.stompClient.send("/app/hello", {}, JSON.stringify(message));
   }
 
-  onMessageReceived(message) {
-      console.log("Message Recieved from Server :: " + message);
-      this.chatComponent.handleMessage(JSON.stringify(message.body));
-	}
+//   onMessageReceived(message) {
+//       console.log("Message Recieved from Server :: " + message);
+//       this.chatComponent.handleMessage(JSON.stringify(message.body));
+// 	}
 	
 }

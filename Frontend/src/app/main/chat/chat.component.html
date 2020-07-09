@@ -8,41 +8,57 @@
 			<p>
 				Here you can see the chats.
 			</p>
-			<mat-divider></mat-divider>
-			<br>
-			<div id="main-content" class="container">
 
-					<div class="row">
-							<div class="col-md-12">
-								{{ greeting }}
-							</div>
-					</div>
-					
+			<div class="container">
 				<div class="row">
-						<div class="col-md-6">
-								<form class="form-inline">
-										<div class="form-group">
-												<label for="connect">WebSocket connection:</label>
-												<button (click)="connect()" class="btn btn-default" type="submit">Connect</button>
-												<button (click)="disconnect()" class="btn btn-default" type="submit" disabled="disabled">Disconnect
-												</button>
-										</div>
-								</form>
-						</div>
-						<div class="col-md-6">
-								<form class="form-inline">
-										<div class="form-group">
-												<label for="name">What is your name?</label>
-												<input type="text" [(ngModel)]="name" class="form-control" name="name"> <br>
-										</div>
-										<button (click)="sendMessage()" class="btn btn-default" type="submit">Send</button>
-								</form>
-						</div>
+				  <article class="col-md-5 well" style="margin: 30px;">
+			  
+					<h3 class="page-header text-center">User Information<br />
+					  <small>My username: {{username}}</small>
+					  <br/>
+					  <small>My id: {{fromId}}</small>
+					</h3>
+					
+					<button (click)="openSocket()">Open socket to recieve messages</button>
 
-						<p> {{ greeting }}</p>
+					<h3 class="page-header text-center">Send message<br />
+					</h3>
+			  
+					<form [formGroup]="form" (submit)="sendMessageUsingSocket()" *ngIf="isLoaded">
+			  
+					  <div class="form-group">
+						<input class="form-control" type="text" formControlName="toId" name="toId"
+						  placeholder="User id to send the message to">
+					  </div>
+			  
+					  <div class="form-group">
+						<input class="form-control" type="text" formControlName="message" name="message" placeholder="Message">
+					  </div>
+			  
+					  <div class="row text-center">
+						<input class="btn btn-success" type="submit" [disabled]="form.invalid"
+						  value="Send using socket subscription">
+					  </div>
+			  
+					</form>
+			  
+				  </article>
+			  
+				  <article class="col-md-5 well" style="margin: 30px;">
+			  
+					<h3 class="page-header text-center">Recieved messages<br />
+					  <small>messages</small>
+					</h3>
+			  
+					<ul class="list-group">
+					  <li class="list-group-item list-group-item-success" *ngFor="let message of messages"
+						style="margin-bottom: 10px;">From: {{message.fromId}}, To: {{message.toId}}, Message:
+						{{message.message}}</li>
+					</ul>
+			  
+				  </article>
 				</div>
-			
-			</div>
+			  </div>
 		</mat-card-content>
 	</mat-card>
 
