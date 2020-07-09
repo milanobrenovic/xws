@@ -36,7 +36,7 @@ public class RequestToRent {
     private Date rentDateTo;
     
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private ServiceReview serviceReview = null;
+    private ServiceReview serviceReview ;
 
     public RequestToRent() {
 

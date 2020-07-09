@@ -81,7 +81,13 @@ public class RequestToRentCotroller {
 		requestToRentService.save(r);
 		return new ResponseEntity<>(r,HttpStatus.OK);
 	}
-	
+	@GetMapping(value = "/pay/{id}")
+	public ResponseEntity<RequestToRent>payRequest(@PathVariable Long id){
+		RequestToRent r = requestToRentService.findById(id);
+		r.setRequestStatusType(RequestStatusType.PAID);
+		requestToRentService.save(r);
+		return new ResponseEntity<>(r,HttpStatus.OK);
+	}
 	
 	@GetMapping(value="/requestToShowForUser/{id}")
 	public ResponseEntity<List<RequestToRent>>getRequestsForUser(@PathVariable Long id){

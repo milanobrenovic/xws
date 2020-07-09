@@ -1,6 +1,9 @@
 package com.xws.tim12.CarRentService.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,13 +56,19 @@ public class ServiceReviewController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		/*if(!r.getRequestStatusType().equals(RequestStatusType.PAID)) {
+	/*	if(!r.getRequestStatusType().equals(RequestStatusType.PAID)) {
 			System.out.println("Request jos uvek nije zavrsen");
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}*/
-		
+		Date now = new Date();  
+		   if((now).compareTo(r.getRentDateTo()) < 0){
+			   return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		   }
+		 		
+	    RequestToRent r2 = requestService.findById(id);
+		r2.setServiceReview(review);
+		requestService.save(r2);
 		review.setRequestToRent(r);
-		
 		reviewService.save(review);
 		
 		return new ResponseEntity<>(serviceReviewDTO, HttpStatus.CREATED);
