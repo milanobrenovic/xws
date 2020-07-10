@@ -3,7 +3,7 @@
 	<xs:element name="getVehicleRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
+                <xs:element name="vehicle" type="tns:vehicle"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -19,6 +19,7 @@
     <xs:complexType name="vehicle">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
+            <xs:element name="idOwner" type="xs:long"/>
             <xs:element name="brand" type="xs:string"/>
             <xs:element name="model" type="xs:string"/>
             <xs:element name="fueltype" type="tns:fueltype"/>
@@ -29,8 +30,8 @@
             <xs:element name="plannedMileageToTravel" type="xs:double"/>
             <xs:element name="isMileageUnlimited" type="xs:boolean"/>
             <xs:element name="hasCollisionDamageWaiver" type="xs:boolean"/>
-            <xs:element name="numberOfSeats" type="xs:double"/>
-            <xs:element name="grade" type="xs:integer"/>
+            <xs:element name="numberOfSeats" type="xs:int"/>
+            <xs:element name="grade" type="xs:int"/>
             <xs:element name="available" type="xs:boolean"/>
             <xs:element name="vehicleDiscount" type="xs:double"/>
             <xs:element name="insurancePrice" type="xs:double"/>

@@ -82,24 +82,24 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.19.1</version>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>org.codehaus.mojo</groupId>-->
-<!--				<artifactId>jaxb2-maven-plugin</artifactId>-->
-<!--				<version>2.5.0</version>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<id>xjc</id>-->
-<!--						<goals>-->
-<!--							<goal>xjc</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--				<configuration>-->
-<!--					<sources>-->
-<!--						<source>${project.basedir}/src/main/resources/vehicles.xsd</source>-->
-<!--					</sources>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.5.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sources>
+						<source>${project.basedir}/src/main/resources/vehicles.xsd</source>
+					</sources>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
