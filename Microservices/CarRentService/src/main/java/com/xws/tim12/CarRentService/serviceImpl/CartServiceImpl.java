@@ -33,6 +33,16 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
+	public Cart findByUserId(Long id) {
+		if(cartRepository.findOneByUserId(id) == null) {
+			return null;
+		}
+
+		return cartRepository.findOneByUserId(id);
+		//return null;
+	}
+
+	@Override
 	public CartDTO createCart(CartDTO cartDTO) {
 		/*if(cartRepository.findById(cartDTO.getId()) != null) {
 			return null;

@@ -30,6 +30,7 @@ export const environment = {
     createFuelType          : "/vehicle/fueltype",
     createTransmissionType  : "/vehicle/transmissiontype",
     createVehicleType       : "/vehicle/vehicletype",
+    getAllVehiclesFromCart  : "/vehicle/all-vehicles-from-cart",
 
     createNewAd             : "/ad-service/create",
     getAllAds               : "/ad-service/getAds",
@@ -42,6 +43,13 @@ export const environment = {
     getRequestDetails       : "/request-microservice/api/request/requestToShowForUser",
     acceptRequestToRent     : "/request-microservice/api/request/acceptRequest",
     declineRequestToRent    : "/request-microservice/api/request/declineRequest",
+
+    createCartRent          : "/car-rent-microservice/create",
+    getCartRentId           : "/car-rent-microservice/getCartId", // /userId
+    getCartRent             : "/car-rent-microservice/getCart", // /userId
+    getAllCartVehicles      : "/car-rent-microservice/allVehicles", // /cartId
+    addVehicleToCartRent    : "/car-rent-microservice/add", //car-rent-microservice/add/1/to/1
+    createRequestFromCart   : "/car-rent-microservice/makeRequestFromCart", // /idCart
 };
 
 /*

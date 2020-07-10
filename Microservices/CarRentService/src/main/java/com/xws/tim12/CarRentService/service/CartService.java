@@ -13,6 +13,7 @@ public interface CartService {
 	Cart findById(Long id);
 	
 	CartDTO createCart(CartDTO cart);
+	Cart findByUserId(Long id);
 	
 	void removeVehicleFromCart(Long vehicle, Long id);
 	

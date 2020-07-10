@@ -84,6 +84,7 @@ import { TransmissionTypesComponent } from './main/transmission-types/transmissi
 import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.component';
 import { ChatComponent } from './main/chat/chat.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { CartComponent } from './main/cart/cart.component';
 
 const config: SocketIoConfig = {
 	url: "http://localhost:9000",
@@ -114,6 +115,7 @@ const config: SocketIoConfig = {
 		TransmissionTypesComponent,
 		VehicleTypesComponent,
 		ChatComponent,
+		CartComponent,
 	],
 	imports: [
 		BrowserModule,

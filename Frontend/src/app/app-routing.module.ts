@@ -23,6 +23,7 @@ import { FuelTypesComponent } from './main/fuel-types/fuel-types.component';
 import { TransmissionTypesComponent } from './main/transmission-types/transmission-types.component';
 import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.component';
 import { ChatComponent } from './main/chat/chat.component';
+import { CartComponent } from './main/cart/cart.component';
 
 const appRoutes: Routes = [
 
@@ -122,6 +123,11 @@ const appRoutes: Routes = [
     {
         path        : 'pages/vehicle-types',
         component   : VehicleTypesComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/cart',
+        component   : CartComponent,
         // canActivate : [AdminGuard],
     },
 

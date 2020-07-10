@@ -8,12 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.xws.tim12.CarRentService.dto.CartDTO;
 import com.xws.tim12.CarRentService.model.Cart;
@@ -22,6 +17,7 @@ import com.xws.tim12.CarRentService.service.CartService;
 
 @RestController
 //@RequestMapping(value = "/api/cart", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = { "http://localhost:4200" })
 public class CartController {
 	
 	@Autowired
@@ -39,8 +35,27 @@ public class CartController {
         }
         return new ResponseEntity<CartDTO>(createdCart, HttpStatus.CREATED);
     }
-	
-	
+
+	@GetMapping(value = "/getCart/{userId}")
+	public Boolean getCartt(@PathVariable Long userId) {
+		Cart cart = cartService.findByUserId(userId);
+
+		if (cart == null) {
+			return false;
+		}
+		return true;
+	}
+
+	@GetMapping(value = "/getCartId/{userId}")
+	public Long getCartId(@PathVariable Long userId) {
+		Long cartId = cartService.findByUserId(userId).getId();
+
+		if (cartId == null) {
+			return null;
+		}
+		return cartId;
+	}
+
 	@GetMapping(value = "/{id}")
     public ResponseEntity<Cart> getCart(@PathVariable Long id) {
 		Cart cart = cartService.findById(id);

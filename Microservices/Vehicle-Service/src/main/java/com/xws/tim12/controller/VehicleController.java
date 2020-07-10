@@ -41,6 +41,22 @@ public class VehicleController {
 		VehicleDTO vehicleDTO = new VehicleDTO(vehicle);
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
 	}
+	@PostMapping("/all-vehicles-from-cart")
+	public ResponseEntity<List<VehicleDTO>> getVehiclesFromCart(@RequestBody List<Long> vehicleIds){
+		List<VehicleDTO>dtos = new ArrayList <VehicleDTO>();
+		for(Long idV : vehicleIds) {
+
+			Vehicle vehicle = vehicleService.findOne(idV);
+			if (vehicle == null) {
+				continue;
+			}
+			VehicleDTO vehicleDTO = new VehicleDTO(vehicle);
+			dtos.add(vehicleDTO);
+		}
+		System.out.println(dtos);
+		return new ResponseEntity<>(dtos, HttpStatus.OK);
+	}
+
 	@GetMapping("/ownerId/{id}")
 	public ResponseEntity<Long> getOwner(@PathVariable("id") Long id){
 		Vehicle vehicle = vehicleService.findOne(id);
@@ -70,6 +86,7 @@ public class VehicleController {
 
 		return new ResponseEntity<>(vehicleDTOs, HttpStatus.OK);
 	}
+
 	
 	@PostMapping(value = "/createVehicle", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicleDTO, @RequestHeader(value = "Id") String id, @RequestHeader(value = "Role") String role){

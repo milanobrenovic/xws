@@ -29,7 +29,12 @@ public class DateFromToDTO {
 		this.rentDateFrom = rentDateFrom;
 		this.rentDateTo = rentDateTo;
 	}
-    
-    
-	
+
+	@Override
+	public String toString() {
+		return "DateFromToDTO{" +
+				"rentDateFrom=" + rentDateFrom +
+				", rentDateTo=" + rentDateTo +
+				'}';
+	}
 }

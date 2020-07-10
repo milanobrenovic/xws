@@ -1,0 +1,11 @@
+export class Cart {
+
+	public id: number;
+	public userId: number;
+
+	constructor($id: number, $userId: number) {
+		this.id = $id;
+		this.userId = $userId;
+	}
+
+}

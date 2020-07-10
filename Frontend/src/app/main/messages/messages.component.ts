@@ -10,6 +10,8 @@ import { MessagesService } from 'app/services/messages.service';
 import { UserService } from 'app/services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { formatDate } from '@angular/common';
+import { NormalUser } from 'app/models/normalUser';
+import { Agent } from 'app/models/agent';
 
 @Component({
   selector: 'app-messages',
@@ -23,6 +25,9 @@ export class MessagesComponent implements OnInit {
   public mailSentDataSource = new MatTableDataSource<Mail>();
   public mailReceivedDataSource = new MatTableDataSource<Mail>();
   public sendPrivateMessageForm: FormGroup;
+  public listOfNormalUsers: Array<NormalUser>;
+  public listOfAgents: Array<Agent>;
+  public listOfAllUsers: Array<Object> = [];
 
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
@@ -40,6 +45,7 @@ export class MessagesComponent implements OnInit {
   ngOnInit(): void {
     this.sendPrivateMessageForm = this._formBuilder.group({
       selectedUser: new FormControl(null, [Validators.required]),
+      privateMessage: new FormControl(null, [Validators.required]),
     });
     
     const senderId = this._userService.getLoggedInUser().id;
@@ -81,10 +87,36 @@ export class MessagesComponent implements OnInit {
 				this._toastrService.error(e.message, "Could not display all receiver messages");
       }
     );
+
+    this._userService.getAllNormalUsers().subscribe(
+      (data: Array<NormalUser>) => {
+        this.listOfNormalUsers = data;
+
+        for (let i = 0; i < this.listOfNormalUsers.length; i++) {
+          this.listOfAllUsers.push(this.listOfNormalUsers[i]);
+        }
+      },
+      (e: HttpErrorResponse) => {
+				this._toastrService.error(e.message, "Could not fetch all normal users");
+      }
+    );
+
+    this._userService.getAllAgents().subscribe(
+      (data: Array<Agent>) => {
+        this.listOfAgents = data;
+
+        for (let i = 0; i < this.listOfAgents.length; i++) {
+          this.listOfAllUsers.push(this.listOfAgents[i]);
+        }
+      },
+      (e: HttpErrorResponse) => {
+				this._toastrService.error(e.message, "Could not fetch all agents");
+      }
+    );
   }
 
   sendMessage() {
-
+    console.log(this.sendPrivateMessageForm.value.selectedUser);
   }
 
 }

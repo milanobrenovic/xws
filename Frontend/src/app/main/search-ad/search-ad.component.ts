@@ -10,6 +10,10 @@ import { environment } from 'environments/environment';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { CartService } from 'app/services/cart.service';
+import { UserService } from 'app/services/user.service';
+import { Cart } from 'app/models/cart';
+import { Vehicle } from 'app/models/vehicle';
 
 @Component({
   selector: 'app-search-ad',
@@ -20,7 +24,7 @@ export class SearchAdComponent implements OnInit {
 
   public searchAdForm: FormGroup;
   public ads: object;
-  public displayedColumns: string[] = ['pickupLocation', 'pickupFrom', 'pickupTo', 'details'];
+  public displayedColumns: string[] = ['pickupLocation', 'pickupFrom', 'pickupTo', 'details', 'addToCart'];
   public itemsPerPage = environment.itemsPerPage;
   public adSearchDataSource = new MatTableDataSource<Ad>();
 
@@ -34,6 +38,8 @@ export class SearchAdComponent implements OnInit {
     private _toastrService: ToastrService,
     private _adService: AdService,
     private _formBuilder: FormBuilder,
+    private _cartService: CartService,
+    private _userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +80,28 @@ export class SearchAdComponent implements OnInit {
       },
       (e: HttpErrorResponse) => {
 				this._toastrService.error(e.message, "Failed to search ads");
+      }
+    );
+  }
+
+  public addToCart(element: Ad) {
+    const userId = this._userService.getLoggedInUser().id;
+    
+    this._cartService.getCartRentId(userId).subscribe(
+      (cartId: number) => {
+        var cart = new Cart(cartId, userId);
+        this._cartService.addVehicleToCartRent(element.vehicle, cart.id).subscribe(
+          (data: Cart) => {
+            console.log(data);
+            this._toastrService.success("Item added to cart successfully.", "Success");
+          },
+          (e: HttpErrorResponse) => {
+            this._toastrService.error(e.message, "Failed to create new cart rent");
+          }
+        );
+      },
+      (e: HttpErrorResponse) => {
+				this._toastrService.error(e.message, "Failed to get cart rent id");
       }
     );
   }

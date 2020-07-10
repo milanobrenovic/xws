@@ -156,9 +156,11 @@ public class RequestToRentCotroller {
 	@PostMapping(value = "/makeRequestFromCart/{idCart}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<RequestToRent> addVehiclesFromCart(@PathVariable ("idCart") Long idCart, @RequestHeader(value = "id") Long idLogged, @RequestBody DateFromToDTO dates) {
 //		VehicleUser vehicleUser = vehicleUserRepository.findOneById(id2);
+		System.out.println(dates.toString());
 		List<RequestToRent>requests = new ArrayList<RequestToRent>();
 		Cart cart = cartService.findById(idCart);
 		for (Long vehicleId : cart.getVehicles()) {
+			System.out.println("VehicleID::: "+vehicleId);
 			RequestToRentDTO requestDTO = new RequestToRentDTO((Long)22222L, RequestStatusType.PENDING, idLogged, vehicleId, dates.getRentDateFrom(), dates.getRentDateTo());
 			RequestToRent r = new RequestToRent();
 			r.setId(111L);
@@ -168,8 +170,9 @@ public class RequestToRentCotroller {
 			r.setRequestStatusType(RequestStatusType.PENDING);
 			r.setVehicle(requestDTO.getVehicleId());
 			//this.authenticationClient.incrementAds(requestToRentDTO.getNormalUserId());
-			
-			
+
+			System.out.println("r:::: "+r);
+			requests.add(r);
 			requestToRentService.save(r);
 		}
 		
