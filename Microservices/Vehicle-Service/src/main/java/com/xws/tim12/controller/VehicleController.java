@@ -101,8 +101,8 @@ public class VehicleController {
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.CREATED);
 	}
 	/*--------------------*/
-	@GetMapping(path= "/vehicleOfUser/{id}")
-	public List<Long> getVehicleOfUser(@PathVariable("id") Long id){
+	@GetMapping(path= "/vehicleOfUser/{id}/{role}")
+	public List<Long> getVehicleOfUser(@PathVariable("id") Long id,@PathVariable("role") Long role){
 		List<Vehicle> vehicles = vehicleService.findByIdOwner(id);
 
 		if(vehicles == null){
@@ -111,8 +111,9 @@ public class VehicleController {
 		List<Long> vehicless = new ArrayList<>();
 
 		for (Vehicle vehicle: vehicles) {
-			
-			vehicless.add(vehicle.getId());
+			if(vehicle.getOwnerRole().equals(role)) {
+				vehicless.add(vehicle.getId());
+			}
 		}
 
 		return vehicless;
