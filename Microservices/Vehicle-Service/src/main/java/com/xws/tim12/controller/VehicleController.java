@@ -78,6 +78,164 @@ public class VehicleController {
 
 		return new ResponseEntity<>(vehicleDTOs, HttpStatus.OK);
 	}
+	
+	@GetMapping("/searchVehicles")
+	public ResponseEntity<List<VehicleDTO>> getVehicles(@RequestBody VehicleDTO vehicleDTO){
+		List<Vehicle> vehicles = vehicleService.findAll();
+
+		if(vehicles == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<VehicleDTO> vehicleDTOs = new ArrayList<>();
+		
+		for (Vehicle vehicle: vehicles) {
+			boolean addToList = false;
+			boolean bioFalse = false;
+			if(vehicleDTO.getBrand()!=null && !vehicleDTO.getBrand().equals("")) {
+				if(vehicle.getBrand().equals(vehicleDTO.getBrand())) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getModel()!=null && !vehicleDTO.getModel().equals("")) {
+				if(vehicle.getModel().equals(vehicleDTO.getModel())) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getFuelType()!=null ) {
+				if(vehicle.getFuelType().equals(vehicleDTO.getFuelType())) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getTransmissionType()!=null ) {
+				if(vehicle.getTransmissionType().equals(vehicleDTO.getTransmissionType())) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			if(vehicleDTO.getVehicleType()!=null ) {
+				if(vehicle.getVehicleType().equals(vehicleDTO.getVehicleType())) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+				
+			
+			if(vehicleDTO.getPrice()!=null ) {
+				if(vehicle.getPrice() <= vehicleDTO.getPrice()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getTravelledMileage()!=null ) {
+				if(vehicle.getTravelledMileage() <= vehicleDTO.getTravelledMileage()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getPlannedMileageToTravel()!=null ) {
+				if(vehicle.getPlannedMileageToTravel() <= vehicleDTO.getPlannedMileageToTravel()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getIsMileageUnlimited()!=null) {
+				if(vehicle.getIsMileageUnlimited()==vehicleDTO.getIsMileageUnlimited()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getHasCollisionDamageWaiver()!=null) {
+				if(vehicle.getHasCollisionDamageWaiver()==vehicleDTO.getHasCollisionDamageWaiver()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getNumberOfSeats()!=null ) {
+				if(vehicle.getNumberOfSeats() == vehicleDTO.getNumberOfSeats()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			
+			if(vehicleDTO.getGrade()!=null ) {
+				if(vehicle.getGrade() >= vehicleDTO.getGrade()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getAvailable()!=null ) {
+				if(vehicle.getAvailable() ==vehicleDTO.getAvailable()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			if(vehicleDTO.getVehicleDiscount()!=null ) {
+				if(vehicle.getVehicleDiscount() >= vehicleDTO.getVehicleDiscount()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			if(vehicleDTO.getInsurancePrice()!=null ) {
+				if(vehicle.getInsurancePrice() >= vehicleDTO.getInsurancePrice()) {
+					addToList = true;
+				}else {
+					addToList = false;
+					bioFalse = true;
+				}
+			}
+			
+			
+			if(bioFalse == false) {	
+			VehicleDTO vehicleDTOO = new VehicleDTO(vehicle);
+			vehicleDTOs.add(vehicleDTOO);
+			}
+		}
+		System.out.println(vehicleDTOs);
+		return new ResponseEntity<>(vehicleDTOs, HttpStatus.OK);
+	}
+	
 
 	
 	@PostMapping(value = "/createVehicle", consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -366,6 +366,20 @@ public class Vehicle {
 
 
 
+	public Boolean getIsMileageUnlimited() {
+		return isMileageUnlimited;
+	}
+
+
+
+
+	public void setIsMileageUnlimited(Boolean isMileageUnlimited) {
+		this.isMileageUnlimited = isMileageUnlimited;
+	}
+
+
+
+
 	public String getOwnerRole() {
 		return ownerRole;
 	}
