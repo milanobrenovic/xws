@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/vehicles" xmlns:tns="http://www.example.org/vehicles" elementFormDefault="qualified">
+	<xs:element name="getAdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ad" type="tns:ad"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="ad">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="idOwner" type="xs:long"/>
+            <xs:element name="comments" type="tns:comment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="pickupLocation" type="xs:string"/>
+			<xs:element name="pickupFrom" type="xs:date"/>
+			<xs:element name="pickupTo" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:complexType name="comment">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long"/>
+			<xs:element name="normalUser" type="xs:long"/>
+			<xs:element name="admin" type="xs:long"/>
+			<xs:element name="agent" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
