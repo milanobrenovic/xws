@@ -1,0 +1,65 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Review
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Here you can leave a rating and a comment for the paid vehicle.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="createNewReviewForm">
+				
+				<table class="form-full-width">
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Grade</mat-label>
+								<input matInput formControlName="grade" type="number" required>
+								<mat-error
+									*ngIf="createNewReviewForm.get('grade').errors && createNewReviewForm.get('grade').errors['required']">
+									Grade is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Subject</mat-label>
+								<input matInput formControlName="subject" required>
+								<mat-error
+									*ngIf="createNewReviewForm.get('subject').errors && createNewReviewForm.get('subject').errors['required']">
+									Subject is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Description</mat-label>
+								<textarea matInput formControlName="description" required></textarea>
+								<mat-error
+									*ngIf="createNewReviewForm.get('description').errors && createNewReviewForm.get('description').errors['required']">
+									Description is required.
+								</mat-error>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button mat-raised-button color="primary" (click)="createNewReview()">
+								Create new review
+							</button>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+		</mat-card-content>
+	</mat-card>
+
+</div>

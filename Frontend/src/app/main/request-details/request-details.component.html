@@ -47,13 +47,21 @@
 				<ng-container matColumnDef="options">
 					<th mat-header-cell *matHeaderCellDef> Options </th>
 					<td mat-cell *matCellDef="let element">
-						<button mat-raised-button color="accent" class="submit-button" (click)="acceptRequest(element)">
-							Accept
-						</button>
-						&nbsp;
-						<button mat-raised-button color="primary" class="submit-button" (click)="declineRequest(element)">
-							Decline
-						</button>
+						<span *ngIf="element.requestStatusType != 'PAID'">
+							<button mat-raised-button color="accent" class="submit-button" (click)="acceptRequest(element)">
+								Accept
+							</button>
+							&nbsp;
+							<button mat-raised-button color="primary" class="submit-button" (click)="declineRequest(element)">
+								Decline
+							</button>
+							<span *ngIf="element.requestStatusType == 'RESERVED'">
+								&nbsp;
+								<button mat-raised-button color="accent" class="green-bg submit-button" (click)="payRequest(element)">
+									Pay
+								</button>
+							</span>
+						</span>
 					</td>
 				</ng-container>
 			
@@ -62,6 +70,68 @@
 
 			</table>
 
+		</mat-card-content>
+	</mat-card>
+
+	<br>
+
+	<mat-card>
+		<mat-card-title>
+			Requests to show for user that requested
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Here you can see reviews that were requested.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<table mat-table [dataSource]="requestsToShowForUserThatRequestedDataSource" class="mat-elevation-z8">
+
+				<ng-container matColumnDef="id">
+					<th mat-header-cell *matHeaderCellDef> ID </th>
+					<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="vehicleId">
+					<th mat-header-cell *matHeaderCellDef> Vehicle ID </th>
+					<td mat-cell *matCellDef="let element"> {{element.vehicleId}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="normalUser">
+					<th mat-header-cell *matHeaderCellDef> Normal user ID </th>
+					<td mat-cell *matCellDef="let element"> {{element.normalUser}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="requestStatusType">
+					<th mat-header-cell *matHeaderCellDef> Request status type </th>
+					<td mat-cell *matCellDef="let element"> {{element.requestStatusType}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="rentDateFrom">
+					<th mat-header-cell *matHeaderCellDef> Rent date from </th>
+					<td mat-cell *matCellDef="let element"> {{element.rentDateFrom}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="rentDateTo">
+					<th mat-header-cell *matHeaderCellDef> Rent date to </th>
+					<td mat-cell *matCellDef="let element"> {{element.rentDateTo}} </td>
+				</ng-container>
+			
+				<ng-container matColumnDef="options">
+					<th mat-header-cell *matHeaderCellDef> Options </th>
+					<td mat-cell *matCellDef="let element">
+						<span *ngIf="element.requestStatusType == 'PAID'">
+							<button mat-raised-button color="accent" class="submit-button" routerLink="/pages/review/{{element.id}}">
+								Review
+							</button>
+						</span>
+					</td>
+				</ng-container>
+			
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+			</table>
 		</mat-card-content>
 	</mat-card>
 

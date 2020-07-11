@@ -108,7 +108,22 @@ public class RequestToRentCotroller {
 		}
 		return new ResponseEntity<>(requests,HttpStatus.OK);
 	}
-	
+	@GetMapping(value="/requestToShowForUserThatRequested/{id}")
+	public ResponseEntity<List<RequestToRent>>getRequestsForUserRequested(@PathVariable Long id,@RequestHeader(value = "id") String idLogged){
+		System.out.println("Ulazis u that requested???");
+		List<RequestToRent>requests= new ArrayList<>();
+		List<RequestToRent>allRequests = requestToRentService.findAll();
+		Long idLoggedIn = Long.parseLong(idLogged);
+		for(RequestToRent r:allRequests){
+			if(r.getNormalUserId() == idLoggedIn){
+				if(r.getRequestStatusType()==RequestStatusType.PAID) {
+					requests.add(r);
+				}
+			}
+		}
+		System.out.println(requests);
+		return new ResponseEntity<>(requests,HttpStatus.OK);
+	}
 	
 	@PostMapping(value = "/requestForTaking", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RequestToRentDTO> addUsageOfVehicle(@RequestBody RequestToRentDTO requestToRentDTO){

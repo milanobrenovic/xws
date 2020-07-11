@@ -6,14 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.xws.tim12.CarRentService.client.VehicleClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.xws.tim12.CarRentService.dto.ServiceReviewDTO;
 import com.xws.tim12.CarRentService.enumeration.RequestStatusType;
@@ -23,15 +20,18 @@ import com.xws.tim12.CarRentService.service.RequestToRentService;
 import com.xws.tim12.CarRentService.service.ServiceReviewService;
 
 @RestController
-@RequestMapping(value = "/api/review/")
+@RequestMapping(value = "/api/review")
+@CrossOrigin(origins = { "http://localhost:4200" })
 public class ServiceReviewController {
 	
 	@Autowired
 	private ServiceReviewService reviewService;
-	
+	@Autowired
+	private VehicleClient vehicleClient;
 	@Autowired
 	private RequestToRentService requestService;
-	
+	@Autowired
+	private RequestToRentService requestToRentService;
 	@PostMapping(value = "/createReviewFor/{id}")
 	public ResponseEntity<ServiceReviewDTO> addReview(@RequestBody ServiceReviewDTO serviceReviewDTO, @PathVariable Long id) {
 		if(serviceReviewDTO == null) {
@@ -74,7 +74,31 @@ public class ServiceReviewController {
 		return new ResponseEntity<>(serviceReviewDTO, HttpStatus.CREATED);
 		
 	}
-	
+
+	@GetMapping(value="/servicesForUser/{normalUserId}")
+	public ResponseEntity<List<ServiceReview>>getRequestsForUser(@PathVariable Long normalUserId,@RequestHeader(value = "Role") String role){
+		List<Long>vehicles =  vehicleClient.getVehicleOfUser(normalUserId);
+		List<ServiceReview>services= new ArrayList<>();
+
+		System.out.println("VEHICLES: "+vehicles);
+		if (vehicles == null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<RequestToRent>requests= new ArrayList<>();
+		List<RequestToRent>allRequests = requestToRentService.findAll();
+		for(RequestToRent r:allRequests){
+			for(Long v:vehicles){
+				if(r.getVehicleId() == v){
+					services.add(r.getServiceReview());
+
+
+				}
+			}
+		}
+		return new ResponseEntity<>(services,HttpStatus.OK);
+	}
+
+
 	@PostMapping(value = "/allReviews")
 	public ResponseEntity<List<ServiceReviewDTO>> getAllReviews() {
 		List<ServiceReview> reviews = reviewService.getAllReviews();

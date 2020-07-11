@@ -50,6 +50,9 @@ export const environment = {
     getAllCartVehicles      : "/car-rent-microservice/allVehicles", // /cartId
     addVehicleToCartRent    : "/car-rent-microservice/add", //car-rent-microservice/add/1/to/1
     createRequestFromCart   : "/car-rent-microservice/makeRequestFromCart", // /idCart
+    payVehicle              : "/car-rent-microservice/pay", // /id (of request to rent)
+    createNewReview         : "/car-rent-microservice/api/review/createReviewFor", // /id (of request to rent)
+    requestToRentForUser    : "/car-rent-microservice/requestToShowForUserThatRequested", // /id (of normal user)
 };
 
 /*

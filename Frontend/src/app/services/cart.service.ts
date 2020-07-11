@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Cart } from 'app/models/cart';
-import { Vehicle } from 'app/models/vehicle';
 import { RequestToRentDate } from 'app/models/requestToRentDate';
+import { Review } from 'app/models/review';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,9 @@ export class CartService {
   private _getCartRent = this.url + environment.getCartRent;
   private _getAllCartVehicles = this.url + environment.getAllCartVehicles;
   private _createRequestFromCart = this.url + environment.createRequestFromCart;
+  private _payVehicle = this.url + environment.payVehicle;
+  private _createNewReview = this.url + environment.createNewReview;
+  private _requestToRentForUser = this.url + environment.requestToRentForUser;
 
   constructor(
     private httpClient: HttpClient,
@@ -44,6 +47,18 @@ export class CartService {
 
   public createRequestFromCart(cartId: number, requestToRentDate: RequestToRentDate) {
     return this.httpClient.post(this._createRequestFromCart + "/" + cartId, requestToRentDate);
+  }
+
+  public payVehicle(requestToRentId: number) {
+    return this.httpClient.get(this._payVehicle + "/" + requestToRentId);
+  }
+
+  public createNewReview(requestToRentId: number, review: Review) {
+    return this.httpClient.post(this._createNewReview + "/" + requestToRentId, review);
+  }
+
+  public requestToRentForUser(normalUserId: number) {
+    return this.httpClient.get(this._requestToRentForUser + "/" + normalUserId);
   }
   
 }

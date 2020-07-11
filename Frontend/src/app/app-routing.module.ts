@@ -24,6 +24,7 @@ import { TransmissionTypesComponent } from './main/transmission-types/transmissi
 import { VehicleTypesComponent } from './main/vehicle-types/vehicle-types.component';
 import { ChatComponent } from './main/chat/chat.component';
 import { CartComponent } from './main/cart/cart.component';
+import { ReviewComponent } from './main/review/review.component';
 
 const appRoutes: Routes = [
 
@@ -128,6 +129,11 @@ const appRoutes: Routes = [
     {
         path        : 'pages/cart',
         component   : CartComponent,
+        // canActivate : [AdminGuard],
+    },
+    {
+        path        : 'pages/review/:requestToRentDetailsId',
+        component   : ReviewComponent,
         // canActivate : [AdminGuard],
     },
 
