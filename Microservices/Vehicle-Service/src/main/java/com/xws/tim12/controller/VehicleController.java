@@ -1,26 +1,18 @@
 package com.xws.tim12.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.xws.tim12.dto.VehicleDTO;
 import com.xws.tim12.model.Vehicle;
 import com.xws.tim12.model.VehicleImage;
 import com.xws.tim12.service.VehicleImageService;
 import com.xws.tim12.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = { "http://localhost:8087", "http://localhost:4200" })
@@ -101,8 +93,8 @@ public class VehicleController {
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.CREATED);
 	}
 	/*--------------------*/
-	@GetMapping(path= "/vehicleOfUser/{id}/{role}")
-	public List<Long> getVehicleOfUser(@PathVariable("id") Long id,@PathVariable("role") Long role){
+	@GetMapping(path= "/vehicleOfUser/{id}")
+	public List<Long> getVehicleOfUser(@PathVariable("id") Long id){
 		List<Vehicle> vehicles = vehicleService.findByIdOwner(id);
 
 		if(vehicles == null){
@@ -111,9 +103,9 @@ public class VehicleController {
 		List<Long> vehicless = new ArrayList<>();
 
 		for (Vehicle vehicle: vehicles) {
-			if(vehicle.getOwnerRole().equals(role)) {
+
 				vehicless.add(vehicle.getId());
-			}
+
 		}
 
 		return vehicless;

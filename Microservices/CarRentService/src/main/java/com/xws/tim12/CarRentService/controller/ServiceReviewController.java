@@ -76,8 +76,8 @@ public class ServiceReviewController {
 	}
 
 	@GetMapping(value="/servicesForUser/{normalUserId}")
-	public ResponseEntity<List<ServiceReview>>getRequestsForUser(@PathVariable Long normalUserId,@RequestHeader(value = "Role") String role){
-		List<Long>vehicles =  vehicleClient.getVehicleOfUser(normalUserId,role);
+	public ResponseEntity<List<ServiceReview>>getRequestsForUser(@PathVariable Long normalUserId){
+		List<Long>vehicles =  vehicleClient.getVehicleOfUser(normalUserId);
 		List<ServiceReview>services= new ArrayList<>();
 
 		System.out.println("VEHICLES: "+vehicles);
