@@ -35,6 +35,13 @@ export const navigation: FuseNavigation[] = [
 				url			: '/pages/search-ad',
 			},
 			{
+				id			: 'advanced-search-ad',
+				title		: 'Advanced search vehicles',
+				type		: 'item',
+				icon		: 'pageview',
+				url			: '/pages/advanced-search',
+			},
+			{
 				id			: 'request-to-rent',
 				title		: 'Requests to rent',
 				type		: 'item',

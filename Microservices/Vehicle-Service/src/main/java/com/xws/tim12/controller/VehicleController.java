@@ -79,7 +79,7 @@ public class VehicleController {
 		return new ResponseEntity<>(vehicleDTOs, HttpStatus.OK);
 	}
 	
-	@GetMapping("/searchVehicles")
+	@PostMapping("/searchVehicles")
 	public ResponseEntity<List<VehicleDTO>> getVehicles(@RequestBody VehicleDTO vehicleDTO){
 		List<Vehicle> vehicles = vehicleService.findAll();
 
@@ -134,8 +134,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-				
-			
 			if(vehicleDTO.getPrice()!=null ) {
 				if(vehicle.getPrice() <= vehicleDTO.getPrice()) {
 					addToList = true;
@@ -144,7 +142,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
 			if(vehicleDTO.getTravelledMileage()!=null ) {
 				if(vehicle.getTravelledMileage() <= vehicleDTO.getTravelledMileage()) {
 					addToList = true;
@@ -153,7 +150,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
 			if(vehicleDTO.getPlannedMileageToTravel()!=null ) {
 				if(vehicle.getPlannedMileageToTravel() <= vehicleDTO.getPlannedMileageToTravel()) {
 					addToList = true;
@@ -162,7 +158,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
 			if(vehicleDTO.getIsMileageUnlimited()!=null) {
 				if(vehicle.getIsMileageUnlimited()==vehicleDTO.getIsMileageUnlimited()) {
 					addToList = true;
@@ -171,7 +166,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
 			if(vehicleDTO.getHasCollisionDamageWaiver()!=null) {
 				if(vehicle.getHasCollisionDamageWaiver()==vehicleDTO.getHasCollisionDamageWaiver()) {
 					addToList = true;
@@ -180,7 +174,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
 			if(vehicleDTO.getNumberOfSeats()!=null ) {
 				if(vehicle.getNumberOfSeats() == vehicleDTO.getNumberOfSeats()) {
 					addToList = true;
@@ -189,8 +182,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
-			
 			if(vehicleDTO.getGrade()!=null ) {
 				if(vehicle.getGrade() >= vehicleDTO.getGrade()) {
 					addToList = true;
@@ -199,7 +190,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
 			if(vehicleDTO.getAvailable()!=null ) {
 				if(vehicle.getAvailable() ==vehicleDTO.getAvailable()) {
 					addToList = true;
@@ -208,7 +198,6 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
 			if(vehicleDTO.getVehicleDiscount()!=null ) {
 				if(vehicle.getVehicleDiscount() >= vehicleDTO.getVehicleDiscount()) {
 					addToList = true;
@@ -225,9 +214,7 @@ public class VehicleController {
 					bioFalse = true;
 				}
 			}
-			
-			
-			if(bioFalse == false) {	
+			if(bioFalse == false) {
 			VehicleDTO vehicleDTOO = new VehicleDTO(vehicle);
 			vehicleDTOs.add(vehicleDTOO);
 			}

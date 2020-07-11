@@ -31,6 +31,7 @@ export const environment = {
     createTransmissionType  : "/vehicle/transmissiontype",
     createVehicleType       : "/vehicle/vehicletype",
     getAllVehiclesFromCart  : "/vehicle/all-vehicles-from-cart",
+    searchVehicles          : "/vehicle/searchVehicles",
 
     createNewAd             : "/ad-service/create",
     getAllAds               : "/ad-service/getAds",

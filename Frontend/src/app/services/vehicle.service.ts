@@ -27,6 +27,7 @@ export class VehicleService {
   _createTransmissionType = this.url + environment.createTransmissionType;
   _createVehicleType = this.url + environment.createVehicleType;
   _getAllVehiclesFromCart = this.url + environment.getAllVehiclesFromCart;
+  _advancedSearchVehicles = this.url + environment.searchVehicles;
 
   constructor(
     private httpClient: HttpClient,
@@ -94,5 +95,9 @@ export class VehicleService {
 
   public getAllVehiclesFromCart(vehicleIds: Array<number>){
     return this.httpClient.post(this._getAllVehiclesFromCart, vehicleIds);
+  }
+
+  public advancedSearchVehicles(vehicle: Vehicle){
+    return this.httpClient.post(this._advancedSearchVehicles, vehicle);
   }
 }

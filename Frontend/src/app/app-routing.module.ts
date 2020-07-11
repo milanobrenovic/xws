@@ -26,6 +26,7 @@ import { CartComponent } from './main/cart/cart.component';
 import { ReviewComponent } from './main/review/review.component';
 import { AgentGuard } from './guards/agent.guard';
 import { NormalUser } from './models/normalUser';
+import { AdvancedSearchComponent } from './main/advanced-search/advanced-search.component';
 
 const appRoutes: Routes = [
 
@@ -192,6 +193,10 @@ const appRoutes: Routes = [
 			AgentGuard,
 			NormalUser,
 		],
+	},
+	{
+		path: 'pages/advanced-search',
+		component: AdvancedSearchComponent,
 	},
 
 
