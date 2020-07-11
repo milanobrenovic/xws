@@ -54,6 +54,7 @@ export const environment = {
     payVehicle              : "/car-rent-microservice/pay", // /id (of request to rent)
     createNewReview         : "/car-rent-microservice/api/review/createReviewFor", // /id (of request to rent)
     requestToRentForUser    : "/car-rent-microservice/requestToShowForUserThatRequested", // /id (of normal user)
+    requestToShowForUser    : "/car-rent-microservice/requestToShowForUser", // /{id}/{role} (user/role)
 };
 
 /*

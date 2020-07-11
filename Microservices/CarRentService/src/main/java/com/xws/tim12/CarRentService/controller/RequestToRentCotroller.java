@@ -89,9 +89,9 @@ public class RequestToRentCotroller {
 		return new ResponseEntity<>(r,HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/requestToShowForUser/{id}")
-	public ResponseEntity<List<RequestToRent>>getRequestsForUser(@PathVariable Long id){
-		List<Long>vehicles =  vehicleClient.getVehicleOfUser(id);
+	@GetMapping(value="/requestToShowForUser/{id}/{role}")
+	public ResponseEntity<List<RequestToRent>>getRequestsForUser(@PathVariable("id") Long id,@PathVariable("role") String role){
+		List<Long>vehicles =  vehicleClient.getVehicleOfUser(id,role);
 		System.out.println("VEHICLES: "+vehicles);
 		if (vehicles == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

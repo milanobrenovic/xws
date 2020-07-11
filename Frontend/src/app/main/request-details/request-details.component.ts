@@ -44,10 +44,10 @@ export class RequestDetailsComponent implements OnInit {
 
   fetchData() {
     const id = this._userService.getLoggedInUser().id;
-    
-    this._requestToRentService.getRequestToRentDetails(+id).subscribe(
+    const userRole = this._userService.getLoggedInUser().role;
+
+    this._cartService.requestToShowForUser(id, userRole).subscribe(
       (data: any) => {
-        console.log(data);
         var formattedObject: Array<RequestToRentDetails> = [];
 
         data.forEach(adObject => {
@@ -58,15 +58,38 @@ export class RequestDetailsComponent implements OnInit {
           formattedObject.push(adObject);
         });
 
-        this.requestDetailsDataSource = new MatTableDataSource(formattedObject);
-        this.requestDetailsDataSource.paginator = this.paginator;
-        this.requestDetailsDataSource.sort = this.sort;
+        this.requestsToShowForUserThatRequestedDataSource = new MatTableDataSource(formattedObject);
+        this.requestsToShowForUserThatRequestedDataSource.paginator = this.paginator;
+        this.requestsToShowForUserThatRequestedDataSource.sort = this.sort;
       },
       (e: HttpErrorResponse) => {
-				this._toastrService.error(e.message, "Failed to get details about this request");
+				this._toastrService.error(e.message, "Failed create a new review");
       }
     );
   }
+    
+  //   this._requestToRentService.requestToShowForUser(+id, role).subscribe(
+  //     (data: any) => {
+  //       console.log(data);
+  //       var formattedObject: Array<RequestToRentDetails> = [];
+
+  //       data.forEach(adObject => {
+  //         const rentDateFrom = formatDate(adObject.rentDateFrom, 'yyyy-MM-dd HH:mm', 'en-US');
+  //         const rentDateTo = formatDate(adObject.rentDateTo, 'yyyy-MM-dd HH:mm', 'en-US');
+  //         adObject.rentDateFrom = rentDateFrom;
+  //         adObject.rentDateTo = rentDateTo;
+  //         formattedObject.push(adObject);
+  //       });
+
+  //       this.requestDetailsDataSource = new MatTableDataSource(formattedObject);
+  //       this.requestDetailsDataSource.paginator = this.paginator;
+  //       this.requestDetailsDataSource.sort = this.sort;
+  //     },
+  //     (e: HttpErrorResponse) => {
+	// 			this._toastrService.error(e.message, "Failed to get details about this request");
+  //     }
+  //   );
+  // }
 
   acceptRequest(data: RequestToRentDetails) {
     this._requestToRentService.acceptRequestToRent(data.id).subscribe(
@@ -106,9 +129,11 @@ export class RequestDetailsComponent implements OnInit {
 
   private fetchRequestsForUser() {
     const userId = this._userService.getLoggedInUser().id;
+    const userRole = this._userService.getLoggedInUser().role;
     console.log(userId);
+    console.log(userRole);
     
-    this._cartService.requestToRentForUser(userId).subscribe(
+    this._cartService.requestToShowForUser(userId, userRole).subscribe(
       (data: Array<RequestToRentDetails>) => {
         this.requestsToShowForUserThatRequestedDataSource = new MatTableDataSource(data);
         this.requestsToShowForUserThatRequestedDataSource.paginator = this.paginator;

@@ -20,6 +20,7 @@ export class CartService {
   private _payVehicle = this.url + environment.payVehicle;
   private _createNewReview = this.url + environment.createNewReview;
   private _requestToRentForUser = this.url + environment.requestToRentForUser;
+  private _requestToShowForUser = this.url + environment.requestToShowForUser;
 
   constructor(
     private httpClient: HttpClient,
@@ -59,6 +60,10 @@ export class CartService {
 
   public requestToRentForUser(normalUserId: number) {
     return this.httpClient.get(this._requestToRentForUser + "/" + normalUserId);
+  }
+  
+  public requestToShowForUser(userId: number, role: string) {
+    return this.httpClient.get(this._requestToShowForUser + "/" + userId + "/" + role);
   }
   
 }

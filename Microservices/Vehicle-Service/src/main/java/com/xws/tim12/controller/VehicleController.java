@@ -233,15 +233,14 @@ public class VehicleController {
 		vehicleDTO.setIdOwner(idd);
 		Vehicle vehicle = vehicleService.convertFromDTO(vehicleDTO);
 		vehicle.setOwnerRole(role);
+		System.out.println("role:: "+vehicle.getOwnerRole());
 		vehicleService.save(vehicle);
 		
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.CREATED);
 	}
 	/*--------------------*/
-	@GetMapping(path= "/vehicleOfUser/{id}")
 	public List<Long> getVehicleOfUser(@PathVariable("id") Long id){
 		List<Vehicle> vehicles = vehicleService.findByIdOwner(id);
-
 		if(vehicles == null){
 			return null;
 		}
