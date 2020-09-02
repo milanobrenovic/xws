@@ -89,9 +89,9 @@ public class RequestToRentCotroller {
 		return new ResponseEntity<>(r,HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/requestToShowForUser/{id}/{role}")
-	public ResponseEntity<List<RequestToRent>>getRequestsForUser(@PathVariable("id") Long id,@PathVariable("role") String role){
-		List<Long>vehicles =  vehicleClient.getVehicleOfUser(id,role);
+	@GetMapping(value="/requestToShowForUser/{id}")
+	public ResponseEntity<List<RequestToRent>>getRequestsForUser(@PathVariable("id") Long id){
+		List<Long>vehicles =  vehicleClient.getVehicleOfUser(id);
 		System.out.println("VEHICLES: "+vehicles);
 		if (vehicles == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -108,6 +108,26 @@ public class RequestToRentCotroller {
 		}
 		return new ResponseEntity<>(requests,HttpStatus.OK);
 	}
+	
+	@GetMapping(value="/userGrades/{id}")
+	public Integer getGradesOfUser(@PathVariable("id") Long id){
+		List<Long>vehicles =  vehicleClient.getVehicleOfUser(id);
+		Integer grades = 0;
+		System.out.println("VEHICLES: "+vehicles);
+	
+		List<RequestToRent>requests= new ArrayList<>();
+		List<RequestToRent>allRequests = requestToRentService.findAll();
+		for(RequestToRent r:allRequests){
+			for(Long v:vehicles){
+				if(r.getVehicleId() == v){
+					requests.add(r);
+					grades += r.getServiceReview().getStars();
+				}
+			}
+		}
+		return grades;
+	}
+	
 	@GetMapping(value="/requestToShowForUserThatRequested/{id}")
 	public ResponseEntity<List<RequestToRent>>getRequestsForUserRequested(@PathVariable Long id,@RequestHeader(value = "id") String idLogged){
 		System.out.println("Ulazis u that requested???");

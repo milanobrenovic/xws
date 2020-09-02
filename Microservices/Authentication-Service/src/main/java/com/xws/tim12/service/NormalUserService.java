@@ -10,6 +10,7 @@ public interface NormalUserService {
 	NormalUser findById(Long id);
     NormalUser findOneByUsername(String username);
     NormalUser getUserLogin();
+    List<NormalUser> findAll();
     NormalUserDTO createNormalUser(NormalUserDTO normalUser);
     NormalUserDTO blockNormalUser(String username);
     NormalUserDTO unblockNormalUser(String username);

@@ -4,14 +4,15 @@ import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import javax.persistence.*;
-import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import com.xws.tim12.model.Agency;
 
 @Entity
 public class NormalUser implements UserDetails {
@@ -59,6 +60,9 @@ public class NormalUser implements UserDetails {
     @Column()
     private Boolean isBanned;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Agency agency;
+    
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinTable(
             name = "normal_user_authority",
@@ -229,4 +233,20 @@ public class NormalUser implements UserDetails {
                 '}';
     }
 
+	public Boolean getIsBanned() {
+		return isBanned;
+	}
+
+	public void setIsBanned(Boolean isBanned) {
+		this.isBanned = isBanned;
+	}
+
+	public Agency getAgency() {
+		return agency;
+	}
+
+	public void setAgency(Agency agency) {
+		this.agency = agency;
+	}
+    
 }
