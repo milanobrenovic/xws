@@ -43,6 +43,11 @@ public class NormalUserController {
     public Integer getNumberOfAds(@PathVariable Long id){
     	return normalUserService.findById(id).getNumberOfAds();
     }
+    @GetMapping(value = "/getLoggedInUserRank/{id}")
+    public String getRanking(@PathVariable Long id) {
+    	
+    	return normalUserService.findById(id).getRank().toString();
+    }
 
     @PutMapping(value = "/block/{username}")
     public ResponseEntity<NormalUserDTO> blockNormalUser(@PathVariable("username") String username) {

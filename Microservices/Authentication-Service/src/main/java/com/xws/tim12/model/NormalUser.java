@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+
+import com.xws.tim12.enumeration.UserRanking;
 import com.xws.tim12.model.Agency;
 
 @Entity
@@ -63,6 +65,8 @@ public class NormalUser implements UserDetails {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Agency agency;
     
+    private UserRanking rank;
+    
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinTable(
             name = "normal_user_authority",
@@ -87,8 +91,77 @@ public class NormalUser implements UserDetails {
         this.numberOfAds = numberOfAds;
         this.isBanned = isBanned;
     }
+    
 
-    @Override
+    public NormalUser(Long id,
+			@NotEmpty(message = "Username cannot be empty.") @NotNull(message = "Username cannot be null.") String username,
+			@NotEmpty(message = "Password cannot be empty.") @NotNull(message = "Password cannot be null.") String password,
+			String firstName, String lastName, @Email String email, String country, String phoneNumber, String address,
+			String city, Integer numberOfAds, Boolean isBanned, Agency agency, UserRanking rank) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.city = city;
+		this.numberOfAds = numberOfAds;
+		this.isBanned = isBanned;
+		this.agency = agency;
+		this.rank = rank;
+	}
+    
+    
+
+	public NormalUser(
+			@NotEmpty(message = "Username cannot be empty.") @NotNull(message = "Username cannot be null.") String username,
+			@NotEmpty(message = "Password cannot be empty.") @NotNull(message = "Password cannot be null.") String password,
+			String firstName, String lastName, @Email String email, String country, String phoneNumber, String address,
+			String city, Integer numberOfAds, Boolean isBanned, UserRanking rank) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.city = city;
+		this.numberOfAds = numberOfAds;
+		this.isBanned = isBanned;
+		this.rank = rank;
+	}
+
+	public NormalUser(Long id,
+			@NotEmpty(message = "Username cannot be empty.") @NotNull(message = "Username cannot be null.") String username,
+			@NotEmpty(message = "Password cannot be empty.") @NotNull(message = "Password cannot be null.") String password,
+			String firstName, String lastName, @Email String email, String country, String phoneNumber, String address,
+			String city, Integer numberOfAds, Boolean isBanned, Agency agency, UserRanking rank,
+			Set<Authority> authorities) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.city = city;
+		this.numberOfAds = numberOfAds;
+		this.isBanned = isBanned;
+		this.agency = agency;
+		this.rank = rank;
+		this.authorities = authorities;
+	}
+
+	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;
     }
@@ -247,6 +320,14 @@ public class NormalUser implements UserDetails {
 
 	public void setAgency(Agency agency) {
 		this.agency = agency;
+	}
+
+	public UserRanking getRank() {
+		return rank;
+	}
+
+	public void setRank(UserRanking rank) {
+		this.rank = rank;
 	}
     
 }

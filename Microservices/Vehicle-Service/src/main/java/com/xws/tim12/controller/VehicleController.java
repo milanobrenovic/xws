@@ -239,6 +239,7 @@ public class VehicleController {
 		return new ResponseEntity<>(vehicleDTO, HttpStatus.CREATED);
 	}
 	/*--------------------*/
+	@GetMapping(value = "/vehicleOfUser/{id}")
 	public List<Long> getVehicleOfUser(@PathVariable("id") Long id){
 		List<Vehicle> vehicles = vehicleService.findByIdOwner(id);
 		if(vehicles == null){

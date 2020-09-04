@@ -110,9 +110,9 @@ public class RequestToRentCotroller {
 	}
 	
 	@GetMapping(value="/userGrades/{id}")
-	public Integer getGradesOfUser(@PathVariable("id") Long id){
+	public Double getGradesOfUser(@PathVariable("id") Long id){
 		List<Long>vehicles =  vehicleClient.getVehicleOfUser(id);
-		Integer grades = 0;
+		int grades = 0;
 		System.out.println("VEHICLES: "+vehicles);
 	
 		List<RequestToRent>requests= new ArrayList<>();
@@ -120,12 +120,18 @@ public class RequestToRentCotroller {
 		for(RequestToRent r:allRequests){
 			for(Long v:vehicles){
 				if(r.getVehicleId() == v){
-					requests.add(r);
-					grades += r.getServiceReview().getStars();
+					if(r.getServiceReview() != null) {
+						requests.add(r);
+					grades += r.getServiceReview().getStars(); }
 				}
 			}
 		}
-		return grades;
+		System.out.println("Grades:  "+grades+"Number::  "+requests.size());
+		if(grades==0 || requests.size() ==0 ) {
+			return (double) 0;
+		}
+		Double grades2 = (double) (grades/ requests.size());
+		return grades2;
 	}
 	
 	@GetMapping(value="/requestToShowForUserThatRequested/{id}")

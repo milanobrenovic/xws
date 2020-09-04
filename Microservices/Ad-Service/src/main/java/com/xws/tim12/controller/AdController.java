@@ -42,10 +42,11 @@ public class AdController {
     		return new ResponseEntity<>(HttpStatus.CONFLICT);
     	}
     	Long idd = (Long.parseLong(id));
-    	if(authenticationClient.getNumberOfAds(idd) >= 3){
-    		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    	if(authenticationClient.getRanking(idd).equals("NORMAL")) {
+    		if(authenticationClient.getNumberOfAds(idd) >= 3){
+    			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    		}
     	}
-
     	try {
             AdDTO newAdDTO = adService.create(adDTO);
             

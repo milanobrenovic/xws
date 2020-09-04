@@ -1,6 +1,7 @@
 package com.xws.tim12.serviceImpl;
 
 import com.xws.tim12.dto.NormalUserDTO;
+import com.xws.tim12.enumeration.UserRanking;
 import com.xws.tim12.model.Admin;
 import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.repository.NormalUserRepository;
@@ -100,7 +101,8 @@ public class NormalUserServiceImpl implements UserDetailsService, NormalUserServ
                 normalUserDTO.getAddress(),
                 normalUserDTO.getCity(),
                 0,
-                false
+                false,
+                UserRanking.NORMAL
         );
         newNormalUser.setAuthorities(authService.findById(2L));
         return new NormalUserDTO(normalUserRepository.save(newNormalUser));

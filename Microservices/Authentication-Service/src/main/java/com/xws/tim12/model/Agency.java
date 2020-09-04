@@ -38,6 +38,10 @@ public class Agency {
 	 @OneToMany(mappedBy = "agency", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 		private Set<NormalUser> eliteAgents = new HashSet<NormalUser>();	
 	 
+	public Agency() {
+		
+	}
+	 
 	public Agency(Long id,
 			@NotEmpty(message = "Username cannot be empty.") @NotNull(message = "Username cannot be null.") String agencyName,
 			Set<Agency> agencies) {
@@ -45,6 +49,15 @@ public class Agency {
 		this.id = id;
 		this.agencyName = agencyName;
 		this.agencies = agencies;
+	}
+	
+	public Agency(Long id,
+			@NotEmpty(message = "Username cannot be empty.") @NotNull(message = "Username cannot be null.") String agencyName) {
+		super();
+		this.id = id;
+		this.agencyName = agencyName;
+		agents = new HashSet<NormalUser>();
+		eliteAgents = new HashSet<NormalUser>();
 	}
 
 	public Long getId() {

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xws.tim12.client.RequestClient;
 import com.xws.tim12.dto.NormalUserDTO;
+import com.xws.tim12.enumeration.UserRanking;
 import com.xws.tim12.model.NormalUser;
 import com.xws.tim12.service.AgencyService;
 import com.xws.tim12.service.NormalUserService;
@@ -43,7 +44,11 @@ public class AgencyController {
 	                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	            }
 	            for(NormalUser n :normalUsers) {
-	            	if(requestClient.getGradesOfUser(n.getId())/n.getNumberOfAds() >= 4) {
+	            	System.out.println("user sa id:  " +n.getId());
+	            	Double sum = requestClient.getGradesOfUser(n.getId());
+	            	System.out.println("SUM:  "+sum);
+	            	if(sum >=4 ) {
+	            		show.add(n);
 	            		
 	            	}
 	            	
@@ -55,16 +60,34 @@ public class AgencyController {
 	        }
 	    }
 	
-	@PostMapping(value = "/addToAgency/{idAgencije}")
-    public ResponseEntity<NormalUser> addToAgencyUser(@PathVariable Long idAgencije,@RequestBody NormalUserDTO normalUser) {
+	@PostMapping(value = "/addToAgency/{idAgencije}/{idUsera}") //PROMENI REQUESTBODY AKO BUDE TREBALO
+    public ResponseEntity<NormalUser> addToAgencyUser(@PathVariable Long idAgencije,@PathVariable Long idUsera) {
         try {
-            NormalUser user = normalUserService.findOneByUsername(normalUser.getUsername());
+            NormalUser user = normalUserService.findById(idUsera);
             if (user == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             
             agencyService.findById(idAgencije).getAgents().add(user);
+            user.setRank(UserRanking.AGENT);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+	@PostMapping(value = "/promote/{idAgencije}/{idAgenta}")
+    public ResponseEntity<NormalUser> promoteAgent(@PathVariable Long idAgencije,@PathVariable Long idAgenta) {
+        try {
+            NormalUser user = normalUserService.findById(idAgenta);
+            if (user == null) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             
+            agencyService.findById(idAgencije).getAgents().remove(user);
+            agencyService.findById(idAgencije).getEliteAgents().add(user);
+            user.setRank(UserRanking.ELITE);
+            System.out.println(agencyService.findById(idAgencije).getEliteAgents());
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

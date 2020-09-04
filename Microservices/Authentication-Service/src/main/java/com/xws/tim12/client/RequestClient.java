@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name = "request")
+@FeignClient(name = "car-rent-microservice")
 public interface RequestClient {
 	@GetMapping(value="/userGrades/{id}")
-	public Integer getGradesOfUser(@PathVariable("id") Long id);
+	public Double getGradesOfUser(@PathVariable("id") Long id);
 	
 	
 }

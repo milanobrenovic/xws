@@ -20,5 +20,7 @@ public interface AuthenticationClient {
 	     public Boolean hasRole(@PathVariable("role") String role,HttpServletRequest request);
 	 	 @GetMapping(value = "/getNumberOfAds/{id}")
 	     public Integer getNumberOfAds(@PathVariable("id") Long id);
+	 	 @GetMapping(value = "/getLoggedInUserRank/{id}")
+	     public String getRanking(@PathVariable Long id);
 	 
 }
