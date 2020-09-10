@@ -16,6 +16,7 @@ import java.util.Set;
 import com.xws.tim12.enumeration.UserRanking;
 import com.xws.tim12.model.Agency;
 
+
 @Entity
 public class NormalUser implements UserDetails {
 
@@ -61,7 +62,7 @@ public class NormalUser implements UserDetails {
 
     @Column()
     private Boolean isBanned;
-
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Agency agency;
     
@@ -73,6 +74,9 @@ public class NormalUser implements UserDetails {
             joinColumns = @JoinColumn(name = "normal_user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private Set<Authority> authorities;
+    
+    @OneToOne(mappedBy = "agencyLeader", fetch = FetchType.EAGER)
+	private Agency ownedAgency;
 
     public NormalUser() {
 

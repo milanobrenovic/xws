@@ -12,8 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+
+
+
 
 
 
@@ -37,6 +42,10 @@ public class Agency {
 		private Set<NormalUser> agents = new HashSet<NormalUser>();
 	 @OneToMany(mappedBy = "agency", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 		private Set<NormalUser> eliteAgents = new HashSet<NormalUser>();	
+	 @OneToMany(mappedBy = "agency", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+		private Set<TransportationVehicle> ownedVehicles = new HashSet<TransportationVehicle>();	
+	 @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+		private NormalUser agencyLeader;
 	 
 	public Agency() {
 		
@@ -58,6 +67,32 @@ public class Agency {
 		this.agencyName = agencyName;
 		agents = new HashSet<NormalUser>();
 		eliteAgents = new HashSet<NormalUser>();
+	}
+	
+	
+
+	public Agency(Long id,
+			@NotEmpty(message = "Username cannot be empty.") @NotNull(message = "Username cannot be null.") String agencyName,
+			Set<Agency> agencies, Set<NormalUser> agents, Set<NormalUser> eliteAgents,
+			Set<TransportationVehicle> ownedVehicles, NormalUser agencyLeader) {
+		super();
+		this.id = id;
+		this.agencyName = agencyName;
+		this.agencies = agencies;
+		this.agents = agents;
+		this.eliteAgents = eliteAgents;
+		this.ownedVehicles = ownedVehicles;
+		this.agencyLeader = agencyLeader;
+	}
+	
+	
+
+	public NormalUser getAgencyLeader() {
+		return agencyLeader;
+	}
+
+	public void setAgencyLeader(NormalUser agencyLeader) {
+		this.agencyLeader = agencyLeader;
 	}
 
 	public Long getId() {
@@ -119,6 +154,27 @@ public class Agency {
 
 	public void setEliteAgents(Set<NormalUser> eliteAgents) {
 		this.eliteAgents = eliteAgents;
+	}
+
+	public Agency(Long id,
+			@NotEmpty(message = "Username cannot be empty.") @NotNull(message = "Username cannot be null.") String agencyName,
+			Set<Agency> agencies, Set<NormalUser> agents, Set<NormalUser> eliteAgents,
+			Set<TransportationVehicle> ownedVehicles) {
+		super();
+		this.id = id;
+		this.agencyName = agencyName;
+		this.agencies = agencies;
+		this.agents = agents;
+		this.eliteAgents = eliteAgents;
+		this.ownedVehicles = ownedVehicles;
+	}
+
+	public Set<TransportationVehicle> getOwnedVehicles() {
+		return ownedVehicles;
+	}
+
+	public void setOwnedVehicles(Set<TransportationVehicle> ownedVehicles) {
+		this.ownedVehicles = ownedVehicles;
 	}
 		
 	 
