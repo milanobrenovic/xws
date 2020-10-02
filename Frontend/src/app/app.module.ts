@@ -71,7 +71,7 @@ import { ErrorComponent } from './main/errors/error/error.component';
 import { CreateNewAdComponent } from './main/create-new-ad/create-new-ad.component';
 import { CreateNewVehicleComponent } from './main/create-new-vehicle/create-new-vehicle.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
+
 import { SearchAdComponent } from './main/search-ad/search-ad.component';
 import { VehicleDetailsComponent } from './main/vehicle-details/vehicle-details.component';
 import { MessagesComponent } from './main/messages/messages.component';
@@ -87,6 +87,17 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { CartComponent } from './main/cart/cart.component';
 import { ReviewComponent } from './main/review/review.component';
 import { AdvancedSearchComponent } from './main/advanced-search/advanced-search.component';
+import { QualifiedUsersComponent } from './main/qualified-users/qualified-users.component';
+import { QualifiedUsersService } from './main/qualified-users/qualified-users.service';
+import { AgentListComponent } from './main/agent-list/agent-list.component';
+import { AgentListService } from './main/agent-list/agent-list.service';
+import { TransporationVehicleListComponent } from './main/transporation-vehicle-list/transporation-vehicle-list.component';
+import { TransportationVehicleService } from './main/transporation-vehicle-list/transporation-vehicle-list.service';
+import { CreateTransportationVehicleComponent } from './main/create-transportation-vehicle/create-transportation-vehicle.component';
+import { CreateTransportationVehicleService } from './main/create-transportation-vehicle/create-transportation-vehicle.service';
+import { OtherAgenciesComponent } from './main/other-agencies/other-agencies.component';
+import { AgencyService } from './main/other-agencies/other-agencies.service';
+
 
 const config: SocketIoConfig = {
 	url: "http://localhost:9000",
@@ -95,6 +106,7 @@ const config: SocketIoConfig = {
 
 @NgModule({
 	declarations: [
+		
 		AppComponent,
 		HomeComponent,
 		LoginComponent,
@@ -120,8 +132,14 @@ const config: SocketIoConfig = {
 		CartComponent,
 		ReviewComponent,
 		AdvancedSearchComponent,
+		QualifiedUsersComponent,
+		AgentListComponent,
+		TransporationVehicleListComponent,
+		CreateTransportationVehicleComponent,
+		OtherAgenciesComponent,
 	],
 	imports: [
+		FormsModule ,
 		BrowserModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
@@ -189,6 +207,8 @@ const config: SocketIoConfig = {
 		MatTreeModule,
 		PortalModule,
 		ScrollingModule,
+		FormsModule,
+        ReactiveFormsModule,
 
 		// Fuse modules
 		FuseModule.forRoot(fuseConfig),
@@ -204,17 +224,37 @@ const config: SocketIoConfig = {
 		// Socket.IO
 		SocketIoModule.forRoot(config),
 	],
-	providers: [
+	providers: [	QualifiedUsersService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
+			multi: true,
+		},	AgentListService,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: TokenInterceptor,
 			multi: true,
 		},
+
+		TransportationVehicleService,
 		{
 			provide: HTTP_INTERCEPTORS,
-			useClass: ErrorInterceptor,
+			useClass: TokenInterceptor,
 			multi: true,
 		},
+		AgencyService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
+			multi: true,
+		},
+		CreateTransportationVehicleService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
+			multi: true,
+		},
+		
 	],
 	bootstrap: [
 		AppComponent

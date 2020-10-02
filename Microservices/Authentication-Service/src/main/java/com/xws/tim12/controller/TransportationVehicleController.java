@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,12 +40,28 @@ public class TransportationVehicleController {
 	private AgencyService agencyService;
 	
 	
-	@PostMapping(value = "/createVehicle/{idAgencije}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/agencyVehicles")
+	public ResponseEntity<List<TransportationVehicleDTO>> listOfAgencyVehicles( @RequestHeader(value = "Id") String id){
+		Long idd = (Long.parseLong(id));
+		if(normalUserService.findById(idd).getRank() == UserRanking.NORMAL || normalUserService.findById(idd).getRank() == UserRanking.PREMIUM) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		List<TransportationVehicleDTO>vehicles = new ArrayList<TransportationVehicleDTO>();
+		for(TransportationVehicle tv:normalUserService.findById(idd).getAgency().getOwnedVehicles()) {
+			TransportationVehicleDTO tv1 = new TransportationVehicleDTO(tv);
+			vehicles.add(tv1);
+		}
+		
+		return new ResponseEntity<>(vehicles, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/createVehicle/{idAgencije}")
 	public ResponseEntity<TransportationVehicleDTO> createVehicle(@RequestBody TransportationVehicleDTO transportationVehicleDTO, @RequestHeader(value = "Id") String id, @RequestHeader(value = "Role") String role,@PathVariable Long idAgencije){
 		if(transportationVehicleDTO.getClass() == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		Long idd = (Long.parseLong(id));
-		if(normalUserService.findById(idd).getRank() != UserRanking.ELITE) {
+		if(normalUserService.findById(idd).getRank() != UserRanking.ELITE && normalUserService.findById(idd).getRank() != UserRanking.OWNER) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		if(normalUserService.findById(idd).getAgency().getId() != idAgencije) {
@@ -57,10 +74,48 @@ public class TransportationVehicleController {
 		return new ResponseEntity<>(transportationVehicleDTO, HttpStatus.CREATED);
 	}
 	
+	@PostMapping(value = "/freeAgencyVehicles")
+	public ResponseEntity<List<TransportationVehicleDTO>> listOfFreeAgencyVehicles( @RequestHeader(value = "Id") String id,@RequestBody ReservationDate dates){
+		System.out.println("USO U FREE");
+		Long idd = (Long.parseLong(id));
+		if(normalUserService.findById(idd).getRank() == UserRanking.NORMAL || normalUserService.findById(idd).getRank() == UserRanking.PREMIUM) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		List<TransportationVehicleDTO>vehicles = new ArrayList<TransportationVehicleDTO>();
+		for(TransportationVehicle tv:normalUserService.findById(idd).getAgency().getOwnedVehicles()) {
+			Boolean dozvoljeno = true;
+			
+			for (int i=0;i<tv.getStartDates().size();i++) {
+			/*	if(tv.getStartDates().get(i).compareTo(dates.getRentDateFrom()) < 0 ){
+					dozvoljeno = false;
+					System.out.println("1111111111111111");
+				}
+				else if (tv.getEndDates().get(i).compareTo(dates.getRentDateFrom()) > 0 ){
+					dozvoljeno = false;
+					System.out.println("222222222222");
+				}*/
+				/*else */if(tv.getStartDates().get(i).compareTo(dates.getRentDateFrom()) > 0 && tv.getEndDates().get(i).compareTo(dates.getRentDateTo()) < 0){
+					dozvoljeno = false;
+					System.out.println("333333333333");
+	        }	else if(tv.getStartDates().get(i).compareTo(dates.getRentDateFrom()) == 0 || tv.getEndDates().get(i).compareTo(dates.getRentDateTo()) == 0){
+					dozvoljeno = false;
+					System.out.println("44444444444");
+	        }
+	        }
+			if(dozvoljeno) {
+			TransportationVehicleDTO tv1 = new TransportationVehicleDTO(tv);
+			vehicles.add(tv1);}
+		}
+		
+		return new ResponseEntity<>(vehicles, HttpStatus.OK);
+	}
 	
 	@PostMapping(value = "/reserveTransportation/{idAgencije}/{idVozila}") //PROMENI REQUESTBODY AKO BUDE TREBALO
     public ResponseEntity<TransportationVehicle> reserveVehicle(@PathVariable Long idAgencije ,@PathVariable Long idVozila,@RequestBody ReservationDate dates,@RequestHeader(value = "Id") String id) {
-        TransportationVehicle tv = transportationVehicleService.findById(idVozila);
+        TransportationVehicle tv = transportationVehicleService.findById((idVozila));
+        System.out.println("idVozila: "+idVozila);
+        System.out.println(tv);
         if(tv== null) {
         	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -76,6 +131,9 @@ public class TransportationVehicleController {
         if(!normalUserService.findById(idd).getAgency().getAgencies().contains(agencyService.findById(idAgencije))) {
         	System.out.println("NE SADRZI");
         	dozvoljeno = false;
+        }
+        if(normalUserService.findById(idd).getAgency().getId() == idAgencije) {
+        	dozvoljeno = true;
         }
         for (int i=0;i<tv.getStartDates().size();i++) {
 			if(tv.getStartDates().get(i).compareTo(dates.getRentDateTo()) < 0 ){

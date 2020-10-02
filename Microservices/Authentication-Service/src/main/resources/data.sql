@@ -28,23 +28,27 @@ INSERT INTO agent_authority (agent_id, authority_id) VALUES (2, 3);
 
 INSERT INTO agent_authority (agent_id, authority_id) VALUES (3, 3);
 
+--AGENCIES
+INSERT INTO agency (agency_name)
+VALUES ('Agencija1');
+INSERT INTO agency (agency_name)
+VALUES ('Agencija2');
+
 
 -- NORMAL USERS
 INSERT INTO normal_user (username, password, first_name, last_name, email, country, phone_number, address, city, number_of_ads, is_banned,rank)
 VALUES ('user1', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'User1', 'Useric1', 'user1@gmail.com', 'Serbia', '+38112345678', 'Neka Adresa St. 1', 'Novi Sad', 0, false,0);
-INSERT INTO normal_user (username, password, first_name, last_name, email, country, phone_number, address, city, number_of_ads, is_banned,rank)
-VALUES ('user2', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'User1', 'Useric1', 'user1@gmail.com', 'Serbia', '+38112345678', 'Neka Adresa St. 1', 'Novi Sad', 0, false,4);
+INSERT INTO normal_user (username, password, first_name, last_name, email, country, phone_number, address, city, number_of_ads, is_banned,rank,agency_id)
+VALUES ('user2', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'User1', 'Useric1', 'user1@gmail.com', 'Serbia', '+38112345678', 'Neka Adresa St. 1', 'Novi Sad', 0, false,4,1);
+UPDATE agency
+SET agency_leader_id = 1
+WHERE agency_name = 'Agencija1';
+INSERT INTO transportation_vehicle(brand,model,type,agency_id)
+VALUES ('BRAND1','MODEL1',1,1);
 INSERT INTO normal_user (username, password, first_name, last_name, email, country, phone_number, address, city, number_of_ads, is_banned)
 VALUES ('user3', '$2a$10$l8J.2UoFqfOwj9t7GRAtAen1/t8Sz2HfAxYT9LehVxq58wa9LihEi', 'User1', 'Useric1', 'user1@gmail.com', 'Serbia', '+38112345678', 'Neka Adresa St. 1', 'Novi Sad', 0, false);
 
---AGENCIES
-INSERT INTO agency (agency_name,agency_leader_id)
-VALUES ('Agencija1',2);
-INSERT INTO agency (agency_name)
-VALUES ('Agencija2');
 
-INSERT INTO transportation_vehicle(brand,model,type)
-VALUES ('BRAND1','MODEL1',1);
 
 INSERT INTO normal_user_authority (normal_user_id, authority_id) VALUES (1, 2);
 INSERT INTO normal_user_authority (normal_user_id, authority_id) VALUES (2, 2);

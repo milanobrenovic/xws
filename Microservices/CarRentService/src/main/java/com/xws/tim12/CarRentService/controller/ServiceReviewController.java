@@ -66,10 +66,10 @@ public class ServiceReviewController {
 		   }
 		 		
 	    RequestToRent r2 = requestService.findById(id);
+	    review.setRequestToRent(r);
+	    reviewService.save(review);
 		r2.setServiceReview(review);
 		requestService.save(r2);
-		review.setRequestToRent(r);
-		reviewService.save(review);
 		
 		return new ResponseEntity<>(serviceReviewDTO, HttpStatus.CREATED);
 		

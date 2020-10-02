@@ -22,7 +22,7 @@ export class AdService {
   }
 
   public getAllAds() {
-    return this.httpClient.get(this._getAllAds);
+    return this.httpClient.post('http://localhost:8087/ad-service/getAds',null);
   }
 
 }

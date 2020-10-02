@@ -1,0 +1,74 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<mat-card>
+		<mat-card-title>
+			Add a new transporation vehicle into the system
+		</mat-card-title>
+		<mat-card-content>
+			<p>
+				Please fill out the form in order to add a new vehicle.
+			</p>
+			<mat-divider></mat-divider>
+			<br>
+			<form fxLayout="column" [formGroup]="createNewVehicleForm">
+				<table class="form-full-width" >
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Brand</mat-label>
+                                <input matInput  formControlName="brand" >
+								
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Model</mat-label>
+                                <input matInput formControlName="model">
+								
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field appearance="outline" fxFlex="50">
+								<mat-label>Type</mat-label>
+                                <mat-select formControlName="type" >
+									<mat-option [value]="0">
+										Truck
+                                    </mat-option>
+                                    <mat-option [value]="1">
+										Helicopter
+                                    </mat-option>
+                                    <mat-option [value]="2">
+										Plane
+                                    </mat-option>
+                                    <mat-option [value]="3">
+										Ship
+									</mat-option>
+								</mat-select>
+								
+							</mat-form-field>
+						</td>
+					</tr>
+					
+					
+					
+					
+					<br>
+					<tr>
+						<td>
+							<button mat-raised-button color="primary" (click)="createVehicle(5)">
+								Add new transporation vehicle
+							</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+			
+
+		</mat-card-content>
+	</mat-card>
+
+</div>

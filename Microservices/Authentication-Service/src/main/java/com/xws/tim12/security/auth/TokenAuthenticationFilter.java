@@ -48,7 +48,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
         }
-
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "*");
         chain.doFilter(request, response);
     }
 

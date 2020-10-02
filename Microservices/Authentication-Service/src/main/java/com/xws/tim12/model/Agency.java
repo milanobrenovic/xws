@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 
 
 
@@ -34,17 +36,20 @@ public class Agency {
 	 @NotNull(message = "Username cannot be null.")
 	 @Column(nullable = false)
 	 private String agencyName;
-	 
+	    @JsonIgnore
 	 @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Agency> agencies = new HashSet<Agency>();
-
+	    @JsonIgnore
 	 @OneToMany(mappedBy = "agency", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 		private Set<NormalUser> agents = new HashSet<NormalUser>();
-	 @OneToMany(mappedBy = "agency", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+	    @JsonIgnore
+	    @OneToMany(mappedBy = "agency", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 		private Set<NormalUser> eliteAgents = new HashSet<NormalUser>();	
-	 @OneToMany(mappedBy = "agency", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+	    @JsonIgnore
+	    @OneToMany(mappedBy = "agency", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
 		private Set<TransportationVehicle> ownedVehicles = new HashSet<TransportationVehicle>();	
-	 @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	    @JsonIgnore
+	    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 		private NormalUser agencyLeader;
 	 
 	public Agency() {
@@ -65,8 +70,10 @@ public class Agency {
 		super();
 		this.id = id;
 		this.agencyName = agencyName;
-		agents = new HashSet<NormalUser>();
-		eliteAgents = new HashSet<NormalUser>();
+		this.agents = new HashSet<NormalUser>();
+		this.eliteAgents = new HashSet<NormalUser>();
+		this.agencies = new HashSet<Agency>();
+		
 	}
 	
 	

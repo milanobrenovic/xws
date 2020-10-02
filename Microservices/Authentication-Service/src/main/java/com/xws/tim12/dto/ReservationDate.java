@@ -12,10 +12,11 @@ public class ReservationDate {
     }
     
 	public ReservationDate(Date rentDateFrom, Date rentDateTo) {
-		super();
+		//super();
 		this.rentDateFrom = rentDateFrom;
 		this.rentDateTo = rentDateTo;
 	}
+	
 
 	public Date getRentDateFrom() {
 		return rentDateFrom;

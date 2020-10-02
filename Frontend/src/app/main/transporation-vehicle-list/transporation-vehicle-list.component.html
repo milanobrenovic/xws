@@ -1,0 +1,145 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+    <mat-card>
+        <mat-card-title>
+            List of vehicles
+        </mat-card-title>
+        <mat-card-content>
+			<p>
+				Here you can view all transporation vehicles.
+			</p>
+        <mat-divider></mat-divider>
+        <br>
+        <table mat-table  [dataSource]="ListDataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="brand">
+                <th mat-header-cell *matHeaderCellDef>     Brand     </th>
+                <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="model">
+                <th mat-header-cell *matHeaderCellDef>     Model   </th>
+                <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+            </ng-container>
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef>    Type    </th>
+                <td mat-cell *matCellDef="let element">    {{element.type}}      </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>  Email  </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+            <ng-container matColumnDef="addToAgency">
+                <th mat-header-cell *matHeaderCellDef>  </th>
+                <td mat-cell *matCellDef="let element">
+                    
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+        
+           
+        </table>
+        <br>
+    </mat-card-content>
+ </mat-card>   
+       
+        
+
+    <table class="form-full-width">
+       
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" fxFlex="50">
+                    <mat-label>Pickup from</mat-label>
+                    <input matInput [matDatepicker]="pickerFrom" 
+                    [(ngModel)]="from"
+                    [ngModelOptions]="{standalone: true}"
+                    ng-model="ddd"
+          >
+                    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFrom></mat-datepicker>
+      
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field appearance="outline" fxFlex="50">
+                    <mat-label>Pickup to</mat-label>
+                    <input matInput [matDatepicker]="pickerTo" 
+                    [(ngModel)]="to"
+                    [ngModelOptions]="{standalone: true}"
+                    ng-model="ddd"
+          >
+                    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerTo></mat-datepicker>
+      
+                </mat-form-field>
+            </td>
+        </tr>
+</table>
+
+
+  
+
+    <tr>           
+       
+        <td><button (click)="showFreeVehicles()" style="background-color: red;color:white;">Show free vehicles</button></td>
+    </tr>
+    
+    
+  
+
+  <mat-card>
+     <mat-card-title>
+        List of vehicles
+      </mat-card-title>
+      <mat-card-content>
+        <p>
+            Here you can view all transporation vehicles.
+        </p>
+        <mat-divider></mat-divider>
+        <br>
+      <table mat-table  [dataSource]="ListDataSource2" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="brand">
+            <th mat-header-cell *matHeaderCellDef>     Brand     </th>
+            <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="model">
+            <th mat-header-cell *matHeaderCellDef>     Model   </th>
+            <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>    Type    </th>
+            <td mat-cell *matCellDef="let element">    {{element.type}}      </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>  Email  </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+        <ng-container matColumnDef="addToAgency">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element">
+                <button  mat-raised-button color="accent" class="green-bg submit-button" (click)="reserveTransportationVehicle(element.id)">
+                    Reserve
+                </button>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    
+       
+    </table>
+    <br>
+    </mat-card-content>
+  </mat-card>   
+
+      

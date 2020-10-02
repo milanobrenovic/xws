@@ -2,6 +2,7 @@ package com.xws.tim12.dto;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.xws.tim12.enumeration.UserRanking;
 import com.xws.tim12.model.NormalUser;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -42,12 +43,21 @@ public class NormalUserDTO {
     private Integer numberOfAds;
 
     private Boolean isBanned;
-   
+    private UserRanking rank;
 
     public NormalUserDTO() {
     	
     }
+    
+	public UserRanking getRank() {
+		return rank;
+	}
 
+	public void setRank(UserRanking rank) {
+		this.rank = rank;
+	}
+		
+	
 	public NormalUserDTO(Long id, String username, String password, String firstName, String lastName, String email,
 			String country, String phoneNumber, String address, String city, Integer numberOfAds, Boolean isBanned) {
 		super();
@@ -69,7 +79,32 @@ public class NormalUserDTO {
     	this(normalUser.getId(), normalUser.getUsername(), normalUser.getPassword(),
 				normalUser.getFirstName(), normalUser.getLastName(), normalUser.getEmail(),
 				normalUser.getCountry(), normalUser.getPhoneNumber(), normalUser.getAddress(),
-				normalUser.getCity(), normalUser.getNumberOfAds(), normalUser.getBanned());
+				normalUser.getCity(), normalUser.getNumberOfAds(), normalUser.getBanned(),normalUser.getRank());
+	}
+
+	public NormalUserDTO(Long id, @NotEmpty(message = "Username is empty.") String username,
+			@NotEmpty(message = "Password is empty.") String password,
+			@NotEmpty(message = "Firstname is empty.") String firstName,
+			@NotEmpty(message = "Lastname is empty.") String lastName,
+			@NotEmpty(message = "Email is empty.") String email,
+			@NotEmpty(message = "Country is empty.") String country,
+			@NotEmpty(message = "Phone number is empty.") String phoneNumber,
+			@NotEmpty(message = "Address is empty.") String address, @NotEmpty(message = "City is empty.") String city,
+			@NotEmpty(message = "Number of Adds is empty.") Integer numberOfAds, Boolean isBanned, UserRanking rank) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.city = city;
+		this.numberOfAds = numberOfAds;
+		this.isBanned = isBanned;
+		this.rank = rank;
 	}
 
 	public Long getId() {

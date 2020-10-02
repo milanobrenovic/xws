@@ -1,6 +1,7 @@
 package com.xws.tim12.dto;
 
 import com.xws.tim12.enumeration.TransportationVehicleType;
+import com.xws.tim12.model.TransportationVehicle;
 
 public class TransportationVehicleDTO {
 	private Long id;
@@ -23,7 +24,13 @@ public class TransportationVehicleDTO {
 		this.model = model;
 		this.type = type;
 	}
-
+	public TransportationVehicleDTO(TransportationVehicle tv) {
+		super();
+		this.id = tv.getId();
+		this.brand = tv.getBrand();
+		this.model = tv.getModel();
+		this.type = tv.getType();
+	}
 
 
 	public Long getId() {

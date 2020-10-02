@@ -44,7 +44,7 @@ public class AuthenticationController {
         throws AuthenticationException, IOException {
         try {
             LoggedInUserDTO loggedInUserDTO = authService.login(authenticationRequest);
-
+            System.out.println("logggggged" + loggedInUserDTO);
             if (loggedInUserDTO == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             } else {

@@ -1,0 +1,42 @@
+<div fxLayout="column" class="page-layout blank p-24" fusePerfectScrollbar>
+    <mat-card>
+        <mat-card-title>
+            List of other Agencies
+        </mat-card-title>
+        <mat-card-content>
+			<p>
+				Here you can view all the other agencies.
+			</p>
+        <mat-divider></mat-divider>
+        <br>
+        <table mat-table  [dataSource]="ListDataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="id" formControlName="id">
+                <th mat-header-cell *matHeaderCellDef>     Id     </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="agencyName" formControlName="agencyName">
+                <th mat-header-cell *matHeaderCellDef>     Agency Name   </th>
+                <td mat-cell *matCellDef="let element"> {{element.agencyName}} </td>
+            </ng-container>
+            
+            
+            <ng-container matColumnDef="request">
+                <th mat-header-cell *matHeaderCellDef>   </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button color="primary" (click)="request(element.id)">
+                        Request
+                    </button>
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+        
+           
+        </table>
+        <br>
+
+       

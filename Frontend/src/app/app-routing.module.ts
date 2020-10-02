@@ -27,6 +27,11 @@ import { ReviewComponent } from './main/review/review.component';
 import { AgentGuard } from './guards/agent.guard';
 import { NormalUser } from './models/normalUser';
 import { AdvancedSearchComponent } from './main/advanced-search/advanced-search.component';
+import { QualifiedUsersComponent} from 'C:/Users/Petar/workspace1/xws/Frontend/src/app/main/qualified-users/qualified-users.component';
+import { AgentListComponent } from './main/agent-list/agent-list.component'
+import { TransporationVehicleListComponent } from './main/transporation-vehicle-list/transporation-vehicle-list.component';
+import { CreateTransportationVehicleComponent } from './main/create-transportation-vehicle/create-transportation-vehicle.component';
+import { OtherAgenciesComponent } from './main/other-agencies/other-agencies.component';
 
 const appRoutes: Routes = [
 
@@ -38,6 +43,7 @@ const appRoutes: Routes = [
 		path: 'pages/login',
 		component: LoginComponent,
 	},
+
 
 
 	//==============================================================================//
@@ -63,6 +69,41 @@ const appRoutes: Routes = [
 		],
 	},
 	{
+		path: 'pages/qualified-users',
+		component: QualifiedUsersComponent,
+		canActivate: [
+			
+		],
+	},
+	{
+		path: 'pages/agent-list',
+		component: AgentListComponent,
+		canActivate: [
+			
+		],
+	},
+	{
+		path: 'pages/transportationVehicle-list',
+		component: TransporationVehicleListComponent,
+		canActivate: [
+			
+		],
+	},
+	{
+		path: 'pages/other-agencies',
+		component: OtherAgenciesComponent,
+		canActivate: [
+			
+		],
+	},
+	{
+		path: 'pages/create-transportationVehicle',
+		component: CreateTransportationVehicleComponent,
+		canActivate: [
+			
+		],
+	},
+	{
 		path: 'pages/register',
 		component: RegisterComponent,
 	},
@@ -70,18 +111,16 @@ const appRoutes: Routes = [
 		path: 'pages/create-new-vehicle',
 		component: CreateNewVehicleComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+//			AdminGuard,
+//			AgentGuard,
+//			NormalUser,
 		],
 	},
 	{
 		path: 'pages/create-new-ad',
 		component: CreateNewAdComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+			
 		],
 	},
 	{
@@ -92,9 +131,7 @@ const appRoutes: Routes = [
 		path: 'pages/vehicle-details/:id',
 		component: VehicleDetailsComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+		
 		],
 	},
 	{
@@ -110,27 +147,21 @@ const appRoutes: Routes = [
 		path: 'pages/chat',
 		component: ChatComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+	
 		],
 	},
 	{
 		path: 'pages/request-to-rent',
 		component: RequestToRentComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+		
 		],
 	},
 	{
 		path: 'pages/request-to-rent-details',
 		component: RequestDetailsComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+		
 		],
 	},
 	{
@@ -144,54 +175,42 @@ const appRoutes: Routes = [
 		path: 'pages/add-images',
 		component: AddImagesComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+		
 		],
 	},
 	{
 		path: 'pages/fuel-types',
 		component: FuelTypesComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+	
 		],
 	},
 	{
 		path: 'pages/transmission-types',
 		component: TransmissionTypesComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+
 		],
 	},
 	{
 		path: 'pages/vehicle-types',
 		component: VehicleTypesComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+	
 		],
 	},
 	{
 		path: 'pages/cart',
 		component: CartComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+		
 		],
 	},
 	{
 		path: 'pages/review/:requestToRentDetailsId',
 		component: ReviewComponent,
 		canActivate: [
-			AdminGuard,
-			AgentGuard,
-			NormalUser,
+		
 		],
 	},
 	{

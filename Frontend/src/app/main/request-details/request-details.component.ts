@@ -58,9 +58,9 @@ export class RequestDetailsComponent implements OnInit {
           formattedObject.push(adObject);
         });
 
-        this.requestsToShowForUserThatRequestedDataSource = new MatTableDataSource(formattedObject);
-        this.requestsToShowForUserThatRequestedDataSource.paginator = this.paginator;
-        this.requestsToShowForUserThatRequestedDataSource.sort = this.sort;
+        this.requestDetailsDataSource = new MatTableDataSource(formattedObject);
+        this.requestDetailsDataSource.paginator = this.paginator;
+        this.requestDetailsDataSource.sort = this.sort;
       },
       (e: HttpErrorResponse) => {
 				this._toastrService.error(e.message, "Failed create a new review");
@@ -133,7 +133,7 @@ export class RequestDetailsComponent implements OnInit {
     console.log(userId);
     console.log(userRole);
     
-    this._cartService.requestToShowForUser(userId, userRole).subscribe(
+    this._cartService.requestToRentForUser(userId).subscribe(
       (data: Array<RequestToRentDetails>) => {
         this.requestsToShowForUserThatRequestedDataSource = new MatTableDataSource(data);
         this.requestsToShowForUserThatRequestedDataSource.paginator = this.paginator;
